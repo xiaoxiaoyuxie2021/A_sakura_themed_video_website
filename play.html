@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>花见视频 - 播放页</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/component.css">
+  <link rel="stylesheet" href="css/effect.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/player.css"> 
+</head>
+<body>
+  <canvas class="sakura" id="sakura"></canvas>
+  <div class="glass">
+    <header>
+      <div class="logo">花见视频</div>
+      <div class="header-search">
+        <div class="search-container">
+          <i class="fas fa-search search-icon"></i>
+          <input type="search" id="search-input" placeholder="搜索视频内容...">
+        </div>
+        <button class="refresh-btn" id="refresh-btn">
+          <i class="fas fa-sync-alt"></i>
+          <span>刷新</span>
+        </button>
+      </div>
+      <nav>
+        <a href="index.html">首页</a>
+        <div class="nav-item upload-menu">
+          <span class="upload-link">上传</span>
+          <div class="dropdown upload-dropdown">
+            <div class="upload-box">
+              <input type="file" id="fileInput" accept="video/*" style="display: none;">
+              <button id="selectFileBtn" class="upload-btn">选择本地文件</button>
+              <div class="upload-tips">或 Ctrl+V 粘贴文件</div>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item user-menu" id="userMenu">
+          <span class="user-link">用户</span>
+          <div class="dropdown user-dropdown">
+            <div class="user-promo">
+              点击用户头像，畅享更多精彩内容！
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    
+    <!-- 播放页主体内容 -->
+    <main style="padding:0;">
+      <div class="player-container">
+        <!-- 主播放区域（可滚动） -->
+        <div class="main-player">
+          <div class="video-wrapper">
+            <video id="videoPlayer" width="100%" height="100%">
+              <!-- 更换为更稳定的视频源 -->
+              <source src="videos/user_upload/1.mp4" type="video/mp4">
+              您的浏览器不支持HTML5视频
+            </video>
+          <div class="custom-controls">
+    <button class="play-pause-btn" id="playPauseBtn"><i class="fas fa-play"></i></button>
+
+    <div class="progress-container">
+      <div class="progress-bar" id="progressBar">
+        <div class="progress-filled" id="progressFilled"></div>
+      </div>
+      <button class="volume-btn" id="volumeBtn"><i class="fas fa-volume-up"></i></button>
+    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+    <button class="fullscreen-btn" id="fullscreenBtn"><i class="fas fa-expand"></i></button>
+    <div class="time-display">
+  <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
+</div>
+
+</div>
+
+    </div>
+
+    <div class="time-display">
+      <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
+    </div>
+
+          </div>
+          
+          <div class="video-info">
+            <h1 class="video-title" id="videoTitle">【天哥版】最春哥</h1>
+            
+            <div class="video-meta">
+              <div>
+                <span id="videoAuthor">樱花达人</span> · <span id="videoPlays">5.1万 播放</span>
+              </div>
+              <div id="videoDate">2023-03-15</div>
+            </div>
+            
+            <div class="video-actions">
+              <button class="action-btn">
+                <i class="fas fa-thumbs-up"></i>
+                <span>点赞</span>
+              </button>
+              <button class="action-btn">
+                <i class="fas fa-star"></i>
+                <span>收藏</span>
+              </button>
+              <button class="action-btn">
+                <i class="fas fa-share-alt"></i>
+                <span>分享</span>
+              </button>
+            </div>
+          </div>
+          
+          <div class="video-info">
+            <h3 style="margin-bottom:10px;">视频简介</h3>
+            <p id="videoDesc" style="color:#555; line-height:1.6;">
+              这是一段美丽的春日序曲视频，记录了春天的美好瞬间，包括盛开的樱花、温暖的阳光和欢快的氛围。希望这个视频能带给你愉悦的心情。
+            </p>
+          </div>
+
+          <!-- 评论区（已显示） -->
+          <div class="comment-section">
+            <div class="comment-header">
+              <div class="comment-count">评论 (24)</div>
+            </div>
+            
+            <div class="comment-input">
+              <input type="text" placeholder="写下你的评论...">
+              <button class="send-btn">发送</button>
+            </div>
+            
+            <div class="comment-list">
+              <div class="comment-item">
+                <div class="comment-avatar">樱</div>
+                <div class="comment-content">
+                  <div class="comment-author">樱花爱好者</div>
+                  <div class="comment-text">画面太美了，樱花飘落的瞬间太治愈了！</div>
+                  <div class="comment-time">2023-03-16 14:25</div>
+                </div>
+              </div>
+              
+              <div class="comment-item">
+                <div class="comment-avatar">春</div>
+                <div class="comment-content">
+                  <div class="comment-author">春日使者</div>
+                  <div class="comment-text">背景音乐是什么？好好听！</div>
+                  <div class="comment-time">2023-03-16 16:40</div>
+                </div>
+              </div>
+              
+              <div class="comment-item">
+                <div class="comment-avatar">影</div>
+                <div class="comment-content">
+                  <div class="comment-author">摄影爱好者</div>
+                  <div class="comment-text">请问用什么设备拍摄的？画质好清晰！</div>
+                  <div class="comment-time">2023-03-17 09:12</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 推荐视频区（可滚动） -->
+        <div class="recommendations">
+          <h3 style="padding-left:5px;">推荐视频</h3>
+          <div id="recommendList">
+            <div class="recommendation-item">
+              <div class="recommendation-thumb">
+                <img src="https://source.unsplash.com/random/140x80?cherry" alt="樱花盛开的季节">
+              </div>
+              <div class="recommendation-info">
+                <div class="recommendation-title">樱花盛开的季节</div>
+                <div class="recommendation-meta">3.2万播放</div>
+              </div>
+            </div>
+            
+            <div class="recommendation-item">
+              <div class="recommendation-thumb">
+                <img src="https://source.unsplash.com/random/140x80?kyoto" alt="日本京都赏樱攻略">
+              </div>
+              <div class="recommendation-info">
+                <div class="recommendation-title">日本京都赏樱攻略</div>
+                <div class="recommendation-meta">2.8万播放</div>
+              </div>
+            </div>
+            
+            <div class="recommendation-item">
+              <div class="recommendation-thumb">
+                <img src="https://source.unsplash.com/random/140x80?picnic" alt="樱花树下的野餐">
+              </div>
+              <div class="recommendation-info">
+                <div class="recommendation-title">樱花树下的野餐</div>
+                <div class="recommendation-meta">1.5万播放</div>
+              </div>
+            </div>
+            
+            <div class="recommendation-item">
+              <div class="recommendation-thumb">
+                <img src="https://source.unsplash.com/random/140x80?food" alt="春季美食特辑">
+              </div>
+              <div class="recommendation-info">
+                <div class="recommendation-title">春季美食特辑</div>
+                <div class="recommendation-meta">4.7万播放</div>
+              </div>
+            </div>
+            
+            <div class="recommendation-item">
+              <div class="recommendation-thumb">
+                <img src="https://source.unsplash.com/random/140x80?petal" alt="花瓣飘落的瞬间">
+              </div>
+              <div class="recommendation-info">
+                <div class="recommendation-title">花瓣飘落的瞬间</div>
+                <div class="recommendation-meta">6.3万播放</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- 登录注册弹窗-->
+<div class="modal-overlay" id="authModal" style="display: none;">
+  <div class="auth-modal">
+    <div class="modal-close" id="modalClose">×</div>
+    <div class="auth-tabs">
+      <div class="auth-tab active" data-tab="login">登录</div>
+      <div class="auth-tab" data-tab="register">注册</div>
+    </div>
+    <div class="auth-form login-form">
+      <div class="form-group">
+        <label class="form-label">用户名/手机号</label>
+        <input type="text" class="form-input" placeholder="请输入用户名或手机号">
+      </div>
+      <div class="form-group">
+        <label class="form-label">密码</label>
+        <input type="password" class="form-input" placeholder="请输入密码">
+      </div>
+      <button class="auth-btn">登录</button>
+    </div>
+    <div class="auth-form register-form" style="display: none;">
+      <div class="form-group">
+        <label class="form-label">手机号</label>
+        <input type="text" class="form-input" placeholder="请输入手机号">
+      </div>
+      <div class="form-group">
+        <label class="form-label">验证码</label>
+        <input type="text" class="form-input" placeholder="请输入验证码">
+      </div>
+      <div class="form-group">
+        <label class="form-label">设置密码</label>
+        <input type="password" class="form-input" placeholder="请设置6-16位密码">
+      </div>
+      <button class="auth-btn">注册</button>
+    </div>
+  </div>
+</div>
+
+</body>
+<script src="js/sakura.js"></script>
+<script src="js/base.js"></script> 
+<script src="js/player.js"></script>
+<script src="js/data.js"></script>
+<script src="js/function.js"></script>
+<script src="js/render.js"></script>
+</html>
+

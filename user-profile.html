@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>用户主页 - 花见视频</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/component.css">
+  <link rel="stylesheet" href="css/effect.css">
+  <link rel="stylesheet" href="css/user-profile.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <canvas class="sakura" id="sakura"></canvas>
+
+  <div class="glass">
+    <header>
+      <div class="logo">花见视频</div>
+      <div class="header-search">
+        <div class="search-container">
+          <i class="fas fa-search search-icon"></i>
+          <input type="search" id="search-input" placeholder="搜索视频内容...">
+        </div>
+        <button class="refresh-btn" id="refresh-btn">
+          <i class="fas fa-sync-alt"></i>
+          <span>刷新</span>
+        </button>
+      </div>
+      <nav>
+        <a href="index.html">首页</a>
+        <div class="nav-item upload-menu">
+          <span class="upload-link">上传</span>
+          <div class="dropdown upload-dropdown">
+            <div class="upload-box">
+              <input type="file" id="fileInput" accept="video/*" style="display: none;">
+              <button id="selectFileBtn" class="upload-btn">选择本地文件</button>
+              <div class="upload-tips">或 Ctrl+V 粘贴文件</div>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item user-menu" id="userMenu">
+          <span class="user-link">用户</span>
+          <div class="dropdown user-dropdown">
+            <div class="user-promo">
+              点击用户头像，畅享更多精彩内容！
+            </div>
+         </div>
+       </div>
+      </nav>
+    </header>
+    
+    <main style="overflow-y: auto; padding: 20px;">
+      <!-- 用户资料头部 -->
+      <div class="profile-header">
+        <div class="avatar-container">
+          <img src="https://source.unsplash.com/random/200x200?face" alt="用户头像">
+        </div>
+        <h1 class="user-name">樱花爱好者</h1>
+        <p class="user-bio">喜欢记录生活中的美好瞬间，尤其钟爱樱花季的浪漫景象。欢迎关注交流~</p>
+        <div class="user-stats">
+          <div class="user-stat">
+            <div class="stat-value">24</div>
+            <div class="stat-label">作品</div>
+          </div>
+          <div class="user-stat">
+            <div class="stat-value">12.5万</div>
+            <div class="stat-label">总播放</div>
+          </div>
+          <div class="user-stat">
+            <div class="stat-value">3.2k</div>
+            <div class="stat-label">粉丝</div>
+          </div>
+        </div>
+        <button class="auth-btn" style="width: auto; padding: 8px 24px;">
+          <i class="fas fa-user-plus"></i> 关注
+        </button>
+      </div>
+      
+
+      <!-- 内容标签页 -->
+      <div class="profile-tabs">
+        <div class="profile-tab active" data-tab="videos">视频</div>
+        <div class="profile-tab" data-tab="likes">喜欢</div>
+        <div class="profile-tab" data-tab="collections">收藏</div>
+      </div>
+      
+      <!-- 视频作品区 -->
+      <div class="video-grid" id="userVideos">
+        <!-- 视频卡片会通过JS动态生成 -->
+      </div>
+    </main>
+  </div>
+
+  <script src="js/sakura.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/user-profile.js"></script>
+</body>
+</html>
