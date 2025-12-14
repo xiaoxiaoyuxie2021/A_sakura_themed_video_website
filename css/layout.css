@@ -1,0 +1,96 @@
+/* 顶部导航 */
+header{
+  height:52px;
+  background:rgba(255,255,255,.25);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,255,255,.4);
+  border-radius:0 0 16px 16px;
+  display:flex;
+  align-items:center;
+  padding:0 20px;
+}
+.logo{
+  font-size:20px;
+  font-weight:bold;
+  color:var(--sakura);
+  margin-right:auto;
+  letter-spacing:1px
+}
+
+/* 导航菜单容器 */
+nav{
+  display:flex;
+  align-items:center;
+  gap:4px;
+}
+
+/* 内容区域 */
+main{
+  flex:1;
+  padding:8px;
+  overflow-y:auto
+}
+
+/* 视频网格布局 */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+  gap:50px;
+}
+
+/* 公告横幅 */
+.announcement-banner {
+  width: 100%;
+  height: 380px;
+  background: rgba(255,255,255,.6);
+  border: 1px solid rgba(255,255,255,.9);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform .2s;
+}
+
+/* 播放弹层 */
+#player{
+  position:fixed;
+  inset:15px;
+  background:rgba(0,0,0,.65);
+  z-index:10000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  border-radius:20px
+}
+#player video{
+  width:90%;
+  max-width:800px;
+  border-radius:12px
+}
+.close{
+  position:absolute;
+  top:10px;
+  right:15px;
+  font-size:24px;
+  cursor:pointer;
+  color:#fff
+}
+
+/* 移动端适配 */
+@media (max-width: 480px) {
+  header{
+    flex-wrap:wrap;
+    height:auto;
+    padding:8px 10px;
+  }
+  nav{
+    width:100%;
+    justify-content:space-around;
+    margin-top:8px;
+  }
+  .category-dropdown, .user-dropdown, .upload-dropdown{
+    width:90%;
+    left:5%;
+    right:auto;
+  }
+}

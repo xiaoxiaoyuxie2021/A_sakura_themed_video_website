@@ -1,0 +1,415 @@
+/* 视频播放器容器布局 */
+.player-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  height: auto;
+  overflow: hidden;
+}
+
+/*视频播放器适配大屏幕手机*/
+@media (min-width: 768px) {
+  .player-container {
+    flex-direction: row;
+  }
+}
+
+/*主播放器*/
+.main-player {
+  width:100%;
+}
+
+/*视频推荐*/
+.recommendations {
+  width: 100%;
+  max-height: calc(100vh - 60px);
+  overflow-y: auto;
+}
+
+/*视频推荐栏目适配手机屏幕*/
+@media (min-width: 768px) {
+  .recommendations {
+    width: 320px;
+  }
+}
+
+/*视频容器（包裹层）*/
+.video-wrapper {
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 16 / 9;
+   
+}
+
+/* 确保视频填充容器 */
+#videoPlayer {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain; 
+}
+
+/* 评论区样式 */
+.comment-section {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  padding: 15px;
+  margin-top: 15px;
+}
+
+/*评论区头部排版（布局）*/
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+/*评论数的字体粗细*/
+.comment-count {
+  font-weight: 600;
+}
+
+/*评论输入框排版（布局）*/
+.comment-input {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+/*评论输入框样式*/
+.comment-input input {
+  flex: 1;
+  padding: 10px 15px;
+  border: 1px solid #ffc0cb;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.8);
+  outline: none;
+}
+
+/*评论区容器排版（布局）*/
+.comment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/*单条评论排版（布局）与样式*/
+.comment-item {
+  display: flex;
+  gap: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f8d7da;
+}
+
+/*评论区用户头像样式*/
+.comment-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #ffd1dc;
+  color: #e85d75;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/*评论区用户图片头像样式*/
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  position: absolute; 
+}
+
+/*评论内容排版（布局）*/
+.comment-content {
+  flex: 1;
+}
+
+/*评论用户昵称字体样式*/
+.comment-author {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+/*评论内容字体样式*/
+.comment-text {
+  color: #555;
+  margin-bottom: 5px;
+}
+
+/*评论发表时间字体样式*/
+.comment-time {
+  font-size: 12px;
+  color: #999;
+}
+
+/*视频信息*/
+.video-info {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  padding: 15px;
+}
+
+/*视频标题*/
+.video-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/*视频辅助信息*/
+.video-meta {
+  display: flex;
+  justify-content: space-between;
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+/*视频操作区排版（布局）*/
+.video-actions {
+  display: flex;
+  gap: 15px;
+}
+
+/*视频操作区按钮样式*/
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 15px;
+  background: rgba(253, 242, 248, 0.9);
+  color: #f48fb1;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+/*视频操作按钮鼠标光标悬浮效果样式*/
+.action-btn:hover {
+  background-color: rgba(255, 210, 220, 0.9);
+}
+
+/*视频推荐区排版（布局）与样式*/
+.recommendation-item {
+  display: flex;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s;
+  min-height:80px
+}
+
+/*视频推荐区鼠标光标悬浮缩放效果*/
+.recommendation-item:hover {
+  transform: scale(1.02);
+}
+
+/*视频推荐区视频缩略图容器*/
+.recommendation-thumb {
+  width: 120px;
+  height: 80px;
+  flex-shrink: 0;
+}
+
+/*视频推荐区视频缩略图*/
+.recommendation-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/*视频推荐区视频信息*/
+.recommendation-info {
+  padding: 5px 0;
+  flex: 1;
+  min-width: 0;
+}
+
+/*视频推荐区视频标题*/
+.recommendation-title {
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/*视频推荐区视频辅助信息*/
+.recommendation-meta {
+  font-size: 12px;
+  color: #666;
+}
+
+/*视频播放器容器适应小屏幕手机*/
+@media (max-width: 768px) {
+  .player-container {
+    grid-template-columns: 3fr 1fr;
+  }
+  .recommendations {
+    max-height: 300px;
+  }
+}
+
+/*樱花主题发送按钮样式*/
+.send-btn {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #ffd1dc, #e85d75); /* 樱花粉渐变 */
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(232, 93, 117, 0.3);
+  transition: all 0.2s ease;
+}
+
+/*发送按钮鼠标光标悬停效果*/
+.send-btn:hover {
+  background: linear-gradient(135deg, #ffccd5, #d64561); /* 加深渐变 */
+  transform: translateY(-2px); /* 轻微上浮 */
+  box-shadow: 0 4px 12px rgba(232, 93, 117, 0.4);
+}
+
+/*点击发送按钮时的按压效果*/
+.send-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(232, 93, 117, 0.2);
+}
+
+/*隐藏默认视频播放器控件*/
+#videoPlayer::-webkit-media-controls {
+  display: none !important;
+}
+#videoPlayer {
+  -webkit-appearance: none; /* 旧版 Chrome/Safari */
+  -moz-appearance: none;    /* 旧版 Firefox */
+  appearance: none;         /* 标准 */
+}
+
+/* 自定义视频播放器控件容器 */
+.custom-controls {
+  opacity: 1 !important;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  padding: 15px;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 10;
+}
+
+/*鼠标光标悬停视频时显示控件 */
+.video-wrapper:hover .custom-controls {
+  opacity: 1;
+}
+
+/*视频播放器控件播放/暂停按钮*/
+.play-pause-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*视频播放器控件进度条*/
+.progress-container {
+  flex: 1;
+  height: 4px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.progress-filled {
+  height: 150%;
+  background: #f48fb1; /* 樱花粉色 */
+  border-radius: 2px;
+  width: 0%;
+}
+
+/*视频播放器控件进度条时间显示*/
+.time-display {
+  font-size: 14px;
+  min-width: 80px;
+  text-align: end;
+  color: white;
+  position: relative;
+  top: -16px;
+}
+
+/*视频播放器控件音量控制按钮*/
+.volume-btn {
+  position: relative;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  top:3px
+}
+
+/*视频播放器控件音量控制滑动调节*/
+.volume-slider {
+  position: absolute;
+   bottom: 20px;        
+  left: 10px;
+  transform: 
+    translateX(-50%)     
+    rotateZ(-90deg);   
+  width: 70px;
+  height: 20px;
+  display: none;
+}
+
+.volume-btn:hover + .volume-slider,
+.volume-slider:hover {
+  display: block;
+}
+
+.volume-slider input {
+  width: 100%;
+  accent-color: #f48fb1;
+}
+
+/*视频播放器控件全屏按钮*/
+.fullscreen-btn {
+  position: relative;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  margin-left: 5px;
+  top:3px;
+}
+
