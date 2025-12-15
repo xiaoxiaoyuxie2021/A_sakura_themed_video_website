@@ -55,4 +55,62 @@ window.onload = function() {
       }
     }
   });
+
+  // 搜索功能
+  const searchInput = document.getElementById('search-input');
+  if (searchInput) {
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const keyword = searchInput.value.trim();
+        keyword ? alert(`正在搜索视频：${keyword}`) : alert('请输入搜索内容哦~');
+      }
+    });
+  }
+
+  // 刷新功能
+  const refreshBtn = document.getElementById('refresh-btn');
+  if (refreshBtn) {
+    refreshBtn.addEventListener('click', () => {
+      if (searchInput) searchInput.value = '';
+      window.location.reload();
+    });
+  }
+
+  // 登录注册弹窗交互
+  const userMenu = document.getElementById('userMenu');
+  const authModal = document.getElementById('authModal');
+  const modalClose = document.getElementById('modalClose');
+  const authTabs = document.querySelectorAll('.auth-tab');
+  const authForms = document.querySelectorAll('.auth-form');
+
+  if (userMenu && authModal) {
+    userMenu.addEventListener('click', (e) => {
+      e.stopPropagation();
+      authModal.style.display = 'flex';
+    });
+  }
+  if (modalClose && authModal) {
+    modalClose.addEventListener('click', () => authModal.style.display = 'none');
+  }
+  if (authModal) {
+    authModal.addEventListener('click', (e) => e.target === authModal && (authModal.style.display = 'none'));
+  }
+  if (authTabs && authForms) {
+    authTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        authTabs.forEach(t => t.classList.remove('active'));
+        authForms.forEach(f => f.style.display = 'none');
+        tab.classList.add('active');
+        document.querySelector(`.${tab.dataset.tab}-form`).style.display = 'block';
+      });
+    });
+  }
+
+  // 模拟在线人数更新
+  setInterval(() => {
+    const onlineUsers = document.getElementById('onlineUsers');
+    if (onlineUsers) {
+      onlineUsers.textContent = Math.floor(Math.random() * 20) + 30;
+    }
+  }, 30000);
 };
