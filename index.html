@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<link rel="stylesheet" href="css/base.css">
 <meta charset="UTF-8">
 <title>花见视频</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -139,7 +138,7 @@ const refreshBtn = document.getElementById('refresh-btn');
 if (refreshBtn) {
   refreshBtn.addEventListener('click', () => {
     searchInput.value = '';
-    window.location.reload(true);
+    window.location.reload();
   });
 }
 
