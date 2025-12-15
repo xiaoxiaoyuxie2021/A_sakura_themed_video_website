@@ -134,13 +134,12 @@ if (searchInput) {
 }
 
 // 刷新功能
-const refreshBtn = document.getElementById('refresh-btn');
 if (refreshBtn) {
-  refreshBtn.addEventListener('click', () => {
-    searchInput.value = '';
-    window.location.reload();
-  });
-}
+ refreshBtn.addEventListener('click', () => {
+ if (searchInput) searchInput.value = '';
+ window.location.reload();
+ });
+ }
 
 // 登录注册弹窗交互
 const userMenu = document.getElementById('userMenu');
