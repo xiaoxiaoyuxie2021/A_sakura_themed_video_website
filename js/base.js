@@ -1,15 +1,4 @@
 window.addEventListener('load', function () {
-  // 用户菜单交互
-  const userLink = document.querySelector('.user-link');
-  const userDropdown = document.querySelector('.user-dropdown');
-  
-  if (userLink && userDropdown) {
-    userLink.addEventListener('click', function(e) {
-      e.stopPropagation();
-      userDropdown.classList.toggle('show');
-    });
-  }
-
   // 点击空白处关闭下拉菜单
   document.addEventListener('click', function() {
     const dropdowns = document.querySelectorAll('.dropdown');

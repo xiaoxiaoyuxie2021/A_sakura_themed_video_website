@@ -31,8 +31,8 @@ function handleFileUpload(file) {
 // 页面加载完成后初始化
 window.onload = function() {
   // 初始化渲染
-  renderVideos();
-  renderCategories();
+  if (document.getElementById('grid')) renderVideos();
+  if (document.querySelector('.category-dropdown')) renderCategories();
 
   // 上传按钮事件
   document.getElementById('selectFileBtn').addEventListener('click', function() {
@@ -77,23 +77,23 @@ window.onload = function() {
   }
 
   // 登录注册弹窗交互
-  const userMenu = document.getElementById('userMenu');
+  const userLink = document.querySelector('.user-link');
   const authModal = document.getElementById('authModal');
   const modalClose = document.getElementById('modalClose');
   const authTabs = document.querySelectorAll('.auth-tab');
   const authForms = document.querySelectorAll('.auth-form');
 
-  if (userMenu && authModal) {
-    userMenu.addEventListener('click', (e) => {
+  if (userLink && authModal) {
+    userLink.addEventListener('click', (e) => {
       e.stopPropagation();
-      authModal.style.display = 'flex';
+      authModal.classList.add('show');
     });
   }
   if (modalClose && authModal) {
-    modalClose.addEventListener('click', () => authModal.style.display = 'none');
+    modalClose.addEventListener('click', () => authModal.classList.remove('show'));
   }
   if (authModal) {
-    authModal.addEventListener('click', (e) => e.target === authModal && (authModal.style.display = 'none'));
+    authModal.addEventListener('click', (e) => e.target === authModal && authModal.classList.remove('show'));
   }
   if (authTabs && authForms) {
     authTabs.forEach(tab => {
