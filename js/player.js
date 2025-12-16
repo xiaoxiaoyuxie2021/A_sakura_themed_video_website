@@ -108,6 +108,7 @@ if (!video) {
   /* ===== 7. 初始时长 ===== */
   video.addEventListener('loadedmetadata', () => {
     durationEl.textContent = formatTime(video.duration);
+  updateProgress();
   });
 
   /* ===== 8. 工具函数 ===== */
@@ -161,8 +162,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const v   = document.getElementById('videoPlayer');
   const bar = document.getElementById('progressBar');
   const fill= document.getElementById('progressFilled');
-  const cur = document.getElementById('currentTime');
-  const dur = document.getElementById('duration');
+  const cur = document.getElementById('currentTime')
+  const dur = document.getElementById('duration') 
   const btn = document.getElementById('playPauseBtn');
   const volBtn=document.getElementById('volumeBtn');
   const volSl=document.getElementById('volumeSlider');
