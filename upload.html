@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>上传视频 - 花见视频</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/component.css">
+  <link rel="stylesheet" href="css/effect.css">
+  <link rel="stylesheet" href="css/upload.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <canvas class="sakura" id="sakura"></canvas>
+  
+  <div class="glass">
+    <header>
+      <div class="logo">花见视频</div>
+      <div class="header-search">
+        <div class="search-container">
+          <i class="fas fa-search search-icon"></i>
+          <input type="search" id="search-input" placeholder="搜索视频内容...">
+        </div>
+        <button class="refresh-btn" id="refresh-btn">
+          <i class="fas fa-sync-alt"></i>
+          <span>刷新</span>
+        </button>
+      </div>
+      <nav>
+        <a href="index.html">首页</a>
+        <div class="nav-item category-menu">
+          <span class="category-link">分类</span>
+          <div class="dropdown category-dropdown"></div>
+        </div>
+        <a href="#rank">排行</a>
+        <div class="nav-item upload-menu active">
+          <span class="upload-link">上传</span>
+        </div>
+        <div class="nav-item user-menu" id="userMenu">
+          <span class="user-link">用户</span>
+          <div class="dropdown user-dropdown">
+            <div class="user-promo">
+              点击用户头像，畅享更多精彩内容！
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    
+    <main>
+      <div class="upload-container">
+        <div class="upload-header">
+          <h1>上传新视频</h1>
+          <p>分享您的樱花美景与精彩瞬间</p>
+        </div>
+        
+        <div class="upload-area" id="uploadArea">
+          <input type="file" id="fileInput" accept="video/*" style="display: none;">
+          <div class="upload-icon">
+            <i class="fas fa-cloud-upload-alt"></i>
+          </div>
+          <div class="upload-info">
+            <p>点击或拖拽视频文件到此处</p>
+            <p class="small-text">支持 MP4、WebM、MOV 格式，最大支持 2GB</p>
+          </div>
+          <button class="upload-btn" id="browseBtn">选择本地文件</button>
+        </div>
+        
+        <div class="file-preview" id="filePreview">
+          <video class="preview-video" id="previewVideo" controls></video>
+          <div class="file-info">
+            <div id="fileName">视频文件名</div>
+            <button class="cancel-btn" id="removeFileBtn">移除</button>
+          </div>
+          
+          <div class="upload-progress" id="uploadProgress">
+            <div class="progress-bar" id="progressBar"></div>
+          </div>
+        </div>
+        
+        <form id="uploadForm">
+          <div class="upload-form-group">
+            <label class="upload-form-label" for="videoTitle">视频标题</label>
+            <input type="text" class="upload-form-input" id="videoTitle" placeholder="请输入视频标题" required>
+          </div>
+          
+          <div class="upload-form-group">
+            <label class="upload-form-label" for="videoCategory">视频分类</label>
+            <select class="upload-form-select" id="videoCategory" required>
+              <option value="">请选择分类</option>
+              <option value="cherry-blossom">樱花欣赏</option>
+              <option value="travel">旅行记录</option>
+              <option value="photography">摄影技巧</option>
+              <option value="event">樱花活动</option>
+              <option value="other">其他</option>
+            </select>
+          </div>
+          
+          <div class="upload-form-group">
+            <label class="upload-form-label" for="videoDescription">视频简介</label>
+            <textarea class="upload-form-textarea" id="videoDescription" placeholder="请输入视频简介（可选）"></textarea>
+          </div>
+          
+          <div class="upload-form-group">
+            <label class="upload-form-label" for="videoTags">标签</label>
+            <input type="text" class="upload-form-input" id="videoTags" placeholder="请输入标签，用逗号分隔">
+          </div>
+          
+          <div class="upload-actions">
+            <button type="button" class="cancel-btn" id="cancelBtn">取消</button>
+            <button type="submit" class="submit-btn" id="submitBtn">发布视频</button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <!-- 登录注册弹窗 -->
+  <div class="modal-overlay" id="authModal">
+    <div class="auth-modal">
+      <div class="modal-close" id="modalClose">×</div>
+      <div class="auth-tabs">
+        <div class="auth-tab active" data-tab="login">登录</div>
+        <div class="auth-tab" data-tab="register">注册</div>
+      </div>
+      <div class="auth-form login-form">
+        <div class="form-group">
+          <label class="form-label">用户名/手机号</label>
+          <input type="text" class="form-input" placeholder="请输入用户名或手机号">
+        </div>
+        <div class="form-group">
+          <label class="form-label">密码</label>
+          <input type="password" class="form-input" placeholder="请输入密码">
+        </div>
+        <button class="auth-btn">登录</button>
+      </div>
+      <div class="auth-form register-form" style="display: none;">
+        <div class="form-group">
+          <label class="form-label">手机号</label>
+          <input type="text" class="form-input" placeholder="请输入手机号">
+        </div>
+        <div class="form-group">
+          <label class="form-label">验证码</label>
+          <input type="text" class="form-input" placeholder="请输入验证码">
+        </div>
+        <div class="form-group">
+          <label class="form-label">设置密码</label>
+          <input type="password" class="form-input" placeholder="请设置6-16位密码">
+        </div>
+        <button class="auth-btn">注册</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/sakura.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/upload.js"></script>
+</body>
+</html>
