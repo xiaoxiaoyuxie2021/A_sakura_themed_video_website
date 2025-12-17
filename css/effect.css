@@ -3,7 +3,7 @@
   background:var(--hover-bg);
   color:var(--sakura);
 }
-.nav-item::after, nav a::after{
+.nav-item::after{
   content:"";
   position:absolute;
   bottom:4px;
@@ -13,7 +13,7 @@
   background:var(--sakura);
   transition:width .3s,left .3s;
 }
-.nav-item:hover::after, nav a:hover::after{
+.nav-item:hover::after{
   width:100%;
   left:0;
 }
@@ -23,7 +23,7 @@ nav a.active{
   background:var(--hover-bg);
   color:var(--sakura);
 }
-nav a.active::after{
+.nav-item.active::after{
   width:100%;
   left:0;
 }
