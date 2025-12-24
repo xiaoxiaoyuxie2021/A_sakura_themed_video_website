@@ -1,0 +1,113 @@
+.promo-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6); /* 加深遮罩层，提升区分度 */
+  backdrop-filter: blur(4px);
+  z-index: 99999; /* 超大z-index确保最上层 */
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 弹窗显示状态 */
+.promo-modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 弹窗内容容器 */
+.promo-content {
+  background: #fff;
+  border-radius: 16px; /* 圆角优化 */
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 8px 30px rgba(244, 143, 177, 0.4); /* 增强阴影 */
+  overflow: hidden;
+  transform: translateY(-20px) scale(0.95);
+  transition: transform 0.3s ease;
+}
+
+.promo-modal.show .promo-content {
+  transform: translateY(0) scale(1);
+}
+
+/* 弹窗头部 - 樱花主题渐变 */
+.promo-header {
+  background: linear-gradient(135deg, #ffd1dc, #e85d75);
+  padding: 18px 24px;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* 弹窗内容区 */
+.promo-body {
+  padding: 24px;
+  color: #333;
+  line-height: 1.6; /* 优化行高 */
+  font-size: 15px;
+}
+
+/* 弹窗底部按钮区 */
+.promo-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 24px;
+  border-top: 1px solid #ffecef;
+  background: #fff8fa;
+}
+
+/* 按钮样式优化 */
+.promo-detail {
+  padding: 10px 20px;
+  border: 1px solid #e85d75;
+  border-radius: 24px;
+  background: transparent;
+  color: #e85d75;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 14px;
+}
+
+.promo-detail:hover {
+  background: rgba(232, 93, 117, 0.1);
+}
+
+.promo-close {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #ffd1dc, #e85d75);
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 14px;
+  box-shadow: 0 2px 8px rgba(232, 93, 117, 0.3);
+}
+
+.promo-close:hover {
+  background: linear-gradient(135deg, #ffccd5, #d64561);
+  transform: translateY(-2px);
+}
+
+/* 移动端适配 */
+@media (max-width: 480px) {
+  .promo-content {
+    width: 95%;
+  }
+  .promo-header {
+    padding: 14px 20px;
+    font-size: 16px;
+  }
+  .promo-body {
+    padding: 20px;
+    font-size: 14px;
+  }
+}

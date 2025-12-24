@@ -8,11 +8,11 @@
 <link rel="stylesheet" href="css/layout.css">
 <link rel="stylesheet" href="css/component.css">
 <link rel="stylesheet" href="css/effect.css">
+<link rel="stylesheet" href="css/promote1.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 <canvas class="sakura" id="sakura"></canvas>
-
 <div class="glass">
   <header>
     <div class="logo">ECG</div>
@@ -26,6 +26,21 @@
         <span>刷新</span>
       </button>
     </div>
+    <div class="promo-modal" id="promoModal">
+    <div class="promo-content">
+    <div class="promo-header">
+      <h3>🧨 新年活动</h3>
+    </div>
+    <div class="promo-body">
+      <img src="" alt="新年活动" class="promo-image">
+      <p>上传新年主题视频参与评选，赢取限定周边和会员特权！活动截止至N月N日，快来分享你的春日美景吧~</p>
+    </div>
+    <div class="promo-footer">
+      <button class="promo-detail">查看详情</button>
+      <button class="promo-close" id="promoClose">关闭</button>
+    </div>
+  </div>
+</div>
     <nav>
       <div class="nav-item category-menu">
         <div class="category-link">分类</div>
@@ -120,6 +135,7 @@
 <script src="js/render.js"></script>
 <script src="js/function.js"></script>
 <script src="js/sakura.js"></script>
+<script src="js/promote1.js"></script>
 
 </body>
 </html>

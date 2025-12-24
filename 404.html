@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>页面找不到了 - ECG</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/error404.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <canvas class="sakura" id="sakura"></canvas>
+    
+    <div class="error-container">
+        <div class="error-code">404</div>
+        <div class="error-message">页面找不到啦</div>
+        <div class="error-description">
+            您访问的页面可能已被删除、移动或名称更改了<br>
+            不妨回到首页看看其他精彩内容吧~
+        </div>
+        <button class="back-home" onclick="window.location.href='index.html'">
+            <i class="fas fa-home"></i> 返回首页
+        </button>
+    </div>
+
+    <script src="js/sakura.js"></script>
+</body>
+</html>
