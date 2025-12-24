@@ -28,14 +28,16 @@
         </button>
       </div>
       <nav>
-        <a href="index.html">首页</a>
+        <div>
+         <a href="index.html" class="nav-item home-link">首页</a>
+        </div>
         <div class="nav-item category-menu">
-          <span class="category-link">分类</span>
+          <div class="category-link">分类</div>
           <div class="dropdown category-dropdown"></div>
         </div>
-        <a href="#rank">排行</a>
+        <a href="rank.html" class="nav-item rank-link">排行</a>
         <div class="nav-item user-menu" id="userMenu">
-          <span class="user-link">用户</span>
+          <div class="user-link">用户</div>
           <div class="dropdown user-dropdown">
             <div class="user-promo">
               点击用户头像，畅享更多精彩内容！
@@ -154,5 +156,6 @@
   <script src="js/data.js"></script>
   <script src="js/render.js"></script>
   <script src="js/upload.js"></script>
+  <script src="js/function.js"></script>
 </body>
 </html>
