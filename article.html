@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>新年活动 - ECG</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/component.css">
+  <link rel="stylesheet" href="css/effect.css">
+  <link rel="stylesheet" href="css/article.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <canvas class="sakura" id="sakura"></canvas>
+  <div class="glass">
+    <header>
+      <div class="logo">ECG</div>
+      <div class="header-search">
+        <div class="search-container">
+          <i class="fas fa-search search-icon"></i>
+          <input type="search" id="search-input" placeholder="搜索活动...">
+        </div>
+        <button class="refresh-btn" id="refresh-btn">
+          <i class="fas fa-sync-alt"></i>
+          <span>刷新</span>
+        </button>
+      </div>
+      <nav>
+        <div>
+         <a href="index.html" class="nav-item home-link">首页</a>
+        </div>
+        <div class="nav-item category-menu">
+          <span class="category-link">分类</span>
+          <div class="dropdown category-dropdown"></div>
+        </div>
+        <a href="rank.html" class="nav-item rank-link">排行</a>
+        <div class="nav-item upload-menu">
+          <a href="upload.html" class="upload-link">上传</a>
+          <div class="dropdown upload-dropdown">
+            <div class="upload-box">
+              <input type="file" id="fileInput" accept="video/*" style="display: none;">
+              <button id="selectFileBtn" class="upload-btn">选择本地文件</button>
+              <div class="upload-tips">或 Ctrl+V 粘贴文件</div>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item user-menu" id="userMenu">
+          <span class="user-link">用户</span>
+          <div class="dropdown user-dropdown">
+            <div class="user-promo">
+              点击用户头像，畅享更多精彩内容！
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    
+    <main>
+      <div class="article-container">
+        <div class="article-header">
+          <h1 class="article-title">2026新年视频创作大赛</h1>
+          <div class="article-meta">
+            <span><i class="far fa-calendar-alt"></i> 2025-12-25</span>
+            <span><i class="far fa-eye"></i> 0 阅读</span>
+            <span><i class="far fa-comment"></i> 0 评论</span>
+          </div>
+        </div>
+        
+        <div class="article-banner">
+          <img src="" alt="樱花物语短视频大赛">
+        </div>
+        
+        <div class="author-badge">
+     <div class="author-avatar">
+     <img src="用户头像路径" alt="作者头像">
+     </div>
+     <span class="author-name">用户名</span>
+        </div>
+     <button id="backToTop" class="back-to-top">
+       <i class="fas fa-chevron-up"></i>
+     </button>
+        <div class="article-content">
+          <p>春日已至，樱花盛开。ECG视频平台特此举办第一届"樱花物语"短视频创作大赛，邀请所有热爱樱花、热爱摄影的创作者们参与，用镜头捕捉樱花之美，讲述樱花故事。</p>
+          
+          <h2>活动主题</h2>
+          <p>"樱花物语" - 围绕樱花展开的一切美好瞬间，包括但不限于：樱花风景、樱花下的人物、樱花季的活动、与樱花相关的故事等。</p>
+          
+          <div class="activity-details">
+            <div class="detail-item">
+              <div class="detail-label">活动时间</div>
+              <div class="detail-value">2026年1月1日 - 2026年3月1日</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">参与对象</div>
+              <div class="detail-value">ECG平台所有注册用户</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">作品要求</div>
+              <div class="detail-value">时长15秒-3分钟，内容原创，围绕樱花主题，积极健康</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">评选方式</div>
+              <div class="detail-value">用户投票(60%) + 专业评审(40%)</div>
+            </div>
+          </div>
+          
+          <h2>奖项设置</h2>
+          <p><strong>金奖(1名)</strong>：樱花季日本京都双人游 + 专业摄影设备一套 + 平台首页推荐1周</p>
+          <p><strong>银奖(3名)</strong>：高级无人机一台 + 平台热门位置推荐3天</p>
+          <p><strong>铜奖(5名)</strong>：樱花主题摄影套装 + 平台分类页推荐3天</p>
+          <p><strong>优秀奖(20名)</strong>：平台积分10000 + 专属樱花勋章</p>
+          
+          <h2>参与方式</h2>
+          <p>1. 在ECG平台上传参赛视频，标题需包含"【樱花物语】"前缀</p>
+          <p>2. 上传时选择"樱花物语大赛"活动标签</p>
+          <p>3. 作品需在活动期间内上传，逾期视为无效</p>
+          <p>4. 可同时在社交媒体分享作品并@ECG官方账号，增加曝光机会</p>
+          
+          <h2>注意事项</h2>
+          <p>1. 参赛作品必须为原创内容，不得侵犯任何第三方权益</p>
+          <p>2. 每人参赛作品数量不超过3个</p>
+          <p>3. 主办方拥有获奖作品的使用权，用于活动宣传等非商业用途</p>
+          <p>4. 不符合主题或违反平台规定的作品将被取消参赛资格</p>
+        </div>
+        
+        <a href="upload.html" class="participate-btn">
+          <i class="fas fa-video"></i> 立即上传参赛作品
+        </a>
+        
+        <div class="related-activities">
+          <h3 class="related-title">相关活动</h3>
+          <div class="related-list">
+            <div class="related-item">
+              <div class="related-thumb">
+                <img src="https://source.unsplash.com/random/300x200?spring festival" alt="春日摄影技巧分享会">
+              </div>
+              <div class="related-info">
+                <div class="related-name">春日摄影技巧分享会</div>
+                <div class="related-date">2023-04-05</div>
+              </div>
+            </div>
+            <div class="related-item">
+              <div class="related-thumb">
+                <img src="https://source.unsplash.com/random/300x200?cherry blossom festival" alt="樱花节线下聚会">
+              </div>
+              <div class="related-info">
+                <div class="related-name">樱花节线下聚会</div>
+                <div class="related-date">2023-03-25</div>
+              </div>
+            </div>
+            <div class="related-item">
+              <div class="related-thumb">
+                <img src="https://source.unsplash.com/random/300x200?short video tutorial" alt="短视频剪辑大师课">
+              </div>
+              <div class="related-info">
+                <div class="related-name">短视频剪辑大师课</div>
+                <div class="related-date">2023-04-10</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-overlay" id="authModal">
+    <div class="auth-modal">
+      <div class="modal-close" id="modalClose">×</div>
+      <div class="auth-tabs">
+        <div class="auth-tab active" data-tab="login">登录</div>
+        <div class="auth-tab" data-tab="register">注册</div>
+      </div>
+      <div class="auth-form login-form">
+        <div class="form-group">
+          <label class="form-label">用户名/手机号</label>
+          <input type="text" class="form-input" placeholder="请输入用户名或手机号">
+        </div>
+        <div class="form-group">
+          <label class="form-label">密码</label>
+          <input type="password" class="form-input" placeholder="请输入密码">
+        </div>
+        <button class="auth-btn">登录</button>
+      </div>
+      <div class="auth-form register-form">
+        <div class="form-group">
+          <label class="form-label">手机号</label>
+          <input type="text" class="form-input" placeholder="请输入手机号">
+        </div>
+        <div class="form-group">
+          <label class="form-label">验证码</label>
+          <input type="text" class="form-input" placeholder="请输入验证码">
+        </div>
+        <div class="form-group">
+          <label class="form-label">设置密码</label>
+          <input type="password" class="form-input" placeholder="请设置6-16位密码">
+        </div>
+        <button class="auth-btn">注册</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/function.js"></script>
+  <script src="js/sakura.js"></script>
+  <script src="js/article.js"></script>
+</body>
+</html>

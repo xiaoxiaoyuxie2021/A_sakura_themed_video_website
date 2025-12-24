@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // 查看详情按钮事件
   promoDetail.addEventListener('click', function() {
     // 可以替换为实际的详情页链接
-    window.location.href = '404.html';
+    window.location.href = 'article.html';
   });
   
   // 点击弹窗外部关闭
