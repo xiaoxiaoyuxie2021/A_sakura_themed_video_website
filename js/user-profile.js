@@ -53,15 +53,9 @@ function renderUserVideos() {
 }
 
 // 页面加载完成后初始化
-window.addEventListener('load', () => {// 在window.addEventListener('load', () => { ... })中添加：
-const selectFileBtn = document.getElementById('selectFileBtn');
-const fileInput = document.getElementById('fileInput');
-
-if (selectFileBtn && fileInput) {
-  selectFileBtn.addEventListener('click', () => {
-    fileInput.click(); // 触发文件选择对话框
-  });
-}
+window.addEventListener('load', () => {
+  const selectFileBtn = document.getElementById('selectFileBtn');
+  const fileInput = document.getElementById('fileInput');
   renderUserVideos();
 
   // 标签页切换
