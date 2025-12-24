@@ -52,8 +52,8 @@
 /* 作者信息条样式 */
 .author-badge {
   position: absolute;
-  top: 80px;
-  right: 40px;
+  top: 150px;
+  right: 30px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -64,7 +64,7 @@
   flex-direction: column;
   border: 1px solid #ffd1dc;
   box-shadow: 0 2px 8px rgba(244, 143, 177, 0.15);
-  z-index: -1;
+  z-index: 0;
 }
 
 /* 认证徽章样式 */
@@ -108,6 +108,7 @@
   font-size: 14px;
   font-weight: 500;
   color: #e85d75;
+  pointer-events: auto;
 }
 
 /* 作者简介 */
@@ -149,6 +150,22 @@
 
 .stat-label {
   color: #777;
+}
+
+/* 用户昵称链接样式 */
+.author-name .name-link {
+  /* 清除默认超链接样式 */
+  text-decoration: none; /* 去掉下划线 */
+  color: inherit; /* 继承父元素的文字颜色 */
+  cursor: pointer; /* 鼠标悬浮显示手型 */
+  transition: color 0.2s ease; /* 颜色过渡动画 */
+}
+
+/* 昵称 hover 效果 */
+.author-name .name-link:hover {
+  color: #e85d75; /* 悬浮时变粉色（和关注按钮配色一致） */
+  text-decoration: underline; /* 可选：悬浮加下划线 */
+  text-underline-offset: 2px; /* 下划线偏移，更美观 */
 }
 
 /* 关注按钮 */
