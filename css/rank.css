@@ -1,0 +1,146 @@
+    /* 排行榜特有样式 */
+    .rank-container {
+      padding: 20px;
+    }
+
+    .rank-header {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .rank-title {
+      font-size: 24px;
+      color: #e85d75;
+      margin-bottom: 10px;
+    }
+
+    .rank-tabs {
+      display: flex;
+      gap: 15px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      scrollbar-width: thin;
+    }
+
+    .rank-tab {
+      padding: 8px 18px;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 20px;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+
+    .rank-tab.active {
+      background: #fdf2f8;
+      color: #e85d75;
+      border-color: #ffccd5;
+      font-weight: 500;
+    }
+
+    .rank-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .rank-item {
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 12px;
+      padding: 12px;
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+
+    .rank-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(244, 143, 177, 0.15);
+    }
+
+    .rank-number {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #ffd1dc;
+      color: #e85d75;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-right: 15px;
+    }
+
+    .rank-number.top-1 {
+      background: #ffd700;
+      color: #fff;
+    }
+
+    .rank-number.top-2 {
+      background: #c0c0c0;
+      color: #fff;
+    }
+
+    .rank-number.top-3 {
+      background: #cd7f32;
+      color: #fff;
+    }
+
+    .rank-thumb {
+      width: 120px;
+      height: 70px;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-right: 15px;
+      flex-shrink: 0;
+    }
+
+    .rank-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .rank-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .rank-video-title {
+      font-weight: 500;
+      margin-bottom: 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .rank-video-meta {
+      font-size: 12px;
+      color: #666;
+      display: flex;
+      gap: 15px;
+    }
+
+    .rank-score {
+      margin-left: auto;
+      font-weight: bold;
+      color: #e85d75;
+      padding: 5px 12px;
+      background: rgba(244, 143, 177, 0.1);
+      border-radius: 12px;
+    }
+
+    @media (max-width: 480px) {
+      .rank-thumb {
+        width: 100px;
+        height: 60px;
+      }
+      
+      .rank-video-meta {
+        flex-direction: column;
+        gap: 3px;
+      }
+    }
