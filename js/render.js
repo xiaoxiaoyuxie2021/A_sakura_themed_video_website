@@ -50,12 +50,6 @@ document.addEventListener('DOMContentLoaded', function() {
       settingDropdown.classList.remove('show');
     });
     
-    document.getElementById('videoSetting').addEventListener('click', function(e) {
-      e.preventDefault();
-      alert('播放设置功能即将上线，敬请期待！');
-      settingDropdown.classList.remove('show');
-    });
-    
     document.getElementById('aboutSetting').addEventListener('click', function(e) {
       e.preventDefault();
       alert('ECG樱花视频网站 © 2023 版权所有');

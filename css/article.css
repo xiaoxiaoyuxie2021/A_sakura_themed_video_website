@@ -52,7 +52,7 @@
 /* 作者信息条样式 */
 .author-badge {
   position: absolute;
-  top: 150px;
+  top: 220px;
   right: 30px;
   display: flex;
   align-items: center;
