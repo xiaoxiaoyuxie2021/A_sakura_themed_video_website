@@ -118,7 +118,8 @@ const browserTab = document.getElementById('browser-tab');
 if (browserTab) {
   // 填充浏览器信息
   document.getElementById('browserName').textContent = getBrowserName();
-  document.getElementById('browserVersion').textContent = navigator.userAgent.split('/').pop().split(' ')[0];
+
+const chromeMatch = navigator.userAgent.match(/Chrome\/([\d.]+)/); document.getElementById('browserVersion').textContent = chromeMatch ? chromeMatch[1] : '未知';
   document.getElementById('platform').textContent = navigator.platform;
   document.getElementById('screenResolution').textContent = `${screen.width} × ${screen.height}`;
   
