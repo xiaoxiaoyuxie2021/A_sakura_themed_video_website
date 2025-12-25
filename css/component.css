@@ -258,6 +258,97 @@
   background-color: rgba(255, 210, 220, 0.9);
 }
 
+/* 删除或注释掉原来的 .setting-menu 和 .setting-link 样式 */
+
+/* 设置按钮样式 - 修复版 */
+.setting-menu {
+  position: relative;
+  padding: 0 !important; /* 移除父级padding，避免双重间距 */
+}
+
+.setting-link {
+  display: flex !important;
+  align-items: center;
+  gap: 6px; /* 与其他nav-item保持一致 */
+  padding: 8px 14px; /* 直接在子元素上设置统一的padding */
+  color: var(--text);
+  text-decoration: none !important; /* 强制移除下划线 */
+  border-radius: 12px;
+  transition: all 0.3s;
+  cursor: pointer;
+  /* 确保没有伪元素导致的下划线 */
+  position: relative;
+}
+
+/* 统一hover效果 - 关键修复 */
+.setting-link:hover {
+  background-color: var(--hover-bg, rgba(244, 143, 177, 0.1));
+  text-decoration: none !important; /* 确保无下划线 */
+  border-bottom: none !important; /* 移除可能的边框 */
+}
+
+/* 设置图标垂直对齐 */
+.setting-link i {
+  line-height: 1; /* 修复图标导致的垂直偏移 */
+  font-size: 16px; /* 统一图标大小 */
+}
+
+/* 设置文字样式 */
+.setting-link span {
+  line-height: 1; /* 确保文字与图标对齐 */
+}
+
+/* 设置下拉菜单 */
+.setting-dropdown {
+  position: absolute;
+  top: calc(100% + 5px);
+  right: 0;
+  width: 200px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 100;
+  pointer-events: none;
+}
+
+/* 显示下拉菜单 */
+.setting-menu:hover .setting-dropdown,
+.setting-dropdown.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+
+.setting-dropdown.show {
+  display: block;
+}
+
+.setting-item {
+  display: block;
+  padding: 10px 15px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.setting-item:hover {
+  background-color: #fdf2f8;
+  color: #f48fb1;
+}
+
+.setting-divider {
+  height: 1px;
+  background-color: rgba(244, 143, 177, 0.2);
+  margin: 5px 0;
+}
+
 /* 登录注册弹窗样式 */
 .modal-overlay {
   display: none;
