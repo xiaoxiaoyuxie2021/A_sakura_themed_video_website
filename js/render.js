@@ -42,18 +42,5 @@ document.addEventListener('DOMContentLoaded', function() {
         dropdown.classList.remove('show');
       });
     });
-    
-    // 设置项点击事件
-    document.getElementById('themeSetting').addEventListener('click', function(e) {
-      e.preventDefault();
-      alert('主题设置功能即将上线，敬请期待！');
-      settingDropdown.classList.remove('show');
-    });
-    
-    document.getElementById('helpSetting').addEventListener('click', function(e) {
-      e.preventDefault();
-      alert('帮助中心：如有任何问题，请联系我们的客服团队');
-      settingDropdown.classList.remove('show');
-    });
   }
 });
