@@ -5,8 +5,8 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.3); /* 加深遮罩层，提升区分度 */
-  backdrop-filter: blur(3px);
+  background: rgba(0, 0, 0, 0.5); /* 加深遮罩层，提升区分度 */
+  backdrop-filter: blur(5px);
   z-index: 9999; /* 超大z-index确保最上层 */
   opacity: 0;
   visibility: hidden;
@@ -15,23 +15,26 @@
   justify-content: center;
 }
 
-/* 弹窗显示状态 */
+/* 确保弹窗显示时，弹窗本身可交互 */
 .promo-modal.show {
   opacity: 1;
   visibility: visible;
+  pointer-events: all !important; /* 强制启用弹窗的事件响应 */
 }
 
-/* 弹窗内容容器 */
+/* 弹窗内容区确保可点击 */
 .promo-content {
   background: #fff;
-  border-radius: 16px; /* 圆角优化 */
+  border-radius: 16px;
   width: 90%;
   max-width: 500px;
-  box-shadow: 0 8px 30px rgba(244, 143, 177, 0.4); /* 增强阴影 */
+  box-shadow: 0 8px 30px rgba(244, 143, 177, 0.4);
   overflow: hidden;
   transform: translateY(-20px) scale(0.95);
   transition: transform 0.3s ease;
+  pointer-events: all; /* 确保内容区域可点击 */
 }
+
 
 .promo-modal.show .promo-content {
   transform: translateY(0) scale(1);

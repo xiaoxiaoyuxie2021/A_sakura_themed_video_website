@@ -3,26 +3,26 @@ document.addEventListener('DOMContentLoaded', function() {
   const promoClose = document.getElementById('promoClose');
   const promoDetail = document.querySelector('.promo-detail');
   
-  // 页面加载完成后1秒显示弹窗
+  // 显示弹窗
   setTimeout(() => {
     promoModal.classList.add('show');
+    // 禁用页面滚动和全局点击事件
+    document.body.style.overflow = 'hidden';
+    document.body.style.pointerEvents = 'none'; // 关键：禁用body所有子元素的点击
   }, 1000);
   
   // 关闭按钮事件
   promoClose.addEventListener('click', function() {
     promoModal.classList.remove('show');
+    document.body.style.overflow = ''; // 恢复滚动
+    document.body.style.pointerEvents = ''; // 恢复点击
   });
   
   // 查看详情按钮事件
   promoDetail.addEventListener('click', function() {
-    // 可以替换为实际的详情页链接
     window.location.href = 'article.html';
   });
   
-  // 点击弹窗外部关闭
-  promoModal.addEventListener('click', function(e) {
-    if (e.target === promoModal) {
-      promoModal.classList.remove('show');
-    }
-  });
+  // 确保弹窗本身可以接收事件
+  promoModal.style.pointerEvents = 'all';
 });
