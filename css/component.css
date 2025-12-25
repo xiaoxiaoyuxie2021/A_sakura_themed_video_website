@@ -111,6 +111,17 @@
   transform:rotate(45deg);
 }
 
+.nav-item:has(.dropdown)::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 15px;
+  background: transparent;
+  z-index: 9998;
+}
+
 /* 分类下拉菜单 */
 .category-dropdown{
   width:240px;
