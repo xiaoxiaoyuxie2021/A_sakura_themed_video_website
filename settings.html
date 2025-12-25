@@ -91,6 +91,10 @@
             <i class="fas fa-lock"></i>
             <span>安全设置</span>
           </div>
+          <div class="settings-nav-item" data-tab="browser">
+            <i class="fas fa-info-circle"></i>
+            <span>浏览信息</span>
+          </div>
         </div>
         
         <div class="settings-content">
@@ -342,7 +346,7 @@
                 <option value="global">全局统一</option>
               </select>
             </div>
-            
+
             <div class="btn-group">
               <button class="save-btn">保存设置</button>
             </div>
@@ -451,14 +455,48 @@
               </button>
               <p class="form-hint" style="color: #e53935;">注销后所有数据将无法恢复，请谨慎操作</p>
             </div>
-            
             <div class="btn-group">
               <button class="save-btn">保存设置</button>
             </div>
           </div>
+       <!-- 浏览信息 -->
+          <div class="settings-card" id="browser-tab" style="display: none;">
+          <div class="card-header">
+          <h2 class="card-title"><i class="fas fa-info-circle"></i> 浏览信息</h2>
+          </div>
+  
+  <div class="browser-info-grid">
+    <div class="info-row">
+      <div class="info-label">浏览器名称</div>
+      <div class="info-value" id="browserName">-</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">浏览器版本</div>
+      <div class="info-value" id="browserVersion">-</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">操作系统</div>
+      <div class="info-value" id="platform">-</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">屏幕分辨率</div>
+      <div class="info-value" id="screenResolution">-</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">IP 地址</div>
+      <div class="info-value" id="ipAddress">-</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">网络状态</div>
+      <div class="info-value" id="networkStatus">-</div>
+    </div>
+  </div>
+  
+  <div class="info-hint">
+    <i class="fas fa-shield-alt"></i> 以上信息仅用于系统优化与故障排查
         </div>
       </div>
-    </div>
+  </div>
   </main>
 </div>
 
