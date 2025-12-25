@@ -1,0 +1,138 @@
+.help-container {
+  padding: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.help-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255,255,255,.4);
+}
+
+.help-header h1 {
+  color: #e85d75;
+  margin-bottom: 10px;
+  font-size: 28px;
+}
+
+.help-header p {
+  color: #666;
+  font-size: 16px;
+}
+
+.faq-section {
+  margin-bottom: 40px;
+}
+
+.faq-section h2 {
+  color: #e85d75;
+  margin-bottom: 20px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.faq-item {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.faq-question {
+  padding: 15px 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.faq-question:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.faq-question i {
+  color: #f48fb1;
+  transition: transform 0.3s;
+}
+
+.faq-answer {
+  padding: 0 20px;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s;
+  color: #555;
+  border-top: 1px solid rgba(248, 187, 208, 0.2);
+}
+
+.faq-item.active .faq-answer {
+  padding: 20px;
+  max-height: 500px;
+}
+
+.faq-item.active .faq-question i {
+  transform: rotate(180deg);
+}
+
+.contact-section {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  padding: 25px;
+  text-align: center;
+}
+
+.contact-section h2 {
+  color: #e85d75;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.contact-methods {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.contact-method {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 15px;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+.contact-method:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.contact-method i {
+  font-size: 24px;
+  color: #f48fb1;
+}
+
+.contact-method span {
+  color: #666;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .help-container {
+    padding: 20px 15px;
+  }
+  
+  .contact-methods {
+    gap: 20px;
+  }
+}

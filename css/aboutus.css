@@ -1,0 +1,300 @@
+/* 关于我们页面样式 */
+.about-main {
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 50px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 210, 220, 0.3);
+}
+
+.about-header h1 {
+  font-size: 32px;
+  color: #e85d75;
+  margin-bottom: 15px;
+}
+
+.about-tagline {
+  font-size: 18px;
+  color: #666;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about-section {
+  margin-bottom: 60px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 4px 15px rgba(244, 143, 177, 0.1);
+}
+
+.section-title {
+  font-size: 24px;
+  color: #e85d75;
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--sakura);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sakura-icon {
+  color: #f48fb1;
+}
+
+.about-content {
+  line-height: 1.8;
+  color: #333;
+  font-size: 16px;
+}
+
+.about-content p {
+  margin-bottom: 20px;
+}
+
+.about-image {
+  margin: 30px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.about-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.about-image:hover img {
+  transform: scale(1.02);
+}
+
+/* 团队样式 */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.team-member {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  padding: 25px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-member:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(244, 143, 177, 0.2);
+}
+
+.member-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 20px;
+  border: 4px solid var(--sakura);
+}
+
+.member-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.member-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.member-role {
+  color: #e85d75;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.member-bio {
+  color: #666;
+  line-height: 1.6;
+}
+
+/* 联系我们样式 */
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+@media (max-width: 768px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact-info h3, .contact-form h3 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 20px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--sakura);
+}
+
+.contact-list {
+  list-style: none;
+  margin-bottom: 30px;
+}
+
+.contact-list li {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+  color: #666;
+}
+
+.contact-list i {
+  color: #f48fb1;
+  font-size: 20px;
+  width: 24px;
+  text-align: center;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+}
+
+.social-link {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--sakura);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.social-link:hover {
+  background: #e85d75;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+  font-weight: 500;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ffc0cb;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 16px;
+  transition: border-color 0.2s;
+}
+
+.form-input:focus {
+  border-color: #e85d75;
+  outline: none;
+}
+
+.submit-btn {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #ffd1dc, #e85d75);
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 16px;
+}
+
+.submit-btn:hover {
+  background: linear-gradient(135deg, #ffccd5, #d64561);
+  transform: translateY(-2px);
+}
+
+/* 统计数据样式 */
+.stats-section {
+  background: linear-gradient(135deg, rgba(255, 222, 227, 0.8), rgba(255, 183, 197, 0.6));
+  border-radius: 16px;
+  padding: 40px 30px;
+  text-align: center;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 30px;
+}
+
+.stat-item {
+  padding: 20px;
+}
+
+.stat-number {
+  font-size: 32px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.stat-label {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 16px;
+}
+
+/* 页脚样式 */
+.about-footer {
+  background: rgba(255, 255, 255, 0.5);
+  padding: 20px 30px;
+  border-top: 1px solid rgba(255, 210, 220, 0.3);
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 15px;
+}
+
+.footer-links a {
+  color: #666;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: #e85d75;
+}
+
+.copyright {
+  color: #999;
+  font-size: 14px;
+}

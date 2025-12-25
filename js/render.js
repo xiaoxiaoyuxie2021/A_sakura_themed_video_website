@@ -50,12 +50,6 @@ document.addEventListener('DOMContentLoaded', function() {
       settingDropdown.classList.remove('show');
     });
     
-    document.getElementById('aboutSetting').addEventListener('click', function(e) {
-      e.preventDefault();
-      alert('ECG樱花视频网站 © 2023 版权所有');
-      settingDropdown.classList.remove('show');
-    });
-    
     document.getElementById('helpSetting').addEventListener('click', function(e) {
       e.preventDefault();
       alert('帮助中心：如有任何问题，请联系我们的客服团队');
