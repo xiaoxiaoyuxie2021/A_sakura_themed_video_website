@@ -1,13 +1,13 @@
 /* ===== 数据定义 ===== */
 // 分类数据
 const categories = [
-  { name: "动漫", id: "anime" },
-  { name: "游戏", id: "game" },
-  { name: "电影", id: "movie" },
-  { name: "美食", id: "food" },
-  { name: "音乐", id: "music" },
-  { name: "运动", id: "sports" },
-  { name: "舞蹈", id: "dance" }
+  { name: "动漫", id: "anime" ,page:"anime.html"},
+  { name: "游戏", id: "game",page:"game.html" },
+  { name: "电影", id: "movie",page:"movie.html" },
+  { name: "美食", id: "food",page:"food.html" },
+  { name: "音乐", id: "music",page:"music.html" },
+  { name: "运动", id: "sports",page:"sports.html" },
+  { name: "舞蹈", id: "dance",page:"dance.html" }
 ];
 
 // 视频数据

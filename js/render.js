@@ -21,7 +21,7 @@ function renderVideos() {
 function renderCategories() {
   const dropdown = document.querySelector('.category-dropdown');
   dropdown.innerHTML = categories.map(category => `
-    <a href="#${category.id}" class="category-item" onclick="selectCategory('${category.name}')">${category.name}</a>
+    <a href="${category.page}" class="category-item">${category.name}</a>
   `).join('');
 }
 
