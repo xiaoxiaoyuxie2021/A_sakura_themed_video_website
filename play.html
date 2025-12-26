@@ -80,13 +80,18 @@
           <div class="video-wrapper">
             <video id="videoPlayer" width="100%" height="100%">
               <!-- 更换为更稳定的视频源 -->
-              <source src="videos/user_upload/1.mp4" type="video/mp4">
+              <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
               您的浏览器不支持HTML5视频
             </video>
           <div class="custom-controls">
     <button class="play-pause-btn" id="playPauseBtn"><i class="fas fa-play"></i></button>
 
     <div class="progress-container">
+      <!-- 预览缩略图容器 -->
+  <div class="preview-thumbnail" id="previewThumbnail">
+    <canvas id="previewCanvas" width="160" height="90"></canvas>
+    <span class="preview-time" id="previewTime">0:00</span>
+  </div>
       <div class="progress-bar" id="progressBar">
         <div class="progress-filled" id="progressFilled"></div>
       </div>
