@@ -363,4 +363,6 @@ input:checked + .slider:before {
   word-break: break-all;   /* 长字符任意位置断行 */
   font-size: 16px;         /* 比默认小一点 */
   line-height: 1.3;        /* 行距紧凑 */
+  word-wrap: break-word;
+  max-width: 50px
 }
