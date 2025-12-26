@@ -355,22 +355,67 @@ if (connection) {
 function getBrowserName() {
   const userAgent = navigator.userAgent;
   
+  // 手机自带浏览器（优先级最高）
+  if (userAgent.indexOf('MiuiBrowser') > -1) return '小米浏览器';
+  if (userAgent.indexOf('HuaweiBrowser') > -1 || userAgent.indexOf('HUAWEI/') > -1) return '华为浏览器';
+  if (userAgent.indexOf('SamsungBrowser') > -1) return '三星浏览器';
+  if (userAgent.indexOf('OppoBrowser') > -1) return 'OPPO浏览器';
+  if (userAgent.indexOf('vivoBrowser') > -1 || userAgent.indexOf('VivoBrowser') > -1) return 'vivo浏览器';
+  if (userAgent.indexOf('OnePlus') > -1) return '一加浏览器';
+  if (userAgent.indexOf('QQBrowser') > -1) return 'QQ浏览器';
+  if (userAgent.indexOf('UCBrowser') > -1) return 'UC浏览器';
+  if (userAgent.indexOf('Baidu') > -1 || userAgent.indexOf('baidu') > -1) return '百度浏览器';
+  
+  // 360浏览器
   if (userAgent.indexOf('360SE') > -1 || userAgent.indexOf('QihooBrowser') > -1) {
     return '360安全浏览器';
   }
   if (userAgent.indexOf('360EE') > -1) {
     return '360极速浏览器';
   }
-  if (userAgent.indexOf('Edg/') > -1 || userAgent.indexOf('Edge/') > -1) {
+  
+  // Edge（新旧内核）
+  if (userAgent.indexOf('Edg/') > -1) {
     return 'Microsoft Edge';
   }
-  if (userAgent.indexOf('Chrome') > -1) return 'Chrome';
-  if (userAgent.indexOf('Firefox') > -1) return 'Firefox';
-  if (userAgent.indexOf('Safari') > -1 && userAgent.indexOf('Chrome') === -1) return 'Safari';
-  if (userAgent.indexOf('MSIE') > -1 || userAgent.indexOf('Trident/') > -1) return 'Internet Explorer';
+  if (userAgent.indexOf('Edge/') > -1) {
+    return 'Microsoft Edge (旧版)';
+  }
+  
+  // Chrome（需排除其他基于Chromium的浏览器）
+  if (userAgent.indexOf('Chrome') > -1 && userAgent.indexOf('Edg/') === -1 && 
+      userAgent.indexOf('SamsungBrowser') === -1 &&
+      userAgent.indexOf('MiuiBrowser') === -1 &&
+      userAgent.indexOf('HuaweiBrowser') === -1) {
+    // 判断是否为手机版Chrome
+    if (userAgent.indexOf('Mobile') > -1) {
+      return 'Chrome Mobile';
+    }
+    return 'Chrome';
+  }
+  
+  // Firefox
+  if (userAgent.indexOf('Firefox') > -1) {
+    return 'Firefox';
+  }
+  
+  // Safari（需排除Chrome）
+  if (userAgent.indexOf('Safari') > -1 && userAgent.indexOf('Chrome') === -1) {
+    // 判断是否为手机版Safari
+    if (userAgent.indexOf('Mobile') > -1) {
+      return 'Safari (iOS)';
+    }
+    return 'Safari';
+  }
+  
+  // IE
+  if (userAgent.indexOf('MSIE') > -1 || userAgent.indexOf('Trident/') > -1) {
+    return 'Internet Explorer';
+  }
   
   return '未知浏览器';
 }
+
 
 // 辅助函数：获取浏览器引擎
 function getBrowserEngine() {
