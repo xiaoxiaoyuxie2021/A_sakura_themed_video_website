@@ -119,27 +119,75 @@ if (browserTab) {
   // 填充浏览器信息
   document.getElementById('browserName').textContent = getBrowserName();
   document.getElementById('browserVersion').textContent = navigator.userAgent.split('/').pop().split(' ')[0];
+  // 异步获取操作系统名称
+getOSName().then(osName => {
+  document.getElementById('platform').textContent = osName;
+}).catch(() => {
+  // 回退方案：使用已弃用的 API（为兼容性保留）
   document.getElementById('platform').textContent = navigator.platform;
+});
   document.getElementById('screenResolution').textContent = `${screen.width} × ${screen.height}`;
   
-  // 获取IP地址
-  fetch('https://api.ipify.org?format=json')
-    .then(r => r.json())
-    .then(data => {
-      document.getElementById('ipAddress').textContent = data.ip;
-    })
-    .catch(() => {
-      document.getElementById('ipAddress').textContent = '获取失败';
-    });
+  // 获取IP地址（带备用方案）
+(async function fetchIPAddress() {
+  const apis = [
+    'https://api.ipify.org?format=json',      // 主API
+    'https://api64.ipify.org?format=json',    // 备用API（支持IPv6）
+    'https://ip.seeip.org/jsonip'             // 备用API2
+  ];
   
-  // 网络状态
-  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-  if (connection) {
-    document.getElementById('networkStatus').textContent = 
-      `${connection.effectiveType} (${Math.round(connection.downlink * 10) / 10} Mbps)`;
-  } else {
-    document.getElementById('networkStatus').textContent = '不支持检测';
+  for (const api of apis) {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 3000); // 3秒超时
+      
+      const response = await fetch(api, { 
+        signal: controller.signal,
+        method: 'GET'
+      });
+      
+      clearTimeout(timeoutId);
+      
+      if (response.ok) {
+        const data = await response.json();
+        document.getElementById('ipAddress').textContent = data.ip;
+        return; // 成功则退出
+      }
+    } catch (error) {
+      console.warn(`API ${api} 失败:`, error.message);
+      continue; // 失败则尝试下一个
+    }
   }
+  
+  // 全部失败
+  document.getElementById('ipAddress').textContent = '网络受限';
+})();
+
+  
+  // 网络状态检测（增强版）
+const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+if (connection) {
+  const speed = Math.round(connection.downlink * 10) / 10;
+  let networkType = connection.effectiveType;
+  
+  // 判断是否为移动设备
+  const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+  
+  // 如果不是移动设备且显示4g，很可能是WiFi
+  if (!isMobile && networkType === '4g') {
+    networkType = 'WiFi';
+  }
+  
+  // 如果浏览器明确返回wifi类型
+  if (connection.type === 'wifi' || connection.type === 'ethernet') {
+    networkType = 'WiFi';
+  }
+  
+  document.getElementById('networkStatus').textContent = `${networkType} (${speed} Mbps)`;
+} else {
+  document.getElementById('networkStatus').textContent = '不支持检测';
+}
+
 }
 
   // 填充浏览器信息网格
@@ -170,26 +218,24 @@ if (browserTab) {
     document.getElementById('networkStatus').textContent = '未知';
   }
   
-  // 获取IP地址（使用第三方API）
-  fetch('https://api.ipify.org?format=json')
-    .then(response => response.json())
-    .then(data => {
-      document.getElementById('ipAddress').textContent = data.ip;
-    })
-    .catch(error => {
-      document.getElementById('ipAddress').textContent = '无法获取';
-      console.error('获取IP地址失败:', error);
-    });
 });
 
 // 辅助函数：获取浏览器名称
 function getBrowserName() {
   const userAgent = navigator.userAgent;
   
+  if (userAgent.indexOf('360SE') > -1 || userAgent.indexOf('QihooBrowser') > -1) {
+    return '360安全浏览器';
+  }
+  if (userAgent.indexOf('360EE') > -1) {
+    return '360极速浏览器';
+  }
+  if (userAgent.indexOf('Edg/') > -1 || userAgent.indexOf('Edge/') > -1) {
+    return 'Microsoft Edge';
+  }
   if (userAgent.indexOf('Chrome') > -1) return 'Chrome';
   if (userAgent.indexOf('Firefox') > -1) return 'Firefox';
   if (userAgent.indexOf('Safari') > -1 && userAgent.indexOf('Chrome') === -1) return 'Safari';
-  if (userAgent.indexOf('Edge') > -1) return 'Edge';
   if (userAgent.indexOf('MSIE') > -1 || userAgent.indexOf('Trident/') > -1) return 'Internet Explorer';
   
   return '未知浏览器';
@@ -205,4 +251,63 @@ function getBrowserEngine() {
   if (userAgent.indexOf('Presto') > -1) return 'Presto';
   
   return '未知引擎';
+}
+
+// 辅助函数：获取操作系统名称（支持 Windows 10/11 精确识别）
+async function getOSName() {
+  // 尝试使用现代的 userAgentData API（Chrome/Edge 93+ 支持）
+  if (navigator.userAgentData) {
+    try {
+      const highEntropyValues = await navigator.userAgentData.getHighEntropyValues(["platformVersion"]);
+      const platformVersion = highEntropyValues.platformVersion;
+      
+      // Windows 11 的平台版本号 >= 13.0.0
+      if (navigator.userAgentData.platform === "Windows") {
+        if (platformVersion && parseFloat(platformVersion) >= 13.0) {
+          return "Windows 11";
+        } else {
+          return "Windows 10";
+        }
+      }
+      
+      // 其他系统
+      return navigator.userAgentData.platform || '未知系统';
+    } catch (e) {
+      console.log("无法获取高熵值数据:", e);
+    }
+  }
+  
+  // 降级方案：传统 User-Agent 检测
+  const userAgent = navigator.userAgent;
+  const platform = navigator.platform;
+  
+  // Windows 系统
+  if (platform.indexOf('Win') > -1) {
+    if (userAgent.indexOf('Windows NT 10.0') > -1) return 'Windows 10/11';
+    if (userAgent.indexOf('Windows NT 6.3') > -1) return 'Windows 8.1';
+    if (userAgent.indexOf('Windows NT 6.2') > -1) return 'Windows 8';
+    if (userAgent.indexOf('Windows NT 6.1') > -1) return 'Windows 7';
+    
+    // 检测是否为64位
+    if (userAgent.indexOf('WOW64') > -1 || userAgent.indexOf('Win64') > -1) {
+      return 'Windows (64-bit)';
+    }
+    
+    return 'Windows (32-bit)';
+  }
+  
+  // macOS
+  if (platform.indexOf('Mac') > -1) return 'macOS';
+  
+  // Linux
+  if (platform.indexOf('Linux') > -1) return 'Linux';
+  
+  // iOS
+  if (/iPhone|iPad|iPod/.test(userAgent)) return 'iOS';
+  
+  // Android
+  if (userAgent.indexOf('Android') > -1) return 'Android';
+  
+  // 其他情况返回原始 platform
+  return platform || '未知系统';
 }
