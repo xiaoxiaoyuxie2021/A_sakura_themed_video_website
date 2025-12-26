@@ -114,3 +114,58 @@ window.onload = function() {
     }
   }, 30000);
 };
+
+// ===== 横向卡片音乐播放器控制 =====
+const bgMusic = document.getElementById('bgMusic');
+const musicControl = document.getElementById('musicControl');
+const musicThumb = document.getElementById('musicThumb');
+const musicIcon = document.getElementById('musicIcon');
+
+if (bgMusic && musicControl) {
+  let isMusicPlaying = false;
+  
+  // 设置音量
+  bgMusic.volume = 0.3;
+  
+  // 页面加载时显示卡片3秒，然后自动隐藏
+  musicControl.style.opacity = '1';
+  setTimeout(() => {
+    musicControl.style.opacity = ''; // 移除内联样式，让CSS接管
+  }, 3000);
+  
+  // 首次点击页面任意位置开始播放
+  document.addEventListener('click', function initMusic() {
+    bgMusic.play().then(() => {
+      isMusicPlaying = true;
+      musicThumb.classList.add('playing');  // 缩略图开始旋转
+      musicIcon.className = 'fas fa-pause';
+      console.log('背景音乐已开始播放');
+    }).catch(e => {
+      console.log('自动播放被阻止:', e);
+      musicIcon.className = 'fas fa-play';
+    });
+    
+    // 首次播放后交给CSS控制显示/隐藏
+    musicControl.style.opacity = '';
+    document.removeEventListener('click', initMusic);
+  }, { once: true });
+  
+  // 点击卡片切换播放/暂停
+  musicControl.addEventListener('click', (e) => {
+    e.stopPropagation();
+    
+    if (isMusicPlaying) {
+      bgMusic.pause();
+      musicThumb.classList.remove('playing');
+      musicIcon.className = 'fas fa-play';
+      console.log('背景音乐已暂停');
+    } else {
+      bgMusic.play();
+      musicThumb.classList.add('playing');
+      musicIcon.className = 'fas fa-pause';
+      console.log('背景音乐已恢复播放');
+    }
+    isMusicPlaying = !isMusicPlaying;
+  });
+}
+

@@ -503,6 +503,110 @@
   color: #333;
 }
 
+/* 横向长方形卡片音乐播放器 */
+.music-control {
+  position: fixed;
+  top: 15px;
+  left: 100px;
+  width: 170px;
+  height: 58px;
+  cursor: pointer;
+  z-index: 999;
+  opacity: 0;  /* 默认隐藏 */
+  transition: opacity 0.3s ease;
+}
+
+/* 悬停时显示 */
+.music-control:hover {
+  opacity: 1 !important;
+}
+
+/* 卡片本体（横向长方形） */
+.music-card {
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #ffd1dc, #e85d75);
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+  box-shadow: 0 6px 20px rgba(232, 93, 117, 0.3);
+  position: relative;
+}
+
+/* 左侧缩略图容器（固定大小） */
+.music-thumb {
+  width: 47px;
+  height: 47px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 12px;
+}
+
+/* 缩略图旋转动画 */
+.music-thumb.playing {
+  animation: rotateThumb 3s linear infinite;
+}
+
+@keyframes rotateThumb {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 专辑封面 */
+.music-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 歌曲信息 */
+.music-info {
+  flex: 1;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.music-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.music-artist {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+/* 播放/暂停图标（右下角） */
+#musicIcon {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: white;
+  font-size: 16px;
+  background: rgba(0,0,0,0.3);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  opacity: 0;  /* 图标默认隐藏 */
+  transition: opacity 0.3s ease;
+}
+
+/* 悬停时显示图标 */
+.music-control:hover #musicIcon {
+  opacity: 1 !important;
+}
+
+
 /* 响应式适配 */
 @media (max-width: 768px) {
   .stats-container {

@@ -152,12 +152,32 @@
   </div>
 </div>
 
+<!-- 背景音乐 -->
+<audio id="bgMusic" loop>
+  <source src="resource/audio/test/*.mp3" type="audio/mpeg">
+</audio>
+
+<!-- 横向长方形卡片音乐播放器 -->
+<div class="music-control" id="musicControl">
+  <div class="music-card" id="musicCard">
+    <div class="music-thumb" id="musicThumb">
+      <img src="resource/pic/audio_thumbnail/*.jpg" alt="音乐封面" class="music-cover">
+    </div>
+    <div class="music-info">
+      <div class="music-title">大哉乾元</div>
+      <div class="music-artist">洛天依</div>
+    </div>
+    <i class="fas fa-pause" id="musicIcon"></i>
+  </div>
+</div>
+
 <script src="js/data.js"></script>
 <script src="js/render.js"></script>
 <script src="js/function.js"></script>
 <script src="js/sakura.js"></script>
 <script src="js/promote1.js"></script>
 <script src="js/theme.js"></script>
+<script src="js/base.js"></script>
 
 </body>
 </html>
