@@ -118,8 +118,12 @@ const browserTab = document.getElementById('browser-tab');
 if (browserTab) {
   // 填充浏览器信息
   document.getElementById('browserName').textContent = getBrowserName();
-
-const chromeMatch = navigator.userAgent.match(/Chrome\/([\d.]+)/); document.getElementById('browserVersion').textContent = chromeMatch ? chromeMatch[1] : '未知';
+  document.getElementById('browserVersion').textContent = navigator.userAgent.split('/').pop().split(' ')[0];
+  // 异步获取操作系统名称
+getOSName().then(osName => {
+  document.getElementById('platform').textContent = osName;
+}).catch(() => {
+  // 回退方案：使用已弃用的 API（为兼容性保留）
   document.getElementById('platform').textContent = navigator.platform;
 });
   document.getElementById('screenResolution').textContent = `${screen.width} × ${screen.height}`;
