@@ -481,17 +481,36 @@ async function getOSName() {
   // iOS
   if (/iPhone|iPad|iPod/.test(userAgent)) return 'iOS';
   
-  // Android
-  if (userAgent.indexOf('Android') > -1) {
-  const versionMatch = userAgent.match(/Android\s+(\d+)(?:\.(\d+))?/);
+  // Android（带版本号检测）- 终极版
+if (userAgent.indexOf('Android') > -1) {
+  console.log('原始User-Agent:', userAgent); // 调试用
+  
+  // 匹配所有可能格式：Android 13 / Android-13 / Android_13 / Android/13 / Android13
+  const versionMatch = userAgent.match(/Android[\s_\-\/]?(\d+)(?:\.(\d+))?(?:\.(\d+))?/i);
+  
   if (versionMatch) {
     const major = versionMatch[1];
     const minor = versionMatch[2];
-    return minor ? `Android ${major}.${minor}` : `Android ${major}`;
+    const patch = versionMatch[3]; // 匹配第三位版本号
+    
+    let version = `Android ${major}`;
+    if (minor) version += `.${minor}`;
+    if (patch) version += `.${patch}`;
+    
+    console.log('提取到的版本:', version); // 调试用
+    return version;
   }
+  
+  // 备用方案：如果正则失败，尝试 userAgentData API
+  if (navigator.userAgentData?.platform) {
+    const platform = navigator.userAgentData.platform;
+    const platformMatch = platform.match(/Android (\d+)/i);
+    if (platformMatch) return `Android ${platformMatch[1]}`;
+  }
+  
   return 'Android';
 }
-  
-  // 其他情况返回原始 platform
-  return platform || '未知系统';
+
+// 其他情况返回原始 platform
+return platform || '未知系统';
 }
