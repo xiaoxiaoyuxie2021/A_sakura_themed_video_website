@@ -63,19 +63,150 @@ document.querySelectorAll('.cancel-btn').forEach(btn => {
 
 // 头像上传按钮
 document.querySelectorAll('.upload-avatar-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    if (btn.textContent.includes('更换头像') || btn.textContent.includes('拍摄照片')) {
-      // 模拟头像上传
-      alert('请选择图片文件');
+  btn.addEventListener('click', async () => {
+    if (btn.textContent.includes('更换头像')) {
+      // 创建文件选择器
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+      input.style.display = 'none';
+      
+      input.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        
+        // 验证文件类型
+        if (!file.type.startsWith('image/')) {
+          alert('请选择图片文件！');
+          return;
+        }
+        
+        // 验证文件大小 (最大5MB)
+        const maxSize = 5 * 1024 * 1024;
+        if (file.size > maxSize) {
+          alert('图片大小不能超过 5MB！');
+          return;
+        }
+        
+        // 预览图片
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const previewImg = document.querySelector('.avatar-preview img');
+          if (previewImg) {
+            previewImg.src = e.target.result;
+          }
+          // 这里可以调用上传API
+          console.log('头像已选择，准备上传...');
+        };
+        reader.readAsDataURL(file);
+      });
+      
+      document.body.appendChild(input);
+      input.click();
+      document.body.removeChild(input);
+      
+    } else if (btn.textContent.includes('拍摄照片')) {
+      // 调用摄像头拍照
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ 
+          video: { facingMode: 'user' } 
+        });
+        
+        // 创建拍照界面
+        const video = document.createElement('video');
+        video.srcObject = stream;
+        video.autoplay = true;
+        video.style.cssText = 'width: 100%; border-radius: 8px; background: #000;';
+        
+        const modal = document.createElement('div');
+        modal.style.cssText = `
+          position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+          background: white; padding: 20px; border-radius: 12px; 
+          box-shadow: 0 10px 30px rgba(0,0,0,0.3); z-index: 1001; 
+          max-width: 400px; width: 90%; max-height: 80vh; overflow: auto;
+        `;
+        
+        const captureBtn = document.createElement('button');
+        captureBtn.innerHTML = '<i class="fas fa-camera"></i> 拍照';
+        captureBtn.className = 'save-btn';
+        captureBtn.style.marginRight = '10px';
+        captureBtn.style.marginTop = '15px';
+        
+        const cancelBtn = document.createElement('button');
+        cancelBtn.innerHTML = '<i class="fas fa-times"></i> 取消';
+        cancelBtn.className = 'cancel-btn';
+        cancelBtn.style.marginTop = '15px';
+        
+        modal.innerHTML = '<h3 style="margin-top:0; margin-bottom:10px;">拍照</h3>';
+        modal.appendChild(video);
+        modal.appendChild(document.createElement('br'));
+        modal.appendChild(captureBtn);
+        modal.appendChild(cancelBtn);
+        
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+          position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+          background: rgba(0,0,0,0.5); z-index: 1000; backdrop-filter: blur(5px);
+        `;
+        
+        document.body.appendChild(overlay);
+        document.body.appendChild(modal);
+        
+        // 拍照功能
+        captureBtn.onclick = function() {
+          const canvas = document.createElement('canvas');
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
+          canvas.getContext('2d').drawImage(video, 0, 0);
+          
+          canvas.toBlob(function(blob) {
+            const url = URL.createObjectURL(blob);
+            const previewImg = document.querySelector('.avatar-preview img');
+            if (previewImg) {
+              previewImg.src = url;
+            }
+            
+            // 清理资源
+            stream.getTracks().forEach(track => track.stop());
+            document.body.removeChild(overlay);
+            document.body.removeChild(modal);
+            
+            // 这里可以调用上传API
+            console.log('头像已拍摄，准备上传...');
+          }, 'image/jpeg', 0.9);
+        };
+        
+        // 取消功能
+        const cleanup = function() {
+          stream.getTracks().forEach(track => track.stop());
+          document.body.removeChild(overlay);
+          document.body.removeChild(modal);
+        };
+        
+        cancelBtn.onclick = cleanup;
+        overlay.onclick = cleanup;
+        
+      } catch (error) {
+        console.error('摄像头访问失败:', error);
+        let errorMsg = '无法访问摄像头';
+        if (error.name === 'NotAllowedError') {
+          errorMsg = '请允许访问摄像头以拍摄照片';
+        } else if (error.name === 'NotFoundError') {
+          errorMsg = '未找到可用的摄像头设备';
+        } else if (error.name === 'NotSupportedError') {
+          errorMsg = '当前环境不支持摄像头功能';
+        }
+        alert(errorMsg);
+      }
+      
     } else if (btn.textContent.includes('更改密码')) {
-      // 模拟修改密码
       alert('将跳转到密码修改页面');
     } else if (btn.textContent.includes('查看最近登录记录')) {
-      // 模拟登录历史
       alert('最近登录：今天 09:45 来自Chrome浏览器');
     }
   });
 });
+
 
 // 注销账号按钮
 document.querySelector('.danger-btn').addEventListener('click', () => {
