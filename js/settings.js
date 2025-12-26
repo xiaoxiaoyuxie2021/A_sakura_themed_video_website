@@ -482,7 +482,15 @@ async function getOSName() {
   if (/iPhone|iPad|iPod/.test(userAgent)) return 'iOS';
   
   // Android
-  if (userAgent.indexOf('Android') > -1) return 'Android';
+  if (userAgent.indexOf('Android') > -1) {
+  const versionMatch = userAgent.match(/Android\s+(\d+)(?:\.(\d+))?/);
+  if (versionMatch) {
+    const major = versionMatch[1];
+    const minor = versionMatch[2];
+    return minor ? `Android ${major}.${minor}` : `Android ${major}`;
+  }
+  return 'Android';
+}
   
   // 其他情况返回原始 platform
   return platform || '未知系统';
