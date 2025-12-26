@@ -481,21 +481,17 @@ async function getOSName() {
   // iOS
   if (/iPhone|iPad|iPod/.test(userAgent)) return 'iOS';
   
-  // Android（带版本号检测）- 终极版
-const versionMatch = userAgent.match(/Android\D*(\d+)(?:\.(\d+))?(?:\.(\d+))?\D+/i);
+  // Android
+  if (userAgent.indexOf('Android') > -1) {
+  const versionMatch = userAgent.match(/Android\s+(\d+)(?:\.(\d+))?/);
   if (versionMatch) {
     const major = versionMatch[1];
     const minor = versionMatch[2];
-    const patch = versionMatch[3];
-    
-    let version = `Android ${major}`;
-    if (minor) version += `.${minor}`;
-    if (patch) version += `.${patch}`;
-    
-    console.log('✅ 提取成功:', version);
-    return version;
+    return minor ? `Android ${major}.${minor}` : `Android ${major}`;
   }
-
-// 其他情况返回原始 platform
-return platform || '未知系统';
+  return 'Android';
+}
+  
+  // 其他情况返回原始 platform
+  return platform || '未知系统';
 }
