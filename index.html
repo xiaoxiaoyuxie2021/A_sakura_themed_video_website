@@ -157,19 +157,26 @@
   <source src="resource/audio/test/*.mp3" type="audio/mpeg">
 </audio>
 
-<!-- 横向长方形卡片音乐播放器 -->
+<!-- 抽屉式音乐播放器 -->
 <div class="music-control" id="musicControl">
   <div class="music-card" id="musicCard">
-    <div class="music-thumb" id="musicThumb">
-      <img src="resource/pic/audio_thumbnail/*.jpg" alt="音乐封面" class="music-cover">
+    <!-- 露出的触发边 -->
+    <div class="music-trigger" id="musicTrigger">
+      <i class="fas fa-music"></i>
     </div>
-    <div class="music-info">
-      <div class="music-title">大哉乾元</div>
-      <div class="music-artist">洛天依</div>
+    <div class="music-content">
+      <div class="music-thumb" id="musicThumb">
+        <img src="resource/pic/audio-thumbnail.jpg" alt="音乐封面" class="music-cover">
+      </div>
+      <div class="music-info">
+        <div class="music-title">大哉乾元</div>
+        <div class="music-artist">洛天依</div>
+      </div>
+      <i class="fas fa-pause" id="musicIcon"></i>
     </div>
-    <i class="fas fa-pause" id="musicIcon"></i>
   </div>
 </div>
+
 
 <script src="js/data.js"></script>
 <script src="js/render.js"></script>

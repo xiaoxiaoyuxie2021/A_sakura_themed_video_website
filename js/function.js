@@ -115,45 +115,67 @@ window.onload = function() {
   }, 30000);
 };
 
-// ===== 横向卡片音乐播放器控制 =====
+// ===== 抽屉式音乐播放器控制 =====
 const bgMusic = document.getElementById('bgMusic');
 const musicControl = document.getElementById('musicControl');
+const musicCard = document.getElementById('musicCard');
+const musicTrigger = document.getElementById('musicTrigger');
 const musicThumb = document.getElementById('musicThumb');
 const musicIcon = document.getElementById('musicIcon');
 
 if (bgMusic && musicControl) {
   let isMusicPlaying = false;
+  let isExpanded = false;  // 控制展开/收起状态
   
   // 设置音量
   bgMusic.volume = 0.3;
   
-  // 页面加载时显示卡片3秒，然后自动隐藏
-  musicControl.style.opacity = '1';
-  setTimeout(() => {
-    musicControl.style.opacity = ''; // 移除内联样式，让CSS接管
-  }, 3000);
-  
-  // 首次点击页面任意位置开始播放
-  document.addEventListener('click', function initMusic() {
-    bgMusic.play().then(() => {
-      isMusicPlaying = true;
-      musicThumb.classList.add('playing');  // 缩略图开始旋转
-      musicIcon.className = 'fas fa-pause';
-      console.log('背景音乐已开始播放');
-    }).catch(e => {
-      console.log('自动播放被阻止:', e);
-      musicIcon.className = 'fas fa-play';
-    });
-    
-    // 首次播放后交给CSS控制显示/隐藏
-    musicControl.style.opacity = '';
-    document.removeEventListener('click', initMusic);
-  }, { once: true });
-  
-  // 点击卡片切换播放/暂停
-  musicControl.addEventListener('click', (e) => {
+  // 点击触发边展开/收起
+  musicTrigger.addEventListener('click', (e) => {
     e.stopPropagation();
-    
+    toggleCard();
+  });
+  
+  // 点击内容区切换播放/暂停
+  musicIcon.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleMusic();
+  });
+  
+  // 鼠标离开卡片时自动收起
+  musicCard.addEventListener('mouseleave', () => {
+    if (isExpanded && !bgMusic.paused) {
+      // 如果正在播放，延迟2秒再收起（防止误操作）
+      setTimeout(() => {
+        if (isExpanded) {
+          collapseCard();
+        }
+      }, 2000);
+    } else if (isExpanded) {
+      // 如果已暂停，立即收起
+      collapseCard();
+    }
+  });
+  
+  // 展开卡片
+  function expandCard() {
+    musicCard.classList.add('expanded');
+    isExpanded = true;
+  }
+  
+  // 收起卡片
+  function collapseCard() {
+    musicCard.classList.remove('expanded');
+    isExpanded = false;
+  }
+  
+  // 切换展开/收起
+  function toggleCard() {
+    isExpanded ? collapseCard() : expandCard();
+  }
+  
+  // 切换播放/暂停
+  function toggleMusic() {
     if (isMusicPlaying) {
       bgMusic.pause();
       musicThumb.classList.remove('playing');
@@ -166,6 +188,37 @@ if (bgMusic && musicControl) {
       console.log('背景音乐已恢复播放');
     }
     isMusicPlaying = !isMusicPlaying;
-  });
+  }
+  
+  // 首次点击页面任意位置开始播放
+  document.addEventListener('click', function initMusic() {
+    bgMusic.play().then(() => {
+      isMusicPlaying = true;
+      musicThumb.classList.add('playing');
+      musicIcon.className = 'fas fa-pause';
+      console.log('背景音乐已开始播放');
+    }).catch(e => {
+      console.log('自动播放被阻止:', e);
+      musicIcon.className = 'fas fa-play';
+    });
+    document.removeEventListener('click', initMusic);
+  }, { once: true });
 }
+
+// 鼠标离开卡片时智能隐藏
+musicContent.addEventListener('mouseleave', (e) => {
+  // 检查鼠标是否移向了触发边（如果是，保持展开）
+  const related = e.relatedTarget;
+  if (related && related.closest('.music-trigger')) {
+    return; // 不隐藏
+  }
+  
+  // 否则延迟隐藏
+  setTimeout(() => {
+    if (!musicCard.matches(':hover')) {
+      collapseCard();
+    }
+  }, 800); // 延迟0.8秒，给用户时间返回
+});
+
 
