@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="resource/pic/ico/logo.png" type="image/png">
+<title>我的内容 - ECG</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/component.css">
+<link rel="stylesheet" href="css/effect.css">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/mycontent.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body>
+<canvas class="sakura" id="sakura"></canvas>
+<div class="glass">
+  <header>
+    <div class="logo">ECG</div>
+    <div class="header-search">
+      <div class="search-container">
+        <i class="fas fa-search search-icon"></i>
+        <input type="search" id="search-input" placeholder="搜索视频内容...">
+      </div>
+      <button class="refresh-btn" id="refresh-btn">
+        <i class="fas fa-sync-alt"></i>
+        <span>刷新</span>
+      </button>
+    </div>
+    <nav>
+        <div>
+         <a href="index.html" class="nav-item home-link">首页</a>
+        </div>
+      <div class="nav-item category-menu">
+        <div class="category-link">分类</div>
+        <div class="dropdown category-dropdown"></div>
+      </div>
+      <a href="rank.html" class="nav-item rank-link">排行</a>
+      <div class="nav-item upload-menu">
+        <a href="upload.html" class="upload-link">上传</a>
+        <div class="dropdown upload-dropdown">
+          <div class="upload-box">
+            <input type="file" id="fileInput" accept="video/*" style="display: none;">
+            <button id="selectFileBtn" class="upload-btn">选择本地文件</button>
+            <div class="upload-tips">或 Ctrl+V 粘贴文件</div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item setting-menu">
+        <a href="settings.html" class="nav-item setting-link">
+          <i class="fas fa-cog"></i>
+          <span>设置</span>
+        </a>
+        <div class="dropdown setting-dropdown">
+          <a href="#" class="setting-item" id="themeSetting">
+            <i class="fas fa-palette"></i> 主题
+          </a>
+          <div class="setting-divider"></div>
+          <a href="aboutus.html" class="setting-item" id="aboutSetting">
+            <i class="fas fa-info-circle"></i> 关于我们
+          </a>
+          <a href="help.html" class="setting-item" id="helpSetting">
+            <i class="fas fa-question-circle"></i> 帮助中心
+          </a>
+        </div>
+      </div>
+      <div class="nav-item user-menu" id="userMenu">
+        <div class="user-link">用户</div>
+        <div class="dropdown user-dropdown">
+          <div class="user-promo">
+            点击用户头像，畅享更多精彩内容！
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="modal-overlay" id="authModal">
+  <div class="auth-modal">
+    <div class="modal-close" id="modalClose">×</div>
+    <div class="auth-tabs">
+      <div class="auth-tab active" data-tab="login">登录</div>
+      <div class="auth-tab" data-tab="register">注册</div>
+    </div>
+    <div class="auth-form login-form">
+      <div class="form-group">
+        <label class="form-label">用户名/手机号</label>
+        <input type="text" class="form-input" placeholder="请输入用户名或手机号">
+      </div>
+      <div class="form-group">
+        <label class="form-label">密码</label>
+        <input type="password" class="form-input" placeholder="请输入密码">
+      </div>
+      <button class="auth-btn">登录</button>
+    </div>
+    <div class="auth-form register-form">
+      <div class="form-group">
+        <label class="form-label">手机号</label>
+        <input type="text" class="form-input" placeholder="请输入手机号">
+      </div>
+      <div class="form-group">
+        <label class="form-label">验证码</label>
+        <input type="text" class="form-input" placeholder="请输入验证码">
+      </div>
+      <div class="form-group">
+        <label class="form-label">设置密码</label>
+        <input type="password" class="form-input" placeholder="请设置6-16位密码">
+      </div>
+      <button class="auth-btn">注册</button>
+    </div>
+  </div>
+</div>
+
+  <div class="content-container">
+    <div class="sidebar">
+      <ul class="sidebar-menu">
+        <li><a href="#"><i class="fas fa-history"></i> 观看历史</a></li>
+        <li><a href="#"><i class="fas fa-bookmark"></i> 我的收藏</a></li>
+        <li><a href="#"><i class="fas fa-upload"></i> 我的上传</a></li>
+      </ul>
+    </div>
+    
+    <div class="main-content">
+      <div class="content-header">
+        <h1>我的内容</h1>
+        <p>管理您的观看历史和收藏内容</p>
+      </div>
+      
+      <div class="content-tabs">
+        <div class="content-tab active" data-tab="history">观看历史</div>
+        <div class="content-tab" data-tab="favorites">我的收藏</div>
+      </div>
+      
+      <!-- 观看历史内容 -->
+      <div class="content-section" id="history-section">
+        <div class="content-list">
+          <!-- 历史项目1 -->
+          <div class="content-item">
+            <div class="content-thumbnail">
+              <img src="resource/pic/video-thumb1.jpg" alt="视频缩略图">
+              <span class="content-duration">05:23</span>
+            </div>
+            <div class="content-info">
+              <div class="content-title">樱花季特辑：京都古寺赏樱指南</div>
+              <div class="content-meta">
+                <span>昨天 18:32</span>
+                <span><i class="fas fa-eye"></i> 1.2k</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 历史项目2 -->
+          <div class="content-item">
+            <div class="content-thumbnail">
+              <img src="resource/pic/video-thumb2.jpg" alt="视频缩略图">
+              <span class="content-duration">12:45</span>
+            </div>
+            <div class="content-info">
+              <div class="content-title">日本传统茶道与樱花的完美结合</div>
+              <div class="content-meta">
+                <span>2天前</span>
+                <span><i class="fas fa-eye"></i> 3.5k</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 历史项目3 -->
+          <div class="content-item">
+            <div class="content-thumbnail">
+              <img src="resource/pic/video-thumb3.jpg" alt="视频缩略图">
+              <span class="content-duration">08:17</span>
+            </div>
+            <div class="content-info">
+              <div class="content-title">东京樱花夜景摄影技巧分享</div>
+              <div class="content-meta">
+                <span>3天前</span>
+                <span><i class="fas fa-eye"></i> 2.8k</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 收藏内容 -->
+      <div class="content-section" id="favorites-section" style="display: none;">
+        <div class="content-list">
+          <!-- 收藏项目1 -->
+          <div class="content-item">
+            <div class="content-thumbnail">
+              <img src="resource/pic/video-thumb4.jpg" alt="视频缩略图">
+              <span class="content-duration">15:30</span>
+            </div>
+            <div class="content-info">
+              <div class="content-title">樱花飘落的慢镜头拍摄教程</div>
+              <div class="content-meta">
+                <span>收藏于 2周前</span>
+                <span><i class="fas fa-eye"></i> 5.7k</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 收藏项目2 -->
+          <div class="content-item">
+            <div class="content-thumbnail">
+              <img src="resource/pic/video-thumb5.jpg" alt="视频缩略图">
+              <span class="content-duration">22:18</span>
+            </div>
+            <div class="content-info">
+              <div class="content-title">日本樱花季美食大赏：从和果子到樱花酒</div>
+              <div class="content-meta">
+                <span>收藏于 1个月前</span>
+                <span><i class="fas fa-eye"></i> 8.3k</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/sakura.js"></script>
+<script src="js/base.js"></script>
+<script src="js/render.js"></script>
+<script src="js/function.js"></script>
+<script src="js/mycontent.js"></script>
+<script src="js/data.js"></script>
+
+</body>
+</html>
