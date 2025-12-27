@@ -377,57 +377,14 @@
 .modal-overlay.show {
   display: flex;
 }
-/* 弹窗容器 - 改为flex左右布局 */
 .auth-modal {
-  width: 600px; /* 增加宽度 */
+  width: 400px;
   background-color: white;
   border-radius: 20px;
+  padding: 30px;
   box-shadow: 0 10px 30px rgba(244,143,177,.2);
   position: relative;
-  display: flex; /* 关键：flex布局 */
-  overflow: hidden; /* 隐藏溢出 */
 }
-
-/* ✅ 左侧新样式 */
-.auth-left {
-  width: 220px; /* 左侧固定宽度 */
-  background: linear-gradient(135deg, #f48fb1 0%, #f8bbd0 100%); /* 樱花粉渐变 */
-  padding: 40px 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  text-align: center;
-}
-
-/* Logo样式 */
-.auth-logo {
-  font-size: 48px;
-  font-weight: bold;
-  margin-bottom: 25px;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-/* 欢迎文字 */
-.auth-welcome h2 {
-  font-size: 22px;
-  margin-bottom: 10px;
-  font-weight: 600;
-}
-
-.auth-welcome p {
-  font-size: 14px;
-  opacity: 0.9;
-  line-height: 1.5;
-}
-
-/* 右侧容器 */
-.auth-right {
-  flex: 1; /* 占据剩余空间 */
-  padding: 30px;
-}
-
 .modal-close {
   position: absolute;
   top: 15px;
@@ -511,7 +468,6 @@
 .auth-btn:hover {
   background-color: #ec4899;
 }
-
 /* 访问统计区域样式（放在视频容器下方） */
 .stats-footer {
   margin-top: 20px; /* 与视频区域拉开间距 */
