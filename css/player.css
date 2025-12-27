@@ -305,24 +305,32 @@
   right: 12px;
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   border-radius: 8px;
   padding: 8px 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  border: 1px solid rgba(255,255,255,0.1);
   display: flex;
   align-items: center;
   gap: 8px;
   opacity: 0;
   transform: translateY(8px);
-  transition: all 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
   z-index: 10;
+  pointer-events: none; /* 默认禁用点击 */
 }
 
-/* 鼠标悬停视频时显示控件 */
+/* 显示状态（由JS控制） */
+.custom-controls.show {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  pointer-events: all !important;
+}
+
+/* 鼠标悬停时显示（非全屏模式） */
 .video-wrapper:hover .custom-controls {
   opacity: 1;
   transform: translateY(0);
+  pointer-events: all;
 }
 
 /* 触摸设备始终显示控件 */
@@ -650,3 +658,15 @@
   border-radius: 3px;
 }
 
+/* 全屏模式强制隐藏控制条（JS控制） */
+:fullscreen .custom-controls.hidden,
+:-webkit-full-screen .custom-controls.hidden {
+  opacity: 0 !important;
+  transform: translateY(8px) !important;
+}
+
+/* 全屏时控制条可交互 */
+:fullscreen .custom-controls,
+:-webkit-full-screen .custom-controls {
+  pointer-events: all;
+}

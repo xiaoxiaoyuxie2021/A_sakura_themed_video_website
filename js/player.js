@@ -82,6 +82,23 @@ document.addEventListener('DOMContentLoaded', () => {
     video.currentTime = percent * video.duration;
   }
 
+// 修改 player.js 的 updateScrub 函数，使用节流控制
+let lastUpdateTime = 0;
+const THROTTLE_DELAY = 10; // 50ms更新一次（数值越大越迟钝）
+
+function updateScrub(e) {
+  const now = Date.now();
+  if (now - lastUpdateTime < THROTTLE_DELAY) {
+    return; // 跳过更新
+  }
+  lastUpdateTime = now;
+
+  const rect = progressBar.getBoundingClientRect();
+  const percent = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+  video.currentTime = percent * video.duration;
+}
+
+
   // ===== 3. 音量 =====
   function updateVolumeIcon() {
     const vol = video.muted ? 0 : video.volume;
@@ -135,3 +152,74 @@ document.addEventListener('DOMContentLoaded', () => {
     return `${m}:${s.toString().padStart(2, '0')}`;
   }
 });
+
+  // ===== 全屏模式控制条智能隐藏 =====
+let hideControlsTimer = null;
+
+// 清除隐藏计时器
+function clearHideTimer() {
+  if (hideControlsTimer) {
+    clearTimeout(hideControlsTimer);
+    hideControlsTimer = null;
+  }
+}
+
+// 启动隐藏计时器（3秒后隐藏）
+function startHideTimer() {
+  clearHideTimer();
+  hideControlsTimer = setTimeout(() => {
+    if (document.fullscreenElement && !video.paused) {
+      controls.style.opacity = '0';
+      controls.style.transform = 'translateY(8px)';
+      controls.style.pointerEvents = 'none'; // 隐藏时禁用点击
+    }
+  }, 3000);
+}
+
+// 显示控制条
+function showControls() {
+  clearHideTimer();
+  controls.style.opacity = '1';
+  controls.style.transform = 'translateY(0)';
+  controls.style.pointerEvents = 'all';
+}
+
+// 监听全屏变化
+document.addEventListener('fullscreenchange', () => {
+  if (document.fullscreenElement) {
+    // 全屏时：3秒后自动隐藏
+    startHideTimer();
+  } else {
+    // 非全屏时：恢复CSS默认行为
+    clearHideTimer();
+    controls.style.opacity = '';
+    controls.style.transform = '';
+    controls.style.pointerEvents = '';
+  }
+});
+
+// 在全屏模式下，监听光标移动
+if (document.fullscreenEnabled) {
+  document.addEventListener('mousemove', (e) => {
+    if (document.fullscreenElement) {
+      // 光标在视频区域内
+      if (videoWrapper.contains(e.target)) {
+        showControls();
+        startHideTimer();
+      }
+    }
+  });
+}
+
+// 所有交互操作后重置计时器
+[playPauseBtn, volumeBtn, volumeSlider, fullscreenBtn].forEach(btn => {
+  if (btn) {
+    btn.addEventListener('click', () => {
+      if (document.fullscreenElement) {
+        showControls();
+        startHideTimer();
+      }
+    });
+  }
+});
+
