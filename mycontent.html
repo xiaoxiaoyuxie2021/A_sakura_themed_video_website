@@ -12,7 +12,6 @@
 <link rel="stylesheet" href="css/theme.css">
 <link rel="stylesheet" href="css/mycontent.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
 </head>
 <body>
 <canvas class="sakura" id="sakura"></canvas>
@@ -30,9 +29,9 @@
       </button>
     </div>
     <nav>
-        <div>
-         <a href="index.html" class="nav-item home-link">首页</a>
-        </div>
+      <div>
+        <a href="index.html" class="nav-item home-link">首页</a>
+      </div>
       <div class="nav-item category-menu">
         <div class="category-link">分类</div>
         <div class="dropdown category-dropdown"></div>
@@ -76,48 +75,58 @@
       </div>
     </nav>
   </header>
+
   <div class="modal-overlay" id="authModal">
-  <div class="auth-modal">
-    <div class="modal-close" id="modalClose">×</div>
-    <div class="auth-tabs">
-      <div class="auth-tab active" data-tab="login">登录</div>
-      <div class="auth-tab" data-tab="register">注册</div>
-    </div>
-    <div class="auth-form login-form">
-      <div class="form-group">
-        <label class="form-label">用户名/手机号</label>
-        <input type="text" class="form-input" placeholder="请输入用户名或手机号">
+    <div class="auth-modal">
+      <div class="modal-close" id="modalClose">×</div>
+      <div class="auth-tabs">
+        <div class="auth-tab active" data-tab="login">登录</div>
+        <div class="auth-tab" data-tab="register">注册</div>
       </div>
-      <div class="form-group">
-        <label class="form-label">密码</label>
-        <input type="password" class="form-input" placeholder="请输入密码">
+      <div class="auth-form login-form">
+        <div class="form-group">
+          <label class="form-label">用户名/手机号</label>
+          <input type="text" class="form-input" placeholder="请输入用户名或手机号">
+        </div>
+        <div class="form-group">
+          <label class="form-label">密码</label>
+          <input type="password" class="form-input" placeholder="请输入密码">
+        </div>
+        <button class="auth-btn">登录</button>
       </div>
-      <button class="auth-btn">登录</button>
-    </div>
-    <div class="auth-form register-form">
-      <div class="form-group">
-        <label class="form-label">手机号</label>
-        <input type="text" class="form-input" placeholder="请输入手机号">
+      <div class="auth-form register-form">
+        <div class="form-group">
+          <label class="form-label">手机号</label>
+          <input type="text" class="form-input" placeholder="请输入手机号">
+        </div>
+        <div class="form-group">
+          <label class="form-label">验证码</label>
+          <input type="text" class="form-input" placeholder="请输入验证码">
+        </div>
+        <div class="form-group">
+          <label class="form-label">设置密码</label>
+          <input type="password" class="form-input" placeholder="请设置6-16位密码">
+        </div>
+        <button class="auth-btn">注册</button>
       </div>
-      <div class="form-group">
-        <label class="form-label">验证码</label>
-        <input type="text" class="form-input" placeholder="请输入验证码">
-      </div>
-      <div class="form-group">
-        <label class="form-label">设置密码</label>
-        <input type="password" class="form-input" placeholder="请设置6-16位密码">
-      </div>
-      <button class="auth-btn">注册</button>
     </div>
   </div>
-</div>
 
   <div class="content-container">
     <div class="sidebar">
       <ul class="sidebar-menu">
-        <li><a href="#"><i class="fas fa-history"></i> 观看历史</a></li>
-        <li><a href="#"><i class="fas fa-bookmark"></i> 我的收藏</a></li>
-        <li><a href="#"><i class="fas fa-upload"></i> 我的上传</a></li>
+        <li class="sidebar-item active" data-tab="history">
+          <i class="fas fa-history"></i>
+          <span>观看历史</span>
+        </li>
+        <li class="sidebar-item" data-tab="favorites">
+          <i class="fas fa-bookmark"></i>
+          <span>我的收藏</span>
+        </li>
+        <li class="sidebar-item" data-tab="uploads">
+          <i class="fas fa-upload"></i>
+          <span>我的上传</span>
+        </li>
       </ul>
     </div>
     
@@ -127,15 +136,8 @@
         <p>管理您的观看历史和收藏内容</p>
       </div>
       
-      <div class="content-tabs">
-        <div class="content-tab active" data-tab="history">观看历史</div>
-        <div class="content-tab" data-tab="favorites">我的收藏</div>
-      </div>
-      
-      <!-- 观看历史内容 -->
-      <div class="content-section" id="history-section">
+      <div class="content-card active" id="history-section">
         <div class="content-list">
-          <!-- 历史项目1 -->
           <div class="content-item">
             <div class="content-thumbnail">
               <img src="resource/pic/video-thumb1.jpg" alt="视频缩略图">
@@ -150,7 +152,6 @@
             </div>
           </div>
           
-          <!-- 历史项目2 -->
           <div class="content-item">
             <div class="content-thumbnail">
               <img src="resource/pic/video-thumb2.jpg" alt="视频缩略图">
@@ -165,7 +166,6 @@
             </div>
           </div>
           
-          <!-- 历史项目3 -->
           <div class="content-item">
             <div class="content-thumbnail">
               <img src="resource/pic/video-thumb3.jpg" alt="视频缩略图">
@@ -182,10 +182,8 @@
         </div>
       </div>
       
-      <!-- 收藏内容 -->
-      <div class="content-section" id="favorites-section" style="display: none;">
+      <div class="content-card" id="favorites-section">
         <div class="content-list">
-          <!-- 收藏项目1 -->
           <div class="content-item">
             <div class="content-thumbnail">
               <img src="resource/pic/video-thumb4.jpg" alt="视频缩略图">
@@ -200,7 +198,6 @@
             </div>
           </div>
           
-          <!-- 收藏项目2 -->
           <div class="content-item">
             <div class="content-thumbnail">
               <img src="resource/pic/video-thumb5.jpg" alt="视频缩略图">
@@ -214,6 +211,14 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      
+      <div class="content-card" id="uploads-section">
+        <div class="empty-state">
+          <i class="fas fa-cloud-upload-alt"></i>
+          <p>您还没有上传任何视频</p>
+          <button onclick="location.href='upload.html'">立即上传</button>
         </div>
       </div>
     </div>

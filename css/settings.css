@@ -1,83 +1,135 @@
-/* 设置 * 设置页特有样式
- * 保持保持樱花主题色调，使用var(--sakura)作为基础色调
- * 采用卡片式布局，增强层次感
- */
-.settings-container {
-  max-width: 900px;
-  margin: 20px auto;
-  padding: 0 20px;
+/* ===== 设置页样式 - 复刻 mycontent.css 布局 ===== */
+
+/* 页面基础结构 */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.settings-header {
+.glass {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ✅ 核心布局：复刻 mycontent 的 flex 侧边栏结构 */
+.content-container {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  margin-top: 20px;
+}
+
+/* ===== 侧边栏（复刻 mycontent.sidebar）===== */
+.sidebar {
+  width: 240px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 0 12px 12px 0;
+  padding: 10px 0;
+  height: fit-content;
+  min-height: 400px;
+  box-shadow: 2px 0 8px rgba(244, 143, 177, 0.1);
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ✅ 侧边栏菜单项（复刻 mycontent.sidebar-item） */
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 25px;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border-left: 3px solid transparent;
+  margin: 5px 0;
+}
+
+.sidebar-item.active {
+  background: rgba(255, 210, 220, 0.3);
+  color: #e85d75;
+  border-left: 3px solid #e85d75;
+  font-weight: 600;
+}
+
+.sidebar-item:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.9);
+  color: #e85d75;
+  border-left: 3px solid rgba(232, 93, 117, 0.3);
+}
+
+.sidebar-item i {
+  width: 20px;
+  text-align: center;
+  font-size: 16px;
+  transition: transform 0.2s;
+}
+
+.sidebar-item:hover i {
+  transform: scale(1.1);
+}
+
+/* ===== 主内容区（复刻 mycontent.main-content）===== */
+.main-content {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 12px 0 0 12px;
+  margin: 0 10px 10px 0;
+}
+
+/* ✅ 头部标题区域 */
+.content-header {
   margin-bottom: 30px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid rgba(255, 210, 220, 0.5);
 }
 
-.settings-title {
+.content-header h1 {
   font-size: 24px;
   color: #e85d75;
   margin-bottom: 5px;
 }
 
-.settings-desc {
+.content-header p {
   color: #666;
   font-size: 14px;
 }
 
-.settings-grid {
-  display: grid;
-  grid-template-columns: 240px 1fr;
-  gap: 30px;
-}
-
-@media (max-width: 768px) {
-  .settings-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.settings-sidebar {
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: 12px;
-  padding: 20px 0;
-  height: fit-content;
-}
-
-.settings-nav-item {
-  padding: 12px 25px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #555;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.settings-nav-item.active {
-  background: rgba(255, 210, 220, 0.3);
-  color: #e85d75;
-  border-left: 3px solid #e85d75;
-}
-
-.settings-nav-item:hover:not(.active) {
-  background: rgba(255, 255, 255, 0.5);
-  color: #e85d75;
-}
-
-.settings-content {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
-
-.settings-card {
-  background: rgba(255, 255, 255, 0.7);
+/* ===== 内容卡片（复刻 mycontent.content-card 动画）===== */
+.content-card {
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 2px 8px rgba(244, 143, 177, 0.1);
+  display: none; /* 默认隐藏 */
 }
 
+.content-card.active {
+  display: block;
+  animation: fadeIn 0.3s ease; /* ✅ 使用 mycontent 的淡入动画 */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== 表单样式（保持原有）===== */
 .card-header {
   margin-bottom: 20px;
   padding-bottom: 10px;
@@ -133,7 +185,7 @@
   color: #999;
 }
 
-/* 开关按钮样式 */
+/* ===== 开关按钮样式（保持原有）===== */
 .switch {
   position: relative;
   display: inline-block;
@@ -179,7 +231,7 @@ input:checked + .slider:before {
   transform: translateX(20px);
 }
 
-/* 行内表单样式 */
+/* ===== 行内表单样式（保持原有）===== */
 .inline-form-group {
   display: flex;
   align-items: center;
@@ -199,7 +251,7 @@ input:checked + .slider:before {
   color: #555;
 }
 
-/* 按钮样式 */
+/* ===== 按钮组样式（保持原有）===== */
 .btn-group {
   display: flex;
   gap: 15px;
@@ -245,7 +297,7 @@ input:checked + .slider:before {
   background: #ffebee;
 }
 
-/* 头像上传区域 */
+/* ===== 头像上传样式（保持原有）===== */
 .avatar-upload {
   display: flex;
   align-items: center;
@@ -291,34 +343,7 @@ input:checked + .slider:before {
   background: rgba(255, 210, 220, 0.5);
 }
 
-/* 深色模式适配 */
-@media (prefers-color-scheme: dark) {
-  .settings-card, .settings-sidebar {
-    background: rgba(30, 30, 30, 0.7);
-  }
-  
-  .card-title, .settings-title {
-    color: #ffccd5;
-  }
-  
-  .form-input, .form-select, .form-textarea {
-    background: rgba(50, 50, 50, 0.9);
-    border-color: #553940;
-    color: #f0f0f0;
-  }
-  
-  .inline-form-label, .form-label, .settings-desc {
-    color: #ddd;
-  }
-  
-  .cancel-btn {
-    background: transparent;
-    border-color: #553940;
-    color: #ddd;
-  }
-}
-
-/* 浏览信息网格 */
+/* ===== 浏览信息网格（保持原有）===== */
 .browser-info-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -331,38 +356,110 @@ input:checked + .slider:before {
   justify-content: space-between;
   align-items: center;
   padding: 12px 15px;
-  background: var(--card);
+  background: rgba(255, 255, 255, 0.7);
   border-radius: 8px;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255, 210, 220, 0.3);
 }
 
 .info-label {
   font-weight: 500;
-  color: var(--text);
+  color: #555;
   opacity: 0.8;
 }
 
 .info-value {
   font-family: 'Courier New', monospace;
-  color: var(--accent);
+  color: #e85d75;
   font-weight: 600;
+}
+
+#ipAddress {
+  word-break: break-all;
+  font-size: 16px;
+  line-height: 1.3;
+  word-wrap: break-word;
+  max-width: 200px;
 }
 
 .info-hint {
   text-align: center;
-  color: var(--text);
+  color: #666;
   opacity: 0.6;
   font-size: 13px;
   padding: 10px;
-  background: var(--card);
+  background: rgba(255, 255, 255, 0.7);
   border-radius: 8px;
 }
 
-/* IPv6 长地址自动换行 */
-#ipAddress {
-  word-break: break-all;   /* 长字符任意位置断行 */
-  font-size: 16px;         /* 比默认小一点 */
-  line-height: 1.3;        /* 行距紧凑 */
-  word-wrap: break-word;
-  max-width: 200px;
+/* ===== 深色模式（保持原有）===== */
+@media (prefers-color-scheme: dark) {
+  .sidebar,
+  .content-card {
+    background: rgba(30, 30, 30, 0.7);
+  }
+  
+  .content-header h1,
+  .card-title {
+    color: #ffccd5;
+  }
+  
+  .form-input,
+  .form-select,
+  .form-textarea {
+    background: rgba(50, 50, 50, 0.9);
+    border-color: #553940;
+    color: #f0f0f0;
+  }
+  
+  .inline-form-label,
+  .form-label,
+  .content-header p {
+    color: #ddd;
+  }
+  
+  .cancel-btn {
+    background: transparent;
+    border-color: #553940;
+    color: #ddd;
+  }
+}
+
+/* ===== 移动端适配（复刻 mycontent 的响应式）===== */
+@media (max-width: 768px) {
+  .content-container {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    border-radius: 0;
+    min-height: auto;
+    padding: 5px 0;
+  }
+  
+  .sidebar-menu {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 5px;
+  }
+  
+  .sidebar-item {
+    white-space: nowrap;
+    margin: 0 5px;
+    border-left: none;
+    border-bottom: 3px solid transparent;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  
+  .sidebar-item.active {
+    border-left: none;
+    border-bottom: 3px solid #e85d75;
+  }
+  
+  .main-content {
+    margin: 0;
+    border-radius: 0;
+    padding: 15px;
+  }
 }
