@@ -484,6 +484,80 @@
   color: #f48fb1;
 }
 
+/* 隐藏注册选项卡 */
+.auth-tab[data-tab="register"] {
+  display: none;
+}
+
+/* 登录按钮样式 */
+#loginBtn {
+  width: 100%;
+  padding: 12px;
+  background: #ff758c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-weight: 500;
+}
+
+#loginBtn:hover {
+  background: #ff6b83;
+}
+
+/* 用户菜单样式 */
+.user-menu .user-link {
+  cursor: pointer;
+  position: relative;
+}
+
+.user-dropdown {
+  min-width: 180px;
+}
+
+.user-info {
+  padding: 10px;
+  border-bottom: 1px solid #f0f0f0;
+  text-align: center;
+}
+
+.user-avatar {
+  width: 49px;
+  height: 49px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff7eb3, #ff758c);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+  color: white;
+  font-weight: bold;
+}
+
+.user-name {
+  font-weight: 600;
+  color: #333;
+}
+
+.user-logout {
+  display: block;
+  width: 100%;
+  padding: 8px 15px;
+  background: none;
+  border: none;
+  text-align: center;
+  color: #666;
+  cursor: pointer;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.user-logout:hover {
+  color: #f48fb1;
+}
+
 .auth-form {
   display: none;
 }

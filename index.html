@@ -135,16 +135,17 @@
       </div>
       <div class="auth-form login-form active">
         <div class="form-group">
-          <label class="form-label">用户名/手机号</label>
-          <input type="text" class="form-input" placeholder="请输入用户名或手机号">
+          <label class="form-label">用户名</label>
+          <input type="text" class="form-input" id="loginUsername" placeholder="请输入用户名">
         </div>
         <div class="form-group">
           <label class="form-label">密码</label>
-          <input type="password" class="form-input" placeholder="请输入密码">
+          <input type="password" class="form-input" id="loginPassword" placeholder="请输入密码">
         </div>
-        <button class="auth-btn">登录</button>
+        <button class="auth-btn" id="loginBtn">登录</button>
       </div>
-      <div class="auth-form register-form">
+      <!-- 注册表单暂时隐藏，因为我们只允许特定账号登录 -->
+      <div class="auth-form register-form" style="display: none;">
         <div class="form-group">
           <label class="form-label">手机号</label>
           <input type="text" class="form-input" placeholder="请输入手机号">

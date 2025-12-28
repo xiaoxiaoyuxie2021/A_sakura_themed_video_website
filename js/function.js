@@ -19,12 +19,92 @@ function selectCategory(name) {
 
 // 文件上传处理
 function handleFileUpload(file) {
+  if (!isLoggedIn()) {
+    showLoginModal();
+    return;
+  }
+  
   if (!file.type.startsWith('video/')) {
     alert('请上传视频文件！');
     return;
   }
   console.log('上传文件：', file.name);
   alert(`开始上传：${file.name}\n大小：${(file.size/1024/1024).toFixed(2)}MB`);
+}
+
+/* ===== 登录认证功能 ===== */
+// 固定账号信息
+const FIXED_USER = {
+  username: 'jy_muxiaoxi',
+  password: '258147ab!'
+};
+
+// 检查是否已登录
+function isLoggedIn() {
+  return localStorage.getItem('isLoggedIn') === 'true';
+}
+
+// 登录函数
+function login(username, password) {
+  if (username === FIXED_USER.username && password === FIXED_USER.password) {
+    // 登录成功，存储登录状态
+    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('currentUser', JSON.stringify({
+      username: FIXED_USER.username,
+      avatar: 'MU' // 用户头像首字母
+    }));
+    return true;
+  }
+  return false;
+}
+
+// 登出函数
+function logout() {
+  localStorage.removeItem('isLoggedIn');
+  localStorage.removeItem('currentUser');
+  // 刷新页面以更新UI
+  window.location.reload();
+}
+
+// 更新用户界面
+function updateUserInfo() {
+  const userLink = document.querySelector('.user-link');
+  const userDropdown = document.querySelector('.user-dropdown');
+  const userMenu = document.getElementById('userMenu');
+  
+  if (isLoggedIn()) {
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    userLink.innerHTML = `
+      <div class="user-avatar">${user.avatar}</div>
+    `;
+    userDropdown.innerHTML = `
+      <div class="user-info">
+        <div class="user-avatar">${user.avatar}</div>
+        <div class="user-name">${user.username}</div>
+      </div>
+      <button class="user-logout" id="logoutBtn">退出登录</button>
+    `;
+    userMenu.classList.add('logged-in');
+    
+    // 绑定退出登录事件
+    document.getElementById('logoutBtn')?.addEventListener('click', logout);
+  } else {
+    userLink.textContent = '用户';
+    userDropdown.innerHTML = `
+      <div class="user-promo">
+        点击用户头像，畅享更多精彩内容！
+      </div>
+    `;
+    userMenu.classList.remove('logged-in');
+  }
+}
+
+// 显示登录弹窗
+function showLoginModal() {
+  const authModal = document.getElementById('authModal');
+  if (authModal) {
+    authModal.classList.add('show');
+  }
 }
 
 /* ===== 事件绑定 ===== */
@@ -34,19 +114,34 @@ window.onload = function() {
   if (document.getElementById('grid')) renderVideos();
   if (document.querySelector('.category-dropdown')) renderCategories();
 
-  // 上传按钮事件
+  // 更新用户信息显示
+  updateUserInfo();
+
+  // 上传按钮事件 - 检查登录状态
   document.getElementById('selectFileBtn').addEventListener('click', function() {
+    if (!isLoggedIn()) {
+      showLoginModal();
+      return;
+    }
     document.getElementById('fileInput').click();
   });
 
   // 文件选择事件
   document.getElementById('fileInput').addEventListener('change', function(e) {
+    if (!isLoggedIn()) {
+      showLoginModal();
+      return;
+    }
     const file = e.target.files[0];
     if (file) handleFileUpload(file);
   });
 
   // 粘贴上传事件
   document.addEventListener('paste', function(e) {
+    if (!isLoggedIn()) {
+      showLoginModal();
+      return;
+    }
     const items = (e.clipboardData || e.originalEvent.clipboardData).items;
     for (let item of items) {
       if (item.kind === 'file') {
@@ -76,6 +171,28 @@ window.onload = function() {
     });
   }
 
+  // 上传菜单事件 - 检查登录状态
+  const uploadLink = document.querySelector('.upload-link');
+  if (uploadLink) {
+    uploadLink.addEventListener('click', function(e) {
+      if (!isLoggedIn()) {
+        e.preventDefault(); // 阻止默认跳转行为
+        showLoginModal();
+      }
+    });
+  }
+
+  // 设置菜单事件 - 检查登录状态
+  const settingLink = document.querySelector('.setting-link');
+  if (settingLink) {
+    settingLink.addEventListener('click', function(e) {
+      if (!isLoggedIn()) {
+        e.preventDefault(); // 阻止默认跳转行为
+        showLoginModal();
+      }
+    });
+  }
+
   // 登录注册弹窗交互
   const userLink = document.querySelector('.user-link');
   const authModal = document.getElementById('authModal');
@@ -86,7 +203,10 @@ window.onload = function() {
   if (userLink && authModal) {
     userLink.addEventListener('click', (e) => {
       e.stopPropagation();
-      authModal.classList.add('show');
+      // 只有未登录时才显示登录弹窗
+      if (!isLoggedIn()) {
+        authModal.classList.add('show');
+      }
     });
   }
   if (modalClose && authModal) {
@@ -105,6 +225,20 @@ window.onload = function() {
       });
     });
   }
+
+  // 登录按钮事件
+  document.getElementById('loginBtn')?.addEventListener('click', function() {
+    const username = document.getElementById('loginUsername').value;
+    const password = document.getElementById('loginPassword').value;
+    
+    if (login(username, password)) {
+      alert('登录成功！');
+      authModal.classList.remove('show');
+      updateUserInfo(); // 更新用户界面
+    } else {
+      alert('用户名或密码错误！');
+    }
+  });
 
   // 模拟在线人数更新
   setInterval(() => {
@@ -162,12 +296,6 @@ document.addEventListener('DOMContentLoaded', function() {
       isPlaying = false;
       updatePlayButton();
       musicDisc.classList.remove('playing');
-    });
-    
-    // 播放按钮点击事件
-    miniPlayBtn.addEventListener('click', function(e) {
-      e.stopPropagation(); // 阻止冒泡，避免触发展开事件
-      togglePlay();
     });
     
     // 播放器展开/收起 - 使用mousedown事件而不是click
