@@ -387,7 +387,7 @@
   height: 450px;
   max-height: 90vh;
   background: white;
-  border-radius: 20px;
+  border-radius: 30px;
   box-shadow: 0 15px 50px rgba(0,0,0,0.3);
   overflow: hidden;
   display: flex;
@@ -525,7 +525,7 @@
   background: #ff758c;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 15px;
   font-size: 16px;
   cursor: pointer;
   transition: background 0.3s ease;
