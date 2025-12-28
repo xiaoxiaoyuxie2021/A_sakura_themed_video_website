@@ -63,7 +63,7 @@ function logout() {
   localStorage.removeItem('isLoggedIn');
   localStorage.removeItem('currentUser');
   // 刷新页面以更新UI
-  window.location.reload();
+  window.location.href = 'index.html';
 }
 
 // 更新用户界面
