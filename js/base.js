@@ -5,66 +5,51 @@ window.addEventListener('load', function () {
     dropdowns.forEach(dropdown => dropdown.classList.remove('show'));
   });
 
-  // 登录/注册弹窗控制
-  const loginBtn = document.querySelector('.login-btn');
-  const registerBtn = document.querySelector('.register-btn');
-  const authModal = document.getElementById('authModal');
-  const modalClose = document.getElementById('modalClose');
-  const authTabs = document.querySelectorAll('.auth-tab');
-  const loginForm = document.querySelector('.login-form');
-  const registerForm = document.querySelector('.register-form');
+  // 登录注册弹窗切换功能
+  document.addEventListener('DOMContentLoaded', function() {
+    // 获取登录注册相关元素
+    const authModal = document.getElementById('authModal');
+    const modalClose = document.getElementById('modalClose');
+    const authTabs = document.querySelectorAll('.auth-tab');
+    const loginForm = document.querySelector('.login-form');
+    const registerForm = document.querySelector('.register-form');
 
-  // 打开登录弹窗
-  if (loginBtn && authModal) {
-    loginBtn.addEventListener('click', function() {
-      authModal.classList.add('show');
-      if (loginForm) loginForm.style.display = 'block';
-      if (registerForm) registerForm.style.display = 'none';
-      if (authTabs[0]) authTabs[0].classList.add('active');
-      if (authTabs[1]) authTabs[1].classList.remove('active');
-    });
-  }
-
-  // 打开注册弹窗
-  if (registerBtn && authModal) {
-    registerBtn.addEventListener('click', function() {
-      authModal.classList.add('show');
-      if (loginForm) loginForm.style.display = 'none';
-      if (registerForm) registerForm.style.display = 'block';
-      if (authTabs[1]) authTabs[1].classList.add('active');
-      if (authTabs[0]) authTabs[0].classList.remove('active');
-    });
-  }
-
-  // 关闭弹窗
-  if (modalClose && authModal) {
-    modalClose.addEventListener('click', function() {
-      authModal.classList.remove('show');
-    });
-  }
-
-  // 点击遮罩层关闭弹窗
-  if (authModal) {
-    authModal.addEventListener('click', function(e) {
-      if (e.target === authModal) {
+    // 检查元素是否存在，避免报错
+    if (authModal && modalClose && authTabs.length > 0) {
+      // 关闭弹窗
+      modalClose.addEventListener('click', function() {
         authModal.classList.remove('show');
-      }
-    });
-  }
+        authModal.style.display = 'none';
+      });
 
-  // 切换登录/注册标签
-  authTabs.forEach(tab => {
-    tab.addEventListener('click', function() {
-      authTabs.forEach(t => t.classList.remove('active'));
-      this.classList.add('active');
-      
-      if (this.dataset.tab === 'login') {
-        if (loginForm) loginForm.style.display = 'block';
-        if (registerForm) registerForm.style.display = 'none';
-      } else {
-        if (loginForm) loginForm.style.display = 'none';
-        if (registerForm) registerForm.style.display = 'block';
-      }
-    });
+      // 点击遮罩层关闭弹窗
+      authModal.addEventListener('click', function(e) {
+        if (e.target === authModal) {
+          authModal.classList.remove('show');
+          authModal.style.display = 'none';
+        }
+      });
+
+      // 登录注册切换
+      authTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+          // 移除所有激活状态
+          authTabs.forEach(t => t.classList.remove('active'));
+          loginForm.classList.remove('active');
+          registerForm.classList.remove('active');
+          
+          // 添加当前激活状态
+          this.classList.add('active');
+          
+          // 显示对应表单
+          if (this.dataset.tab === 'login') {
+            loginForm.classList.add('active');
+          } else {
+            registerForm.classList.add('active');
+          }
+        });
+      });
+    }
   });
+
 });
