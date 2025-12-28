@@ -234,9 +234,36 @@
   position: relative;
   flex: 1;
 }
+
+/* 添加搜索按钮样式 */
+.search-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #f48fb1;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.search-btn:hover {
+  background-color: rgba(244, 143, 177, 0.1);
+  color: #ec4899;
+}
+
+/* 调整搜索输入框的内边距，为右侧搜索按钮留出空间 */
 #search-input {
   width: 100%;
-  padding: 8px 15px 8px 35px;
+  padding: 8px 40px 8px 35px; /* 增加右侧内边距为搜索按钮留出空间 */
   border: 1px solid #e6c8d9;
   border-radius: 20px;
   outline: none;
