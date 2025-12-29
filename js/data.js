@@ -30,23 +30,23 @@ let videos = [
 window.categories = {
   game: {
     title: '游戏',
-    header: '🎮 游戏分类',
+    header: '🎮 游戏',
   },
   sports: {
     title: '运动',
-    header: '⚽ 运动分类',
+    header: '⚽ 运动',
   },
   anime: {
     title: '动漫',
-    header: '🎌 动漫分类',
+    header: '🎌 动漫',
   },
     movie: {
       title: '电影',
-      header: '🎬 电影分类',
+      header: '🎬 电影',
     },
     food: {
       title: '美食',
-      header: '🍜 美食分类',
+      header: '🍜 美食',
     },  
 };
 

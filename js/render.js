@@ -1,13 +1,16 @@
 /* ===== 渲染函数 ===== */
-function renderVideos() {
-  document.getElementById('grid').innerHTML = videos.map(v=>{
+function renderVideos(videosToShow = null) {
+  // 如果没有传入视频数组，则使用全局的videos数组
+  const videosToRender = videosToShow || window.videos || [];
+  
+  document.getElementById('grid').innerHTML = videosToRender.map(v => {
     // 给每个视频匹配对应的播放页
     let playPage = 'play.html'; // 默认播放页
     if(v.id === 'spring') playPage = 'play-spring.html';
     if(v.id === 'kyoto') playPage = 'play-kyoto.html';
     
     return `
-    <div class="card" onclick="window.open('${playPage}', '_blank')">
+    <div class="card" onclick="window.open('${playPage}?id=${v.id}', '_blank')">
       <img src="${v.thumb}" alt="封面">
       <div class="card-body">
         <div class="card-title">${v.title}</div>
