@@ -5,8 +5,64 @@ if (typeof renderCategories === 'function') {
   renderCategories();
 }
 
+// ===== 初始化设置项可见性 =====
+function initSettingsVisibility() {
+  // 检查 isLoggedIn 函数是否存在
+  if (typeof isLoggedIn !== 'function') {
+    console.warn('isLoggedIn 函数未定义');
+    return;
+  }
+
+  const loggedIn = isLoggedIn();
+  const controlledTabs = ['account', 'privacy', 'security'];
+  
+  controlledTabs.forEach(tabName => {
+    // 控制侧边栏菜单项
+    const sidebarItem = document.querySelector(`.sidebar-item[data-tab="${tabName}"]`);
+    // 控制主内容卡片
+    const contentCard = document.getElementById(`${tabName}-tab`);
+    
+    if (sidebarItem) {
+      sidebarItem.style.display = loggedIn ? '' : 'none';
+    }
+    if (contentCard) {
+      contentCard.style.display = loggedIn ? '' : 'none';
+    }
+  });
+}
+
+// ===== 激活第一个可见的设置项 =====
+function activateFirstVisibleTab() {
+  const sidebarItems = document.querySelectorAll('.sidebar-item');
+  const contentCards = document.querySelectorAll('.content-card');
+  
+  // 移除所有激活状态
+  sidebarItems.forEach(i => i.classList.remove('active'));
+  contentCards.forEach(c => c.classList.remove('active'));
+  
+  // 找到第一个可见的侧边栏项
+  const firstVisibleItem = Array.from(sidebarItems).find(
+    item => item.style.display !== 'none' && getComputedStyle(item).display !== 'none'
+  );
+  
+  if (firstVisibleItem) {
+    // 激活第一个可见的侧边栏项
+    firstVisibleItem.classList.add('active');
+    
+    // 找到对应的内容卡片并激活
+    const targetTab = firstVisibleItem.dataset.tab;
+    const targetCard = document.getElementById(`${targetTab}-tab`);
+    if (targetCard) {
+      targetCard.classList.add('active');
+    }
+  }
+}
+
 // ===== 设置页导航切换（修正类名）=====
 document.addEventListener('DOMContentLoaded', () => {
+  // 先初始化可见性（在渲染之前执行）
+  initSettingsVisibility();
+  
   // ✅ 修正：使用新的类名 .sidebar-item
   const sidebarItems = document.querySelectorAll('.sidebar-item');
   // ✅ 修正：使用新的类名 .content-card
@@ -18,9 +74,8 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  // 初始化：显示第一个
-  sidebarItems[0].classList.add('active');
-  if (contentCards[0]) contentCards[0].classList.add('active');
+  // 激活第一个可见的设置项（而不是固定的第一个）
+  activateFirstVisibleTab();
 
   // 点击切换
   sidebarItems.forEach(item => {

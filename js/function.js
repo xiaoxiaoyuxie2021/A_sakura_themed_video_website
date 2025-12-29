@@ -77,11 +77,26 @@ function updateUserInfo() {
     userLink.innerHTML = `
       <div class="user-avatar">${user.avatar}</div>
     `;
+    // 在退出登录按钮上方添加"我的内容"入口
     userDropdown.innerHTML = `
       <div class="user-info">
         <div class="user-avatar">${user.avatar}</div>
         <div class="user-name">${user.username}</div>
       </div>
+      <a href="mycontent.html" class="user-menu-item" style="
+        display: block; 
+        padding: 12px 15px; 
+        text-decoration: none; 
+        color: #666; 
+        text-align: center; 
+        font-size: 14px; 
+        cursor: pointer; 
+        transition: all 0.2s;
+        border-top: 1px solid rgba(244, 143, 177, 0.1);
+      " onmouseover="this.style.backgroundColor='rgba(244, 143, 177, 0.1)'; this.style.color='#f48fb1';" 
+      onmouseout="this.style.backgroundColor=''; this.style.color='#666';">
+        <i class="fas fa-video" style="margin-right: 8px; font-size: 14px;"></i>我的内容
+      </a>
       <button class="user-logout" id="logoutBtn">退出登录</button>
     `;
     userMenu.classList.add('logged-in');
@@ -182,16 +197,6 @@ window.onload = function () {
     });
   }
 
-  // 设置菜单事件 - 检查登录状态
-  const settingLink = document.querySelector('.setting-link');
-  if (settingLink) {
-    settingLink.addEventListener('click', function (e) {
-      if (!isLoggedIn()) {
-        e.preventDefault(); // 阻止默认跳转行为
-        showLoginModal();
-      }
-    });
-  }
 
   // 登录注册弹窗交互
   const userLink = document.querySelector('.user-link');
