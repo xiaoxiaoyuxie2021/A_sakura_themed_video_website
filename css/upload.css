@@ -85,35 +85,6 @@
   margin-top: 40px;
 }
 
-.cancel-btn {
-  padding: 10px 20px;
-  border: 1px solid #f48fb1;
-  border-radius: 8px;
-  background: transparent;
-  color: #f48fb1;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.cancel-btn:hover {
-  background: rgba(244, 143, 177, 0.1);
-}
-
-.submit-btn {
-  padding: 10px 25px;
-  border: none;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #ffd1dc, #e85d75);
-  color: white;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.submit-btn:hover {
-  background: linear-gradient(135deg, #ffccd5, #d64561);
-  transform: translateY(-2px);
-}
-
 .file-preview {
   display: none;
   margin-top: 20px;

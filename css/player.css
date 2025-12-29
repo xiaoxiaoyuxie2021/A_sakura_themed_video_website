@@ -177,25 +177,6 @@
   gap: 15px;
 }
 
-/*视频操作区按钮样式*/
-.action-btn {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  padding: 6px 12px;
-  border: none;
-  border-radius: 15px;
-  background: rgba(253, 242, 248, 0.9);
-  color: #f48fb1;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-/*视频操作按钮鼠标光标悬浮效果样式*/
-.action-btn:hover {
-  background-color: rgba(255, 210, 220, 0.9);
-}
-
 /*视频推荐区排版（布局）与样式*/
 .recommendation-item {
   display: flex;
@@ -260,33 +241,6 @@
   }
 }
 
-/*樱花主题发送按钮样式*/
-.send-btn {
-  padding: 8px 20px;
-  border: none;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #ffd1dc, #e85d75); /* 樱花粉渐变 */
-  color: white;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(232, 93, 117, 0.3);
-  transition: all 0.2s ease;
-}
-
-/*发送按钮鼠标光标悬停效果*/
-.send-btn:hover {
-  background: linear-gradient(135deg, #ffccd5, #d64561); /* 加深渐变 */
-  transform: translateY(-2px); /* 轻微上浮 */
-  box-shadow: 0 4px 12px rgba(232, 93, 117, 0.4);
-}
-
-/*点击发送按钮时的按压效果*/
-.send-btn:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 6px rgba(232, 93, 117, 0.2);
-}
-
 /*隐藏默认视频播放器控件*/
 #videoPlayer::-webkit-media-controls {
   display: none !important;
@@ -339,34 +293,6 @@
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-/* 视频播放器控件播放/暂停按钮 */
-.play-pause-btn {
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  background: black;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  font-size: 14px;
-  cursor: pointer;
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-  backdrop-filter: blur(4px);
-}
-
-.play-pause-btn:hover {
-  background: rgba(255, 255, 255, 0.25);
-  border-color: rgba(255, 255, 255, 0.4);
-  transform: scale(1.05);
-}
-
-.play-pause-btn:active {
-  transform: scale(0.95);
 }
 
 /* 视频播放器控件进度条容器 */
@@ -436,26 +362,6 @@
   padding: 3px 6px;
 }
 
-.volume-btn {
-  background: none;
-  border: none;
-  color: rgba(255, 255, 255, 0.8);
-  cursor: pointer;
-  font-size: 12px;
-  width: 20px;
-  height: 20px;
-  border-radius: 3px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-}
-
-.volume-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-}
-
 .volume-slider {
   width: 50px;
   height: 3px;
@@ -494,33 +400,6 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-/* 视频播放器控件全屏按钮 */
-.fullscreen-btn {
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  cursor: pointer;
-  font-size: 12px;
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-  backdrop-filter: blur(4px);
-}
-
-.fullscreen-btn:hover {
-  background: rgba(255, 255, 255, 0.25);
-  border-color: rgba(255, 255, 255, 0.4);
-  transform: scale(1.05);
-}
-
-.fullscreen-btn:active {
-  transform: scale(0.95);
-}
-
 /* 移动端适配 */
 @media (max-width: 768px) {
   .custom-controls {
@@ -529,13 +408,6 @@
     right: 8px;
     padding: 6px 10px;
     gap: 6px;
-  }
-
-  .play-pause-btn,
-  .fullscreen-btn {
-    width: 28px;
-    height: 28px;
-    font-size: 12px;
   }
 
   .progress-container {
@@ -559,12 +431,6 @@
 
   .volume-slider {
     width: 40px;
-  }
-
-  .volume-btn {
-    width: 18px;
-    height: 18px;
-    font-size: 11px;
   }
 }
 
@@ -590,35 +456,6 @@
 
   .volume-control {
     background: rgba(255, 255, 255, 0.08);
-  }
-
-  .volume-btn {
-    color: rgba(255, 255, 255, 0.7);
-  }
-
-  .volume-btn:hover {
-    background: rgba(255, 255, 255, 0.15);
-    color: white;
-  }
-}
-
-/* 减少动画偏好 */
-@media (prefers-reduced-motion: reduce) {
-  .custom-controls,
-  .play-pause-btn,
-  .fullscreen-btn,
-  .progress-filled,
-  .volume-slider::-webkit-slider-thumb {
-    transition: none;
-  }
-
-  .play-pause-btn:hover,
-  .fullscreen-btn:hover {
-    transform: none;
-  }
-
-  .volume-slider::-webkit-slider-thumb:hover {
-    transform: none;
   }
 }
 

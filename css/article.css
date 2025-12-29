@@ -168,26 +168,6 @@
   text-underline-offset: 2px; /* 下划线偏移，更美观 */
 }
 
-/* 关注按钮 */
-.author-badge .follow-btn {
-  padding: 8px 20px;
-  border: none;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #ffd1dc, #e85d75);
-  color: white;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(232, 93, 117, 0.3);
-  transition: all 0.2s ease;
-  white-space: nowrap;
-}
-.author-badge .follow-btn:hover {
-  background: linear-gradient(135deg, #ffccd5, #d64561); /* 加深渐变 */
-  transform: translateY(-2px); /* 轻微上浮 */
-  box-shadow: 0 4px 12px rgba(232, 93, 117, 0.4);
-}
-
 /* 响应式调整 */
 @media (max-width: 768px) {
   .author-badge {
@@ -287,29 +267,6 @@
       flex-shrink: 0;
       font-weight: 600;
       color: #e85d75;
-    }
-    
-    .participate-btn {
-      display: block;
-      width: 100%;
-      max-width: 300px;
-      margin: 40px auto;
-      padding: 12px 0;
-      background: linear-gradient(135deg, #ffd1dc, #e85d75);
-      color: white;
-      border: none;
-      border-radius: 30px;
-      font-size: 18px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s;
-      text-align: center;
-      text-decoration: none;
-    }
-    
-    .participate-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 15px rgba(232, 93, 117, 0.3);
     }
     
     .related-activities {

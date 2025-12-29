@@ -1,0 +1,536 @@
+.submit-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #ffd1dc, #e85d75);
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 16px;
+}
+
+.submit-btn:hover {
+    background: linear-gradient(135deg, #ffccd5, #d64561);
+    transform: translateY(-2px);
+}
+
+/* 关注按钮 */
+.author-badge .follow-btn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #ffd1dc, #e85d75);
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(232, 93, 117, 0.3);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.author-badge .follow-btn:hover {
+    background: linear-gradient(135deg, #ffccd5, #d64561);
+    /* 加深渐变 */
+    transform: translateY(-2px);
+    /* 轻微上浮 */
+    box-shadow: 0 4px 12px rgba(232, 93, 117, 0.4);
+}
+
+.participate-btn {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 40px auto;
+    padding: 12px 0;
+    background: linear-gradient(135deg, #ffd1dc, #e85d75);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+    text-decoration: none;
+}
+
+.participate-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(232, 93, 117, 0.3);
+}
+
+.filter-btn {
+    padding: 6px 15px;
+    border: none;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.6);
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 14px;
+}
+
+.filter-btn.active {
+    background: #e85d75;
+    color: white;
+    box-shadow: 0 2px 8px rgba(232, 93, 117, 0.3);
+}
+
+.filter-btn:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.load-more-btn {
+    padding: 10px 25px;
+    border: 1px solid #f48fb1;
+    border-radius: 20px;
+    background: transparent;
+    color: #e85d75;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.load-more-btn:hover {
+    background: #e85d75;
+    color: white;
+}
+
+.load-more-btn.loading i {
+    display: inline-block !important;
+}
+
+.upload-btn {
+    background: var(--sakura);
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 8px;
+    transition: background 0.2s;
+}
+
+/* 上传按钮 hover 效果 */
+.upload-btn:hover {
+    background: #ffb7c5;
+}
+
+/* 添加搜索按钮样式 */
+.search-btn {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #f48fb1;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 50%;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+
+.search-btn:hover {
+    background-color: rgba(244, 143, 177, 0.1);
+    color: #ec4899;
+}
+
+.refresh-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 15px;
+    background-color: rgba(253, 242, 248, 0.9);
+    color: #f48fb1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+}
+
+.refresh-btn:hover {
+    background-color: rgba(255, 210, 220, 0.9);
+}
+
+.auth-btn {
+    width: 100%;
+    padding: 12px;
+    background: #ff758c;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-weight: 500;
+}
+
+.auth-btn:hover {
+    background: #ff6b83;
+}
+
+.mini-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 24px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 3;
+    color: #f48fb1;
+    font-size: 12px;
+}
+
+.floating-music-player:hover .mini-play-btn {
+    opacity: 1;
+}
+
+.player-play-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #f48fb1;
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.player-play-btn:hover {
+    background: #ec4899;
+}
+
+/*视频操作区按钮样式*/
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 15px;
+    background: rgba(253, 242, 248, 0.9);
+    color: #f48fb1;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+/*视频操作按钮鼠标光标悬浮效果样式*/
+.action-btn:hover {
+    background-color: rgba(255, 210, 220, 0.9);
+}
+
+/*樱花主题发送按钮样式*/
+.send-btn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #ffd1dc, #e85d75);
+    /* 樱花粉渐变 */
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(232, 93, 117, 0.3);
+    transition: all 0.2s ease;
+}
+
+/*发送按钮鼠标光标悬停效果*/
+.send-btn:hover {
+    background: linear-gradient(135deg, #ffccd5, #d64561);
+    /* 加深渐变 */
+    transform: translateY(-2px);
+    /* 轻微上浮 */
+    box-shadow: 0 4px 12px rgba(232, 93, 117, 0.4);
+}
+
+/*点击发送按钮时的按压效果*/
+.send-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(232, 93, 117, 0.2);
+}
+
+/* 视频播放器控件播放/暂停按钮 */
+.play-pause-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    background: black;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 14px;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(4px);
+}
+
+.play-pause-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+}
+
+.play-pause-btn:active {
+    transform: scale(0.95);
+}
+
+.volume-btn {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    font-size: 12px;
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.volume-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+/* 视频播放器控件全屏按钮 */
+.fullscreen-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    font-size: 12px;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(4px);
+}
+
+.fullscreen-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+}
+
+.fullscreen-btn:active {
+    transform: scale(0.95);
+}
+
+.play-pause-btn,
+.fullscreen-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+}
+
+.volume-btn {
+    width: 18px;
+    height: 18px;
+    font-size: 11px;
+}
+
+.volume-btn {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.volume-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+}
+
+/* 减少动画偏好 */
+@media (prefers-reduced-motion: reduce) {
+
+    .custom-controls,
+    .play-pause-btn,
+    .fullscreen-btn,
+    .progress-filled,
+    .volume-slider::-webkit-slider-thumb {
+        transition: none;
+    }
+
+    .play-pause-btn:hover,
+    .fullscreen-btn:hover {
+        transform: none;
+    }
+
+    .volume-slider::-webkit-slider-thumb:hover {
+        transform: none;
+    }
+}
+
+.filter-btn {
+    padding: 6px 14px;
+    border-radius: 15px;
+    border: 1px solid #ffccd5;
+    background: transparent;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 14px;
+}
+
+.filter-btn.active {
+    background: #ffccd5;
+    color: #e85d75;
+    border-color: #e85d75;
+}
+
+.filter-btn:hover:not(.active) {
+    border-color: #e85d75;
+    color: #e85d75;
+}
+
+.page-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #ffccd5;
+    background: transparent;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-btn.active {
+    background: #e85d75;
+    color: white;
+    border-color: #e85d75;
+}
+
+.page-btn:hover:not(.active) {
+    border-color: #e85d75;
+    color: #e85d75;
+}
+
+/* ===== 按钮组样式（保持原有）===== */
+.btn-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.save-btn,
+.cancel-btn,
+.danger-btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+    border: none;
+}
+
+.save-btn {
+    background: linear-gradient(135deg, #ffd1dc, #e85d75);
+    color: white;
+}
+
+.save-btn:hover {
+    background: linear-gradient(135deg, #ffccd5, #d64561);
+    transform: translateY(-2px);
+}
+
+.cancel-btn {
+    background: transparent;
+    border: 1px solid #ffccd5;
+    color: #555;
+}
+
+.cancel-btn:hover {
+    background: rgba(255, 210, 220, 0.1);
+    color: #e85d75;
+}
+
+.danger-btn {
+    background: #fff0f3;
+    color: #e53935;
+}
+
+.danger-btn:hover {
+    background: #ffebee;
+}
+
+.upload-avatar-btn {
+    padding: 8px 16px;
+    background: rgba(255, 210, 220, 0.3);
+    color: #e85d75;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.upload-avatar-btn:hover {
+    background: rgba(255, 210, 220, 0.5);
+}
+
+.cancel-btn {
+    background: transparent;
+    border-color: #553940;
+    color: #ddd;
+}
+
+.cancel-btn {
+    padding: 10px 20px;
+    border: 1px solid #f48fb1;
+    border-radius: 8px;
+    background: transparent;
+    color: #f48fb1;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.cancel-btn:hover {
+    background: rgba(244, 143, 177, 0.1);
+}
+
+.submit-btn {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #ffd1dc, #e85d75);
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.submit-btn:hover {
+    background: linear-gradient(135deg, #ffccd5, #d64561);
+    transform: translateY(-2px);
+}

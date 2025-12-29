@@ -29,28 +29,6 @@
   border-bottom: 1px solid rgba(255, 210, 220, 0.5);
 }
 
-.filter-btn {
-  padding: 6px 14px;
-  border-radius: 15px;
-  border: 1px solid #ffccd5;
-  background: transparent;
-  color: #555;
-  cursor: pointer;
-  transition: all 0.2s;
-  font-size: 14px;
-}
-
-.filter-btn.active {
-  background: #ffccd5;
-  color: #e85d75;
-  border-color: #e85d75;
-}
-
-.filter-btn:hover:not(.active) {
-  border-color: #e85d75;
-  color: #e85d75;
-}
-
 .results-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -74,31 +52,6 @@
   justify-content: center;
   gap: 8px;
   margin: 40px 0 20px;
-}
-
-.page-btn {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 1px solid #ffccd5;
-  background: transparent;
-  color: #555;
-  cursor: pointer;
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.page-btn.active {
-  background: #e85d75;
-  color: white;
-  border-color: #e85d75;
-}
-
-.page-btn:hover:not(.active) {
-  border-color: #e85d75;
-  color: #e85d75;
 }
 
 /* 响应式调整 */

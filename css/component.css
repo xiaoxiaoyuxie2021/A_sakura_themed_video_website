@@ -144,17 +144,7 @@
   width:220px;
   text-align:center;
 }
-.upload-btn{
-  background:var(--sakura);
-  color:#fff;
-  border:none;
-  padding:8px 16px;
-  border-radius:6px;
-  cursor:pointer;
-  font-size:14px;
-  margin-bottom:8px;
-  transition:background 0.2s;
-}
+
 .upload-tips{
   font-size:12px;
   color:#666;
@@ -235,31 +225,6 @@
   flex: 1;
 }
 
-/* 添加搜索按钮样式 */
-.search-btn {
-  position: absolute;
-  right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  color: #f48fb1;
-  cursor: pointer;
-  padding: 4px;
-  border-radius: 50%;
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-}
-
-.search-btn:hover {
-  background-color: rgba(244, 143, 177, 0.1);
-  color: #ec4899;
-}
-
 /* 调整搜索输入框的内边距，为右侧搜索按钮留出空间 */
 #search-input {
   width: 100%;
@@ -279,21 +244,6 @@
   top: 50%;
   transform: translateY(-50%);
   color: #f48fb1;
-}
-.refresh-btn {
-  padding: 6px 12px;
-  border: none;
-  border-radius: 15px;
-  background-color: rgba(253, 242, 248, 0.9);
-  color: #f48fb1;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 14px;
-}
-.refresh-btn:hover {
-  background-color: rgba(255, 210, 220, 0.9);
 }
 
 /* 删除或注释掉原来的 .setting-menu 和 .setting-link 样式 */
@@ -620,23 +570,6 @@
   border-color: #ff758c;
 }
 
-.auth-btn {
-  width: 100%;
-  padding: 12px;
-  background: #ff758c;
-  color: white;
-  border: none;
-  border-radius: 15px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  font-weight: 500;
-}
-
-.auth-btn:hover {
-  background: #ff6b83;
-}
-
 /* 访问统计区域样式（放在视频容器下方） */
 .stats-footer {
   margin-top: 20px; /* 与视频区域拉开间距 */
@@ -727,29 +660,6 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
-.mini-play-btn {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 24px;
-  height: 24px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 3;
-  color: #f48fb1;
-  font-size: 12px;
-}
-
-.floating-music-player:hover .mini-play-btn {
-  opacity: 1;
-}
-
 /* 展开的矩形播放器 */
 .expanded-player {
   position: absolute;
@@ -821,25 +731,6 @@
   align-items: center;
   gap: 8px;
   margin-left: 10px;
-}
-
-.player-play-btn {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: #f48fb1;
-  color: white;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background 0.2s;
-}
-
-.player-play-btn:hover {
-  background: #ec4899;
 }
 
 .player-close {

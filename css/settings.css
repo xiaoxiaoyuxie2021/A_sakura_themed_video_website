@@ -251,52 +251,6 @@ input:checked + .slider:before {
   color: #555;
 }
 
-/* ===== 按钮组样式（保持原有）===== */
-.btn-group {
-  display: flex;
-  gap: 15px;
-  margin-top: 20px;
-}
-
-.save-btn, .cancel-btn, .danger-btn {
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s;
-  font-weight: 500;
-  border: none;
-}
-
-.save-btn {
-  background: linear-gradient(135deg, #ffd1dc, #e85d75);
-  color: white;
-}
-
-.save-btn:hover {
-  background: linear-gradient(135deg, #ffccd5, #d64561);
-  transform: translateY(-2px);
-}
-
-.cancel-btn {
-  background: transparent;
-  border: 1px solid #ffccd5;
-  color: #555;
-}
-
-.cancel-btn:hover {
-  background: rgba(255, 210, 220, 0.1);
-  color: #e85d75;
-}
-
-.danger-btn {
-  background: #fff0f3;
-  color: #e53935;
-}
-
-.danger-btn:hover {
-  background: #ffebee;
-}
-
 /* ===== 头像上传样式（保持原有）===== */
 .avatar-upload {
   display: flex;
@@ -324,23 +278,6 @@ input:checked + .slider:before {
   display: flex;
   flex-direction: column;
   gap: 10px;
-}
-
-.upload-avatar-btn {
-  padding: 8px 16px;
-  background: rgba(255, 210, 220, 0.3);
-  color: #e85d75;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.upload-avatar-btn:hover {
-  background: rgba(255, 210, 220, 0.5);
 }
 
 /* ===== 浏览信息网格（保持原有）===== */
@@ -414,12 +351,6 @@ input:checked + .slider:before {
   .inline-form-label,
   .form-label,
   .content-header p {
-    color: #ddd;
-  }
-  
-  .cancel-btn {
-    background: transparent;
-    border-color: #553940;
     color: #ddd;
   }
 }
