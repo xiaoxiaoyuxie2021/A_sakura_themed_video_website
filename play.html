@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
   <meta charset="UTF-8">
   <link rel="icon" href="resource/pic/ico/logo.png" type="image/png">
@@ -11,8 +12,9 @@
   <link rel="stylesheet" href="css/effect.css">
   <link rel="stylesheet" href="css/theme.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="css/player.css"> 
+  <link rel="stylesheet" href="css/player.css">
 </head>
+
 <body>
   <canvas class="sakura" id="sakura"></canvas>
   <div class="glass">
@@ -30,7 +32,7 @@
       </div>
       <nav>
         <div>
-         <a href="index.html" class="nav-item home-link">首页</a>
+          <a href="index.html" class="nav-item home-link">首页</a>
         </div>
         <div class="nav-item upload-menu">
           <a href="upload.html" class="upload-link">上传</a>
@@ -42,25 +44,25 @@
             </div>
           </div>
         </div>
-  <!-- 添加设置按钮 -->
-  <div class="nav-item setting-menu">
-    <a href="settings.html" class="nav-item setting-link">
-  <i class="fas fa-cog"></i>
-  <span>设置</span>
-  </a>
-    <div class="dropdown setting-dropdown">
-      <a href="#" class="setting-item" id="themeSetting">
-        <i class="fas fa-palette"></i> 主题设置
-      </a>
-      <div class="setting-divider"></div>
-      <a href="aboutus.html" class="setting-item" id="aboutSetting">
-        <i class="fas fa-info-circle"></i> 关于我们
-      </a>
-      <a href="help.html" class="setting-item" id="helpSetting">
-        <i class="fas fa-question-circle"></i> 帮助中心
-      </a>
-    </div>
-  </div>
+        <!-- 添加设置按钮 -->
+        <div class="nav-item setting-menu">
+          <a href="settings.html" class="nav-item setting-link">
+            <i class="fas fa-cog"></i>
+            <span>设置</span>
+          </a>
+          <div class="dropdown setting-dropdown">
+            <a href="#" class="setting-item" id="themeSetting">
+              <i class="fas fa-palette"></i> 主题设置
+            </a>
+            <div class="setting-divider"></div>
+            <a href="aboutus.html" class="setting-item" id="aboutSetting">
+              <i class="fas fa-info-circle"></i> 关于我们
+            </a>
+            <a href="help.html" class="setting-item" id="helpSetting">
+              <i class="fas fa-question-circle"></i> 帮助中心
+            </a>
+          </div>
+        </div>
         <div class="nav-item user-menu" id="userMenu">
           <span class="user-link">用户</span>
           <div class="dropdown user-dropdown">
@@ -71,7 +73,7 @@
         </div>
       </nav>
     </header>
-    
+
     <!-- 播放页主体内容 -->
     <main style="padding:0;">
       <div class="player-container">
@@ -83,45 +85,45 @@
               <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
               您的浏览器不支持HTML5视频
             </video>
-          <div class="custom-controls">
-    <button class="play-pause-btn" id="playPauseBtn"><i class="fas fa-play"></i></button>
+            <div class="custom-controls">
+              <button class="play-pause-btn" id="playPauseBtn"><i class="fas fa-play"></i></button>
 
-    <div class="progress-container">
-      <!-- 预览缩略图容器 -->
-  <div class="preview-thumbnail" id="previewThumbnail">
-    <canvas id="previewCanvas" width="160" height="90"></canvas>
-    <span class="preview-time" id="previewTime">0:00</span>
-  </div>
-      <div class="progress-bar" id="progressBar">
-        <div class="progress-filled" id="progressFilled"></div>
-      </div>
-      <button class="volume-btn" id="volumeBtn"><i class="fas fa-volume-up"></i></button>
-    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="1">
-    <button class="fullscreen-btn" id="fullscreenBtn"><i class="fas fa-expand"></i></button>
-    <div class="time-display">
-  <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
-</div>
+              <div class="progress-container">
+                <!-- 预览缩略图容器 -->
+                <div class="preview-thumbnail" id="previewThumbnail">
+                  <canvas id="previewCanvas" width="160" height="90"></canvas>
+                  <span class="preview-time" id="previewTime">0:00</span>
+                </div>
+                <div class="progress-bar" id="progressBar">
+                  <div class="progress-filled" id="progressFilled"></div>
+                </div>
+                <button class="volume-btn" id="volumeBtn"><i class="fas fa-volume-up"></i></button>
+                <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+                <button class="fullscreen-btn" id="fullscreenBtn"><i class="fas fa-expand"></i></button>
+                <div class="time-display">
+                  <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
+                </div>
 
-</div>
+              </div>
 
-    </div>
+            </div>
 
-    <div class="time-display">
-      <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
-    </div>
+            <div class="time-display">
+              <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
+            </div>
 
           </div>
-          
+
           <div class="video-info">
             <h1 class="video-title" id="videoTitle">视频测试</h1>
-            
+
             <div class="video-meta">
               <div>
                 <span id="videoAuthor">ECG官方</span> · <span id="videoPlays">0 播放</span>
               </div>
               <div id="videoDate">2025-12-28</div>
             </div>
-            
+
             <div class="video-actions">
               <button class="action-btn">
                 <i class="fas fa-thumbs-up"></i>
@@ -137,7 +139,7 @@
               </button>
             </div>
           </div>
-          
+
           <div class="video-info">
             <h3 style="margin-bottom:10px;">视频简介</h3>
             <p id="videoDesc" style="color:#555; line-height:1.6;">
@@ -150,12 +152,12 @@
             <div class="comment-header">
               <div class="comment-count">评论 (24)</div>
             </div>
-            
+
             <div class="comment-input">
               <input type="text" placeholder="写下你的评论...">
               <button class="send-btn">发送</button>
             </div>
-            
+
             <div class="comment-list">
               <div class="comment-item">
                 <div class="comment-avatar">樱</div>
@@ -165,7 +167,7 @@
                   <div class="comment-time">2023-03-16 14:25</div>
                 </div>
               </div>
-              
+
               <div class="comment-item">
                 <div class="comment-avatar">春</div>
                 <div class="comment-content">
@@ -174,7 +176,7 @@
                   <div class="comment-time">2023-03-16 16:40</div>
                 </div>
               </div>
-              
+
               <div class="comment-item">
                 <div class="comment-avatar">影</div>
                 <div class="comment-content">
@@ -186,7 +188,7 @@
             </div>
           </div>
         </div>
-        
+
         <!-- 推荐视频区（可滚动） -->
         <div class="recommendations">
           <h3 style="padding-left:5px;">推荐视频</h3>
@@ -200,7 +202,7 @@
                 <div class="recommendation-meta">3.2万播放</div>
               </div>
             </div>
-            
+
             <div class="recommendation-item">
               <div class="recommendation-thumb">
                 <img src="https://source.unsplash.com/random/140x80?kyoto" alt="日本京都赏樱攻略">
@@ -210,7 +212,7 @@
                 <div class="recommendation-meta">2.8万播放</div>
               </div>
             </div>
-            
+
             <div class="recommendation-item">
               <div class="recommendation-thumb">
                 <img src="https://source.unsplash.com/random/140x80?picnic" alt="樱花树下的野餐">
@@ -220,7 +222,7 @@
                 <div class="recommendation-meta">1.5万播放</div>
               </div>
             </div>
-            
+
             <div class="recommendation-item">
               <div class="recommendation-thumb">
                 <img src="https://source.unsplash.com/random/140x80?food" alt="春季美食特辑">
@@ -230,7 +232,7 @@
                 <div class="recommendation-meta">4.7万播放</div>
               </div>
             </div>
-            
+
             <div class="recommendation-item">
               <div class="recommendation-thumb">
                 <img src="https://source.unsplash.com/random/140x80?petal" alt="花瓣飘落的瞬间">
@@ -246,57 +248,57 @@
     </main>
   </div>
 
-   <!-- 登录注册弹窗 - 通用代码，添加到其他页面 -->
-<div class="modal-overlay" id="authModal">
-  <div class="auth-modal">
-    <div class="auth-left-section">
-      <div class="auth-logo">
-        <img src="resource/pic/ico/logo.png" alt="ECG Logo">
-      </div>
-      <div class="auth-description">
-        <h2>欢迎来到ECG</h2>
-        <p>发现更多精彩视频内容</p>
-      </div>
-    </div>
-    <div class="auth-right-section">
-      <div class="modal-close" id="modalClose">×</div>
-      <div class="auth-tabs">
-        <div class="auth-tab active" data-tab="login">登录</div>
-        <div class="auth-tab" data-tab="register">注册</div>
-      </div>
-      <div class="auth-form login-form active">
-        <div class="form-group">
-          <label class="form-label">用户名/手机号</label>
-          <input type="text" class="form-input" placeholder="请输入用户名或手机号">
+  <!-- 登录注册弹窗 - 通用代码，添加到其他页面 -->
+  <div class="modal-overlay" id="authModal">
+    <div class="auth-modal">
+      <div class="auth-left-section">
+        <div class="auth-logo">
+          <img src="resource/pic/ico/logo.png" alt="ECG Logo">
         </div>
-        <div class="form-group">
-          <label class="form-label">密码</label>
-          <input type="password" class="form-input" placeholder="请输入密码">
+        <div class="auth-description">
+          <h2>欢迎来到ECG</h2>
+          <p>发现更多精彩视频内容</p>
         </div>
-        <button class="auth-btn">登录</button>
       </div>
-      <div class="auth-form register-form">
-        <div class="form-group">
-          <label class="form-label">手机号</label>
-          <input type="text" class="form-input" placeholder="请输入手机号">
+      <div class="auth-right-section">
+        <div class="modal-close" id="modalClose">×</div>
+        <div class="auth-tabs">
+          <div class="auth-tab active" data-tab="login">登录</div>
+          <div class="auth-tab" data-tab="register">注册</div>
         </div>
-        <div class="form-group">
-          <label class="form-label">验证码</label>
-          <input type="text" class="form-input" placeholder="请输入验证码">
+        <div class="auth-form login-form active">
+          <div class="form-group">
+            <label class="form-label">用户名/手机号</label>
+            <input type="text" class="form-input" placeholder="请输入用户名或手机号">
+          </div>
+          <div class="form-group">
+            <label class="form-label">密码</label>
+            <input type="password" class="form-input" placeholder="请输入密码">
+          </div>
+          <button class="auth-btn">登录</button>
         </div>
-        <button class="auth-btn">注册</button>
+        <div class="auth-form register-form">
+          <div class="form-group">
+            <label class="form-label">手机号</label>
+            <input type="text" class="form-input" placeholder="请输入手机号">
+          </div>
+          <div class="form-group">
+            <label class="form-label">验证码</label>
+            <input type="text" class="form-input" placeholder="请输入验证码">
+          </div>
+          <button class="auth-btn">注册</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 </body>
 <script src="js/sakura.js"></script>
-<script src="js/base.js"></script> 
+<script src="js/base.js"></script>
 <script src="js/player.js"></script>
 <script src="js/data.js"></script>
 <script src="js/function.js"></script>
 <script src="js/render.js"></script>
 <script src="js/theme.js"></script>
-</html>
 
+</html>
