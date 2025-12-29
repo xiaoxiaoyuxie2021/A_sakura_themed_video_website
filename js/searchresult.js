@@ -1,11 +1,11 @@
 // 搜索结果数据
 const searchResults = [
-  {id: "sakura1", title: "京都樱花季漫步", thumb: "https://source.unsplash.com/random/320x180?kyoto,cherry", plays: "12.5万", duration: "05:24", author: "旅行日记"},
-  {id: "sakura2", title: "樱花飘落的速度是每秒五厘米", thumb: "https://source.unsplash.com/random/320x180?anime,cherry", plays: "87.3万", duration: "02:15", author: "动漫精选"},
-  {id: "sakura3", title: "樱花主题钢琴演奏", thumb: "https://source.unsplash.com/random/320x180?piano,cherry", plays: "5.2万", duration: "03:45", author: "音乐之声"},
-  {id: "sakura4", title: "东京上野公园樱花全景", thumb: "https://source.unsplash.com/random/320x180?tokyo,cherry", plays: "3.7万", duration: "08:12", author: "城市漫游"},
-  {id: "sakura5", title: "樱花妆容教程", thumb: "https://source.unsplash.com/random/320x180?makeup,cherry", plays: "9.4万", duration: "12:30", author: "美妆达人"},
-  {id: "sakura6", title: "樱花美食制作：樱花大福", thumb: "https://source.unsplash.com/random/320x180?food,cherry", plays: "6.8万", duration: "07:45", author: "美食厨房"},
+  { id: "sakura1", title: "京都樱花季漫步", thumb: "https://source.unsplash.com/random/320x180?kyoto,cherry", plays: "12.5万", duration: "05:24", author: "旅行日记" },
+  { id: "sakura2", title: "樱花飘落的速度是每秒五厘米", thumb: "https://source.unsplash.com/random/320x180?anime,cherry", plays: "87.3万", duration: "02:15", author: "动漫精选" },
+  { id: "sakura3", title: "樱花主题钢琴演奏", thumb: "https://source.unsplash.com/random/320x180?piano,cherry", plays: "5.2万", duration: "03:45", author: "音乐之声" },
+  { id: "sakura4", title: "东京上野公园樱花全景", thumb: "https://source.unsplash.com/random/320x180?tokyo,cherry", plays: "3.7万", duration: "08:12", author: "城市漫游" },
+  { id: "sakura5", title: "樱花妆容教程", thumb: "https://source.unsplash.com/random/320x180?makeup,cherry", plays: "9.4万", duration: "12:30", author: "美妆达人" },
+  { id: "sakura6", title: "樱花美食制作：樱花大福", thumb: "https://source.unsplash.com/random/320x180?food,cherry", plays: "6.8万", duration: "07:45", author: "美食厨房" },
 ];
 
 // 渲染搜索结果

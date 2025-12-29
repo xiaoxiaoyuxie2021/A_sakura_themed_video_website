@@ -11,23 +11,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const sidebarItems = document.querySelectorAll('.sidebar-item');
   // ✅ 修正：使用新的类名 .content-card
   const contentCards = document.querySelectorAll('.content-card');
-  
+
   // 防御检查
   if (sidebarItems.length === 0 || contentCards.length === 0) {
     console.warn('导航或卡片元素未找到');
     return;
   }
-  
+
   // 初始化：显示第一个
   sidebarItems[0].classList.add('active');
   if (contentCards[0]) contentCards[0].classList.add('active');
-  
+
   // 点击切换
   sidebarItems.forEach(item => {
     item.addEventListener('click', () => {
       sidebarItems.forEach(i => i.classList.remove('active'));
       contentCards.forEach(c => c.classList.remove('active'));
-      
+
       item.classList.add('active');
       const targetTab = item.dataset.tab;
       // ✅ 修正：使用新的ID格式
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
-  
+
   // hover 效果
   sidebarItems.forEach(item => {
     item.addEventListener('mouseenter', () => {
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
-  
+
   console.log('设置导航初始化完成');
 });
 
@@ -99,14 +99,14 @@ document.querySelectorAll('.cancel-btn').forEach(btn => {
 document.querySelectorAll('.upload-avatar-btn').forEach(btn => {
   btn.addEventListener('click', async () => {
     const text = btn.textContent;
-    
+
     if (text.includes('更换头像')) {
       const input = document.createElement('input');
       input.type = 'file';
       input.accept = 'image/*';
       input.style.display = 'none';
-      
-      input.addEventListener('change', function(e) {
+
+      input.addEventListener('change', function (e) {
         const file = e.target.files[0];
         if (!file) return;
         if (!file.type.startsWith('image/')) {
@@ -117,19 +117,19 @@ document.querySelectorAll('.upload-avatar-btn').forEach(btn => {
           alert('图片大小不能超过 5MB！');
           return;
         }
-        
+
         const reader = new FileReader();
-        reader.onload = function(e) {
+        reader.onload = function (e) {
           const previewImg = document.querySelector('.avatar-preview img');
           if (previewImg) previewImg.src = e.target.result;
         };
         reader.readAsDataURL(file);
       });
-      
+
       document.body.appendChild(input);
       input.click();
       document.body.removeChild(input);
-      
+
     } else if (text.includes('拍摄照片')) {
       // 完整的拍照逻辑（保留原始版本）
       try {
@@ -138,37 +138,37 @@ document.querySelectorAll('.upload-avatar-btn').forEach(btn => {
         video.srcObject = stream;
         video.autoplay = true;
         video.style.cssText = 'width: 100%; border-radius: 8px; background: #000;';
-        
+
         const modal = document.createElement('div');
         modal.style.cssText = `position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); z-index: 1001; max-width: 400px; width: 90%;`;
-        
+
         const captureBtn = document.createElement('button');
         captureBtn.innerHTML = '<i class="fas fa-camera"></i> 拍照';
         captureBtn.className = 'save-btn';
         captureBtn.style.marginRight = '10px';
-        
+
         const cancelBtn = document.createElement('button');
         cancelBtn.innerHTML = '<i class="fas fa-times"></i> 取消';
         cancelBtn.className = 'cancel-btn';
-        
+
         modal.innerHTML = '<h3 style="margin-top:0; margin-bottom:10px;">拍照</h3>';
         modal.appendChild(video);
         modal.appendChild(document.createElement('br'));
         modal.appendChild(captureBtn);
         modal.appendChild(cancelBtn);
-        
+
         const overlay = document.createElement('div');
         overlay.style.cssText = `position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; backdrop-filter: blur(5px);`;
-        
+
         document.body.appendChild(overlay);
         document.body.appendChild(modal);
-        
-        captureBtn.onclick = function() {
+
+        captureBtn.onclick = function () {
           const canvas = document.createElement('canvas');
           canvas.width = video.videoWidth;
           canvas.height = video.videoHeight;
           canvas.getContext('2d').drawImage(video, 0, 0);
-          canvas.toBlob(function(blob) {
+          canvas.toBlob(function (blob) {
             const url = URL.createObjectURL(blob);
             const previewImg = document.querySelector('.avatar-preview img');
             if (previewImg) previewImg.src = url;
@@ -177,16 +177,16 @@ document.querySelectorAll('.upload-avatar-btn').forEach(btn => {
             document.body.removeChild(modal);
           }, 'image/jpeg', 0.9);
         };
-        
-        const cleanup = function() {
+
+        const cleanup = function () {
           stream.getTracks().forEach(track => track.stop());
           document.body.removeChild(overlay);
           document.body.removeChild(modal);
         };
-        
+
         cancelBtn.onclick = cleanup;
         overlay.onclick = cleanup;
-        
+
       } catch (error) {
         let errorMsg = '无法访问摄像头';
         if (error.name === 'NotAllowedError') errorMsg = '请允许访问摄像头以拍摄照片';
@@ -238,11 +238,11 @@ function initBrowserInfo() {
   const screenResolutionEl = document.getElementById('screenResolution');
   const ipAddressEl = document.getElementById('ipAddress');
   const networkStatusEl = document.getElementById('networkStatus');
-  
+
   if (browserNameEl) browserNameEl.textContent = getBrowserName();
   if (browserVersionEl) browserVersionEl.textContent = navigator.userAgent.split('/').pop().split(' ')[0];
   if (screenResolutionEl) screenResolutionEl.textContent = `${screen.width} × ${screen.height}`;
-  
+
   // 异步获取操作系统（保留原始逻辑）
   if (platformEl) {
     getOSName().then(osName => {
@@ -251,7 +251,7 @@ function initBrowserInfo() {
       platformEl.textContent = navigator.platform;
     });
   }
-  
+
   // 获取IP地址（保留原始的多API轮询逻辑）
   if (ipAddressEl) {
     (async function fetchIPAddress() {
@@ -260,7 +260,7 @@ function initBrowserInfo() {
         'https://api64.ipify.org?format=json',
         'https://ip.seeip.org/jsonip'
       ];
-      
+
       for (const api of apis) {
         try {
           const controller = new AbortController();
@@ -279,7 +279,7 @@ function initBrowserInfo() {
       ipAddressEl.textContent = '网络受限';
     })();
   }
-  
+
   // 网络状态（保留原始逻辑）
   if (networkStatusEl) {
     const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
@@ -349,10 +349,10 @@ async function getOSName() {
       console.log("无法获取高熵值数据:", e);
     }
   }
-  
+
   const userAgent = navigator.userAgent;
   const platform = navigator.platform;
-  
+
   if (platform.indexOf('Win') > -1) {
     if (userAgent.indexOf('Windows NT 10.0') > -1) return 'Windows 10/11';
     if (userAgent.indexOf('Windows NT 6.3') > -1) return 'Windows 8.1';
@@ -361,11 +361,11 @@ async function getOSName() {
     if (userAgent.indexOf('WOW64') > -1 || userAgent.indexOf('Win64') > -1) return 'Windows (64-bit)';
     return 'Windows (32-bit)';
   }
-  
+
   if (platform.indexOf('Mac') > -1) return 'macOS';
   if (platform.indexOf('Linux') > -1) return 'Linux';
   if (/iPhone|iPad|iPod/.test(userAgent)) return 'iOS';
-  
+
   if (userAgent.indexOf('Android') > -1) {
     const versionMatch = userAgent.match(/Android\s+(\d+)(?:\.(\d+))?/);
     if (versionMatch) {
@@ -375,6 +375,6 @@ async function getOSName() {
     }
     return 'Android';
   }
-  
+
   return platform || '未知系统';
 }

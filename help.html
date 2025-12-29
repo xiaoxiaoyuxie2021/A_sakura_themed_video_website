@@ -1,239 +1,242 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
-<meta charset="UTF-8">
-<link rel="icon" href="resource/pic/ico/logo.png" type="image/png">
-<title>帮助中心 - ECG</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/layout.css">
-<link rel="stylesheet" href="css/component.css">
-<link rel="stylesheet" href="css/help.css">
-<link rel="stylesheet" href="css/effect.css">
-<link rel="stylesheet" href="css/buttons.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <link rel="icon" href="resource/pic/ico/logo.png" type="image/png">
+  <title>帮助中心 - ECG</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/component.css">
+  <link rel="stylesheet" href="css/help.css">
+  <link rel="stylesheet" href="css/effect.css">
+  <link rel="stylesheet" href="css/buttons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 </head>
-<body>
-<canvas class="sakura" id="sakura"></canvas>
-<div class="glass">
-  <header>
-    <div class="logo">ECG</div>
-    <div class="header-search">
-      <div class="search-container">
-        <i class="fas fa-search search-icon"></i>
-        <input type="search" id="search-input" placeholder="搜索视频内容...">
-      </div>
-      <button class="refresh-btn" id="refresh-btn">
-        <i class="fas fa-sync-alt"></i>
-        <span>刷新</span>
-      </button>
-    </div>
-    <nav>
-        <div>
-         <a href="index.html" class="nav-item home-link">首页</a>
-        </div>
-      <div class="nav-item category-menu">
-        <div class="category-link">分类</div>
-        <div class="dropdown category-dropdown"></div>
-      </div>
-      <a href="rank.html" class="nav-item rank-link">排行</a>
-      <div class="nav-item upload-menu">
-        <a href="upload.html" class="upload-link">上传</a>
-        <div class="dropdown upload-dropdown">
-          <div class="upload-box">
-            <input type="file" id="fileInput" accept="video/*" style="display: none;">
-            <button id="selectFileBtn" class="upload-btn">选择本地文件</button>
-            <div class="upload-tips">或 Ctrl+V 粘贴文件</div>
-          </div>
-        </div>
-      </div>
-      <div class="nav-item user-menu" id="userMenu">
-        <div class="user-link">用户</div>
-        <div class="dropdown user-dropdown">
-          <div class="user-promo">
-            点击用户头像，畅享更多精彩内容！
-          </div>
-        </div>
-      </div>
-    </nav>
-  </header>
-  
-  <main class="help-container">
-    <div class="help-header">
-      <h1>帮助中心</h1>
-      <p>常见问题解答，如有其他疑问请联系我们</p>
-    </div>
-    
-    <div class="faq-section">
-      <h2><i class="fas fa-play-circle"></i> 视频播放相关</h2>
-      
-      <div class="faq-item">
-        <div class="faq-question">
-          <span>如何调整视频播放质量？</span>
-          <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="faq-answer">
-          <p>在视频播放页面，点击播放器右下角的"设置"图标，然后在"画质"选项中选择您需要的播放质量。我们提供多种清晰度选择，您可以根据网络状况进行调整。</p>
-        </div>
-      </div>
-      
-      <div class="faq-item">
-        <div class="faq-question">
-          <span>视频无法播放怎么办？</span>
-          <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="faq-answer">
-          <p>如果视频无法播放，请尝试以下解决方案：</p>
-          <ul style="margin-top:10px; padding-left:20px;">
-            <li>检查网络连接是否正常</li>
-            <li>刷新页面后重新尝试播放</li>
-            <li>更新您的浏览器到最新版本</li>
-            <li>尝试使用其他浏览器播放</li>
-            <li>清除浏览器缓存后重试</li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="faq-item">
-        <div class="faq-question">
-          <span>是否可以下载视频？</span>
-          <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="faq-answer">
-          <p>目前平台暂不支持视频下载功能。所有视频仅供在线观看，未经授权的下载和传播可能侵犯版权，请遵守相关法律法规和平台规定。</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="faq-section">
-      <h2><i class="fas fa-upload"></i> 视频上传相关</h2>
-      
-      <div class="faq-item">
-        <div class="faq-question">
-          <span>支持哪些格式的视频上传？</span>
-          <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="faq-answer">
-          <p>平台支持常见的视频格式上传，包括但不限于：MP4、MOV、AVI、MKV、FLV、WMV等。为获得最佳上传和播放体验，建议您上传MP4格式的视频。</p>
-        </div>
-      </div>
-      
-      <div class="faq-item">
-        <div class="faq-question">
-          <span>视频上传有大小限制吗？</span>
-          <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="faq-answer">
-          <p>目前单个视频文件大小上限为2GB。如果您的视频超过此限制，建议您使用视频编辑软件分割视频或压缩视频大小后再进行上传。</p>
-        </div>
-      </div>
-      
-      <div class="faq-item">
-        <div class="faq-question">
-          <span>视频上传后多久可以审核通过？</span>
-          <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="faq-answer">
-          <p>一般情况下，视频上传后会在24小时内完成审核。审核通过后，您的视频将在平台上公开可见。如果视频内容涉及敏感信息或违反平台规定，可能会被拒绝发布。</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="faq-section">
-      <h2><i class="fas fa-user"></i> 账号相关</h2>
-      
-      <div class="faq-item">
-        <div class="faq-question">
-          <span>如何找回密码？</span>
-          <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="faq-answer">
-          <p>在登录页面点击"忘记密码"，输入您注册时使用的手机号，系统将发送验证码到您的手机。输入验证码后，您可以设置新的密码。</p>
-        </div>
-      </div>
-      
-      <div class="faq-item">
-        <div class="faq-question">
-          <span>一个手机号可以注册多个账号吗？</span>
-          <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="faq-answer">
-          <p>为了账号安全和管理，一个手机号只能注册一个账号。如果您需要多个账号，请使用不同的手机号进行注册。</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="contact-section">
-      <h2>联系我们</h2>
-      <p>如果您有其他问题或建议，欢迎通过以下方式联系我们</p>
-      
-      <div class="contact-methods">
-        <div class="contact-method">
-          <i class="fas fa-envelope"></i>
-          <span>support@ecg.example.com</span>
-        </div>
-        <div class="contact-method">
-          <i class="fas fa-phone"></i>
-          <span>400-123-4567</span>
-        </div>
-        <div class="contact-method">
-          <i class="fas fa-comment"></i>
-          <span>在线客服</span>
-        </div>
-      </div>
-    </div>
-  </main>
-</div>
 
- <!-- 登录注册弹窗 - 通用代码，添加到其他页面 -->
-<div class="modal-overlay" id="authModal">
-  <div class="auth-modal">
-    <div class="auth-left-section">
-      <div class="auth-logo">
-        <img src="resource/pic/ico/logo.png" alt="ECG Logo">
-      </div>
-      <div class="auth-description">
-        <h2>欢迎来到ECG</h2>
-        <p>发现更多精彩视频内容</p>
-      </div>
-    </div>
-    <div class="auth-right-section">
-      <div class="modal-close" id="modalClose">×</div>
-      <div class="auth-tabs">
-        <div class="auth-tab active" data-tab="login">登录</div>
-        <div class="auth-tab" data-tab="register">注册</div>
-      </div>
-      <div class="auth-form login-form active">
-        <div class="form-group">
-          <label class="form-label">用户名/手机号</label>
-          <input type="text" class="form-input" placeholder="请输入用户名或手机号">
+<body>
+  <canvas class="sakura" id="sakura"></canvas>
+  <div class="glass">
+    <header>
+      <div class="logo">ECG</div>
+      <div class="header-search">
+        <div class="search-container">
+          <i class="fas fa-search search-icon"></i>
+          <input type="search" id="search-input" placeholder="搜索视频内容...">
         </div>
-        <div class="form-group">
-          <label class="form-label">密码</label>
-          <input type="password" class="form-input" placeholder="请输入密码">
-        </div>
-        <button class="auth-btn">登录</button>
+        <button class="refresh-btn" id="refresh-btn">
+          <i class="fas fa-sync-alt"></i>
+          <span>刷新</span>
+        </button>
       </div>
-      <div class="auth-form register-form">
-        <div class="form-group">
-          <label class="form-label">手机号</label>
-          <input type="text" class="form-input" placeholder="请输入手机号">
+      <nav>
+        <div>
+          <a href="index.html" class="nav-item home-link">首页</a>
         </div>
-        <div class="form-group">
-          <label class="form-label">验证码</label>
-          <input type="text" class="form-input" placeholder="请输入验证码">
+        <div class="nav-item category-menu">
+          <div class="category-link">分类</div>
+          <div class="dropdown category-dropdown"></div>
         </div>
-        <button class="auth-btn">注册</button>
+        <a href="rank.html" class="nav-item rank-link">排行</a>
+        <div class="nav-item upload-menu">
+          <a href="upload.html" class="upload-link">上传</a>
+          <div class="dropdown upload-dropdown">
+            <div class="upload-box">
+              <input type="file" id="fileInput" accept="video/*" style="display: none;">
+              <button id="selectFileBtn" class="upload-btn">选择本地文件</button>
+              <div class="upload-tips">或 Ctrl+V 粘贴文件</div>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item user-menu" id="userMenu">
+          <div class="user-link">用户</div>
+          <div class="dropdown user-dropdown">
+            <div class="user-promo">
+              点击用户头像，畅享更多精彩内容！
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="help-container">
+      <div class="help-header">
+        <h1>帮助中心</h1>
+        <p>常见问题解答，如有其他疑问请联系我们</p>
+      </div>
+
+      <div class="faq-section">
+        <h2><i class="fas fa-play-circle"></i> 视频播放相关</h2>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>如何调整视频播放质量？</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>在视频播放页面，点击播放器右下角的"设置"图标，然后在"画质"选项中选择您需要的播放质量。我们提供多种清晰度选择，您可以根据网络状况进行调整。</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>视频无法播放怎么办？</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>如果视频无法播放，请尝试以下解决方案：</p>
+            <ul style="margin-top:10px; padding-left:20px;">
+              <li>检查网络连接是否正常</li>
+              <li>刷新页面后重新尝试播放</li>
+              <li>更新您的浏览器到最新版本</li>
+              <li>尝试使用其他浏览器播放</li>
+              <li>清除浏览器缓存后重试</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>是否可以下载视频？</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>目前平台暂不支持视频下载功能。所有视频仅供在线观看，未经授权的下载和传播可能侵犯版权，请遵守相关法律法规和平台规定。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-section">
+        <h2><i class="fas fa-upload"></i> 视频上传相关</h2>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>支持哪些格式的视频上传？</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>平台支持常见的视频格式上传，包括但不限于：MP4、MOV、AVI、MKV、FLV、WMV等。为获得最佳上传和播放体验，建议您上传MP4格式的视频。</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>视频上传有大小限制吗？</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>目前单个视频文件大小上限为2GB。如果您的视频超过此限制，建议您使用视频编辑软件分割视频或压缩视频大小后再进行上传。</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>视频上传后多久可以审核通过？</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>一般情况下，视频上传后会在24小时内完成审核。审核通过后，您的视频将在平台上公开可见。如果视频内容涉及敏感信息或违反平台规定，可能会被拒绝发布。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-section">
+        <h2><i class="fas fa-user"></i> 账号相关</h2>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>如何找回密码？</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>在登录页面点击"忘记密码"，输入您注册时使用的手机号，系统将发送验证码到您的手机。输入验证码后，您可以设置新的密码。</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>一个手机号可以注册多个账号吗？</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>为了账号安全和管理，一个手机号只能注册一个账号。如果您需要多个账号，请使用不同的手机号进行注册。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-section">
+        <h2>联系我们</h2>
+        <p>如果您有其他问题或建议，欢迎通过以下方式联系我们</p>
+
+        <div class="contact-methods">
+          <div class="contact-method">
+            <i class="fas fa-envelope"></i>
+            <span>support@ecg.example.com</span>
+          </div>
+          <div class="contact-method">
+            <i class="fas fa-phone"></i>
+            <span>400-123-4567</span>
+          </div>
+          <div class="contact-method">
+            <i class="fas fa-comment"></i>
+            <span>在线客服</span>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- 登录注册弹窗 - 通用代码，添加到其他页面 -->
+  <div class="modal-overlay" id="authModal">
+    <div class="auth-modal">
+      <div class="auth-left-section">
+        <div class="auth-logo">
+          <img src="resource/pic/ico/logo.png" alt="ECG Logo">
+        </div>
+        <div class="auth-description">
+          <h2>欢迎来到ECG</h2>
+          <p>发现更多精彩视频内容</p>
+        </div>
+      </div>
+      <div class="auth-right-section">
+        <div class="modal-close" id="modalClose">×</div>
+        <div class="auth-tabs">
+          <div class="auth-tab active" data-tab="login">登录</div>
+          <div class="auth-tab" data-tab="register">注册</div>
+        </div>
+        <div class="auth-form login-form active">
+          <div class="form-group">
+            <label class="form-label">用户名/手机号</label>
+            <input type="text" class="form-input" placeholder="请输入用户名或手机号">
+          </div>
+          <div class="form-group">
+            <label class="form-label">密码</label>
+            <input type="password" class="form-input" placeholder="请输入密码">
+          </div>
+          <button class="auth-btn">登录</button>
+        </div>
+        <div class="auth-form register-form">
+          <div class="form-group">
+            <label class="form-label">手机号</label>
+            <input type="text" class="form-input" placeholder="请输入手机号">
+          </div>
+          <div class="form-group">
+            <label class="form-label">验证码</label>
+            <input type="text" class="form-input" placeholder="请输入验证码">
+          </div>
+          <button class="auth-btn">注册</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<script src="js/data.js"></script>
-<script src="js/function.js"></script>
-<script src="js/sakura.js"></script>
-<script src="js/help.js"></script>
-<script src="js/render.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/function.js"></script>
+  <script src="js/sakura.js"></script>
+  <script src="js/help.js"></script>
+  <script src="js/render.js"></script>
 </body>
+
 </html>

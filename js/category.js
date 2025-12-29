@@ -2,8 +2,8 @@
 function renderCategoryHeader(type) {
   const cat = window.categories[type];
   const header = document.getElementById('categoryHeader');
-  
-  if(cat) {
+
+  if (cat) {
     header.innerHTML = `
       <div class="category-header">
         <h1 class="category-title">
@@ -16,7 +16,7 @@ function renderCategoryHeader(type) {
         </div>
       </div>
     `;
-    
+
     // 绑定筛选按钮事件
     bindFilterEvents(type);
   } else {
@@ -31,7 +31,7 @@ function bindFilterEvents(type) {
     btn.addEventListener('click', () => {
       buttons.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      
+
       const filter = btn.dataset.filter;
       // 暂时显示所有视频，因为api未定义
       renderVideosByCategory(type);

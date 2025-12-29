@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
   video.addEventListener('pause', () => {
     playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
   });
-  
+
   // 🔴 **修复Bug 2：播放结束后重置图标**
   video.addEventListener('ended', () => {
     playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
@@ -51,52 +51,52 @@ document.addEventListener('DOMContentLoaded', () => {
     currentTimeEl.textContent = formatTime(video.currentTime);
   }
   video.addEventListener('timeupdate', updateProgress);
-  
+
   video.addEventListener('loadedmetadata', () => {
     durationEl.textContent = formatTime(video.duration);
   });
 
   // 🔴 **修复Bug 1：可拖动进度条**
   let isDragging = false;
-  
+
   progressBar.addEventListener('mousedown', (e) => {
     isDragging = true;
     updateScrub(e);
   });
-  
+
   document.addEventListener('mousemove', (e) => {
     if (!isDragging) return;
     updateScrub(e);
   });
-  
+
   document.addEventListener('mouseup', () => {
     isDragging = false;
   });
-  
+
   // 点击跳转
   progressBar.addEventListener('click', updateScrub);
-  
+
   function updateScrub(e) {
     const rect = progressBar.getBoundingClientRect();
     const percent = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
     video.currentTime = percent * video.duration;
   }
 
-// 修改 player.js 的 updateScrub 函数，使用节流控制
-let lastUpdateTime = 0;
-const THROTTLE_DELAY = 10; // 50ms更新一次（数值越大越迟钝）
+  // 修改 player.js 的 updateScrub 函数，使用节流控制
+  let lastUpdateTime = 0;
+  const THROTTLE_DELAY = 10; // 50ms更新一次（数值越大越迟钝）
 
-function updateScrub(e) {
-  const now = Date.now();
-  if (now - lastUpdateTime < THROTTLE_DELAY) {
-    return; // 跳过更新
+  function updateScrub(e) {
+    const now = Date.now();
+    if (now - lastUpdateTime < THROTTLE_DELAY) {
+      return; // 跳过更新
+    }
+    lastUpdateTime = now;
+
+    const rect = progressBar.getBoundingClientRect();
+    const percent = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    video.currentTime = percent * video.duration;
   }
-  lastUpdateTime = now;
-
-  const rect = progressBar.getBoundingClientRect();
-  const percent = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-  video.currentTime = percent * video.duration;
-}
 
 
   // ===== 3. 音量 =====
@@ -105,14 +105,14 @@ function updateScrub(e) {
     const icon = vol === 0 ? 'mute' : vol < 0.5 ? 'down' : 'up';
     volumeBtn.innerHTML = `<i class="fas fa-volume-${icon}"></i>`;
   }
-  
+
   volumeSlider.value = video.volume;
   volumeSlider.addEventListener('input', (e) => {
     video.volume = e.target.value;
     video.muted = false;
     updateVolumeIcon();
   });
-  
+
   volumeBtn.addEventListener('click', () => {
     video.muted = !video.muted;
     updateVolumeIcon();
@@ -126,7 +126,7 @@ function updateScrub(e) {
       document.exitFullscreen();
     }
   });
-  
+
   document.addEventListener('fullscreenchange', () => {
     fullscreenBtn.innerHTML = document.fullscreenElement
       ? '<i class="fas fa-compress"></i>'
@@ -153,7 +153,7 @@ function updateScrub(e) {
   }
 });
 
-  // ===== 全屏模式控制条智能隐藏 =====
+// ===== 全屏模式控制条智能隐藏 =====
 let hideControlsTimer = null;
 
 // 清除隐藏计时器

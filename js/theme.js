@@ -10,11 +10,11 @@ class ThemeManager {
   applyTheme(theme) {
     const root = document.documentElement;
     const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
+
     // 应用主题
     root.setAttribute('data-theme', theme === 'auto' ? (systemDark ? 'dark' : 'light') : theme);
     localStorage.setItem('theme', theme);
-    
+
     // 更新按钮高亮状态
     document.querySelectorAll('.theme-option').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.theme === theme);
@@ -58,7 +58,7 @@ class ThemeManager {
         e.preventDefault();
         document.getElementById('themeModal').classList.add('show');
         document.body.style.overflow = 'hidden';
-        
+
         // 关闭设置下拉菜单
         const dropdown = document.querySelector('.setting-dropdown');
         if (dropdown) dropdown.classList.remove('show');

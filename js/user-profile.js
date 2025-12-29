@@ -125,7 +125,7 @@ window.addEventListener('load', () => {
           if (loginForm) loginForm.style.display = 'none';
           if (registerForm) registerForm.style.display = 'block';
         }
-      
+
       });
     });
   }

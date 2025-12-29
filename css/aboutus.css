@@ -142,7 +142,8 @@
   }
 }
 
-.contact-info h3, .contact-form h3 {
+.contact-info h3,
+.contact-form h3 {
   font-size: 18px;
   color: #333;
   margin-bottom: 20px;

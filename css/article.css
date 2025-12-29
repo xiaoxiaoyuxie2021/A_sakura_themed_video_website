@@ -117,13 +117,18 @@
   color: #666;
   line-height: 1.5;
   margin-bottom: 6px;
-  max-width: 150px; /* 限制最大宽度，避免过宽 */
-  white-space: normal; /* 允许自动换行（默认值，但需确保未被覆盖） */
-  word-wrap: break-word; /* 长单词或URL强制换行 */
-  overflow-wrap: break-word; /* 同上，增强兼容性 */
+  max-width: 150px;
+  /* 限制最大宽度，避免过宽 */
+  white-space: normal;
+  /* 允许自动换行（默认值，但需确保未被覆盖） */
+  word-wrap: break-word;
+  /* 长单词或URL强制换行 */
+  overflow-wrap: break-word;
+  /* 同上，增强兼容性 */
   /* 可选：设置最大显示行数，超出显示省略号 */
   display: -webkit-box;
-  -webkit-line-clamp: 2; /* 最多显示3行 */
+  -webkit-line-clamp: 2;
+  /* 最多显示3行 */
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -155,17 +160,24 @@
 /* 用户昵称链接样式 */
 .author-name .name-link {
   /* 清除默认超链接样式 */
-  text-decoration: none; /* 去掉下划线 */
-  color: inherit; /* 继承父元素的文字颜色 */
-  cursor: pointer; /* 鼠标悬浮显示手型 */
-  transition: color 0.2s ease; /* 颜色过渡动画 */
+  text-decoration: none;
+  /* 去掉下划线 */
+  color: inherit;
+  /* 继承父元素的文字颜色 */
+  cursor: pointer;
+  /* 鼠标悬浮显示手型 */
+  transition: color 0.2s ease;
+  /* 颜色过渡动画 */
 }
 
 /* 昵称 hover 效果 */
 .author-name .name-link:hover {
-  color: #e85d75; /* 悬浮时变粉色（和关注按钮配色一致） */
-  text-decoration: underline; /* 可选：悬浮加下划线 */
-  text-underline-offset: 2px; /* 下划线偏移，更美观 */
+  color: #e85d75;
+  /* 悬浮时变粉色（和关注按钮配色一致） */
+  text-decoration: underline;
+  /* 可选：悬浮加下划线 */
+  text-underline-offset: 2px;
+  /* 下划线偏移，更美观 */
 }
 
 /* 响应式调整 */
@@ -175,161 +187,161 @@
     right: 15px;
     padding: 4px 10px;
   }
-  
+
   .author-avatar {
     width: 28px;
     height: 28px;
   }
-  
+
   .author-name {
     font-size: 12px;
   }
-}     
-    
-    /* 活动文章页特有样式 */
-    .article-container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 25px;
-    }
-    
-    .article-header {
-      text-align: center;
-      margin-bottom: 30px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid rgba(255, 210, 220, 0.5);
-    }
-    
-    .article-title {
-      font-size: 28px;
-      color: #e85d75;
-      margin-bottom: 15px;
-      line-height: 1.4;
-    }
-    
-    .article-meta {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      color: #666;
-      font-size: 14px;
-    }
-    
-    .article-banner {
-      width: 100%;
-      border-radius: 12px;
-      overflow: hidden;
-      margin: 30px 0;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
-    
-    .article-banner img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    
-    .article-content {
-      font-size: 16px;
-      max-width: 800px;
-      line-height: 1.8;
-      color: #333;
-      margin-bottom: 40px;
-      margin: 0 auto;
-      width: 100%;
-    }
-    
-    .article-content p {
-      margin-bottom: 20px;
-    }
-    
-    .article-content h2 {
-      color: #e85d75;
-      margin: 30px 0 15px;
-      font-size: 20px;
-    }
-    
-    .activity-details {
-      background: rgba(255, 255, 255, 0.6);
-      border-radius: 12px;
-      padding: 20px;
-      margin: 30px 0;
-      border-left: 4px solid #ffb7c5;
-    }
-    
-    .detail-item {
-      display: flex;
-      margin-bottom: 15px;
-    }
-    
-    .detail-label {
-      width: 100px;
-      flex-shrink: 0;
-      font-weight: 600;
-      color: #e85d75;
-    }
-    
-    .related-activities {
-      margin-top: 50px;
-      padding-top: 30px;
-      border-top: 1px solid rgba(255, 210, 220, 0.5);
-    }
-    
-    .related-title {
-      font-size: 20px;
-      color: #e85d75;
-      margin-bottom: 20px;
-    }
-    
-    .related-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 20px;
-    }
-    
-    .related-item {
-      border-radius: 8px;
-      overflow: hidden;
-      background: rgba(255, 255, 255, 0.7);
-      transition: transform 0.3s;
-      cursor: pointer;
-    }
-    
-    .related-item:hover {
-      transform: translateY(-5px);
-    }
-    
-    .related-thumb {
-      width: 100%;
-      height: 120px;
-      overflow: hidden;
-    }
-    
-    .related-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s;
-    }
-    
-    .related-item:hover .related-thumb img {
-      transform: scale(1.05);
-    }
-    
-    .related-info {
-      padding: 10px;
-    }
-    
-    .related-name {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 5px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    
-    .related-date {
-      font-size: 12px;
-      color: #666;
-    }
+}
+
+/* 活动文章页特有样式 */
+.article-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 25px;
+}
+
+.article-header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 210, 220, 0.5);
+}
+
+.article-title {
+  font-size: 28px;
+  color: #e85d75;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.article-meta {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  color: #666;
+  font-size: 14px;
+}
+
+.article-banner {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 30px 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.article-banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.article-content {
+  font-size: 16px;
+  max-width: 800px;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 40px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.article-content p {
+  margin-bottom: 20px;
+}
+
+.article-content h2 {
+  color: #e85d75;
+  margin: 30px 0 15px;
+  font-size: 20px;
+}
+
+.activity-details {
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 30px 0;
+  border-left: 4px solid #ffb7c5;
+}
+
+.detail-item {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.detail-label {
+  width: 100px;
+  flex-shrink: 0;
+  font-weight: 600;
+  color: #e85d75;
+}
+
+.related-activities {
+  margin-top: 50px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 210, 220, 0.5);
+}
+
+.related-title {
+  font-size: 20px;
+  color: #e85d75;
+  margin-bottom: 20px;
+}
+
+.related-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.related-item {
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.7);
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+
+.related-item:hover {
+  transform: translateY(-5px);
+}
+
+.related-thumb {
+  width: 100%;
+  height: 120px;
+  overflow: hidden;
+}
+
+.related-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.related-item:hover .related-thumb img {
+  transform: scale(1.05);
+}
+
+.related-info {
+  padding: 10px;
+}
+
+.related-name {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.related-date {
+  font-size: 12px;
+  color: #666;
+}

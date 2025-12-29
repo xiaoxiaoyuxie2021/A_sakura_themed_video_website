@@ -45,7 +45,7 @@ uploadArea.addEventListener('drop', (e) => {
   e.preventDefault();
   uploadArea.style.borderColor = '#ffccd5';
   uploadArea.style.background = 'rgba(255, 253, 254, 0.5)';
-  
+
   if (e.dataTransfer.files.length) {
     fileInput.files = e.dataTransfer.files;
     handleFileSelect(e);
@@ -62,7 +62,7 @@ function handleFileSelect(e) {
 
   const file = e.target.files ? e.target.files[0] : (e.dataTransfer?.files[0] || null);
   if (!file) return;
-  
+
   // 验证文件类型（MIME类型+扩展名双重验证）
   const videoExtensions = ['.mp4', '.mov', '.avi', '.mkv', '.flv', '.wmv'];
   const fileExtension = '.' + file.name.split('.').pop().toLowerCase();
@@ -70,19 +70,19 @@ function handleFileSelect(e) {
     alert('请上传视频文件（支持mp4、mov、avi、mkv、flv、wmv格式）！');
     return;
   }
-  
+
   // 验证文件大小 (2GB)
   if (file.size > 2 * 1024 * 1024 * 1024) {
     alert('视频文件不能超过2GB！');
     return;
   }
-  
+
   // 显示预览
   const videoURL = URL.createObjectURL(file);
   previewVideo.src = videoURL;
   fileName.textContent = file.name;
   filePreview.classList.add('show');
-  
+
   // 自动填充标题（可选）
   if (!videoTitleInput.value) {
     const title = file.name.replace(/\.[^/.]+$/, "");
@@ -111,7 +111,7 @@ cancelBtn.addEventListener('click', () => {
       window.uploadInterval = null;
     }
   }
-  
+
   if (confirm('确定要取消上传吗？已填写的内容将会丢失。')) {
     window.location.href = 'index.html';
   }
@@ -120,7 +120,7 @@ cancelBtn.addEventListener('click', () => {
 // 表单提交
 uploadForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  
+
   // 检查必要元素是否存在
   if (!videoTitleInput || !videoCategorySelect) {
     alert('页面元素不完整，无法提交');
@@ -132,21 +132,21 @@ uploadForm.addEventListener('submit', (e) => {
     alert('请先选择要上传的视频文件');
     return;
   }
-  
+
   // 检查标题是否填写
   if (!videoTitleInput.value.trim()) {
     alert('请输入视频标题');
     videoTitleInput.focus();
     return;
   }
-  
+
   // 检查分类是否选择
   if (!videoCategorySelect.value) {
     alert('请选择视频分类');
     videoCategorySelect.focus();
     return;
   }
-  
+
   // 模拟上传进度
   uploadProgress.classList.add('show');
   let progress = 0;

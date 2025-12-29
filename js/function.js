@@ -1,12 +1,12 @@
 /* ===== 功能函数 ===== */
 // 视频播放控制
-function play(url){
+function play(url) {
   const player = document.getElementById('player');
   const vp = document.getElementById('videoPlayer');
   vp.src = url;
   player.style.display = 'flex';
 }
-function closePlayer(){
+function closePlayer() {
   document.getElementById('player').style.display = 'none';
   document.getElementById('videoPlayer').pause();
 }
@@ -23,13 +23,13 @@ function handleFileUpload(file) {
     showLoginModal();
     return;
   }
-  
+
   if (!file.type.startsWith('video/')) {
     alert('请上传视频文件！');
     return;
   }
   console.log('上传文件：', file.name);
-  alert(`开始上传：${file.name}\n大小：${(file.size/1024/1024).toFixed(2)}MB`);
+  alert(`开始上传：${file.name}\n大小：${(file.size / 1024 / 1024).toFixed(2)}MB`);
 }
 
 /* ===== 登录认证功能 ===== */
@@ -71,7 +71,7 @@ function updateUserInfo() {
   const userLink = document.querySelector('.user-link');
   const userDropdown = document.querySelector('.user-dropdown');
   const userMenu = document.getElementById('userMenu');
-  
+
   if (isLoggedIn()) {
     const user = JSON.parse(localStorage.getItem('currentUser'));
     userLink.innerHTML = `
@@ -85,7 +85,7 @@ function updateUserInfo() {
       <button class="user-logout" id="logoutBtn">退出登录</button>
     `;
     userMenu.classList.add('logged-in');
-    
+
     // 绑定退出登录事件
     document.getElementById('logoutBtn')?.addEventListener('click', logout);
   } else {
@@ -109,7 +109,7 @@ function showLoginModal() {
 
 /* ===== 事件绑定 ===== */
 // 页面加载完成后初始化
-window.onload = function() {
+window.onload = function () {
   // 初始化渲染
   if (document.getElementById('grid')) renderVideos();
   if (document.querySelector('.category-dropdown')) renderCategories();
@@ -118,7 +118,7 @@ window.onload = function() {
   updateUserInfo();
 
   // 上传按钮事件 - 检查登录状态
-  document.getElementById('selectFileBtn').addEventListener('click', function() {
+  document.getElementById('selectFileBtn').addEventListener('click', function () {
     if (!isLoggedIn()) {
       showLoginModal();
       return;
@@ -127,7 +127,7 @@ window.onload = function() {
   });
 
   // 文件选择事件
-  document.getElementById('fileInput').addEventListener('change', function(e) {
+  document.getElementById('fileInput').addEventListener('change', function (e) {
     if (!isLoggedIn()) {
       showLoginModal();
       return;
@@ -137,7 +137,7 @@ window.onload = function() {
   });
 
   // 粘贴上传事件
-  document.addEventListener('paste', function(e) {
+  document.addEventListener('paste', function (e) {
     if (!isLoggedIn()) {
       showLoginModal();
       return;
@@ -174,7 +174,7 @@ window.onload = function() {
   // 上传菜单事件 - 检查登录状态
   const uploadLink = document.querySelector('.upload-link');
   if (uploadLink) {
-    uploadLink.addEventListener('click', function(e) {
+    uploadLink.addEventListener('click', function (e) {
       if (!isLoggedIn()) {
         e.preventDefault(); // 阻止默认跳转行为
         showLoginModal();
@@ -185,7 +185,7 @@ window.onload = function() {
   // 设置菜单事件 - 检查登录状态
   const settingLink = document.querySelector('.setting-link');
   if (settingLink) {
-    settingLink.addEventListener('click', function(e) {
+    settingLink.addEventListener('click', function (e) {
       if (!isLoggedIn()) {
         e.preventDefault(); // 阻止默认跳转行为
         showLoginModal();
@@ -227,10 +227,10 @@ window.onload = function() {
   }
 
   // 登录按钮事件
-  document.getElementById('loginBtn')?.addEventListener('click', function() {
+  document.getElementById('loginBtn')?.addEventListener('click', function () {
     const username = document.getElementById('loginUsername').value;
     const password = document.getElementById('loginPassword').value;
-    
+
     if (login(username, password)) {
       alert('登录成功！');
       authModal.classList.remove('show');
@@ -250,7 +250,7 @@ window.onload = function() {
 };
 
 // 音乐播放器功能
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   // 音乐播放器相关元素
   const bgMusic = document.getElementById('bgMusic');
   const floatingMusicPlayer = document.getElementById('floatingMusicPlayer');
@@ -265,95 +265,95 @@ document.addEventListener('DOMContentLoaded', function() {
   const durationEl = document.getElementById('duration');
   const tutorialTip = document.getElementById('tutorialTip');
   const tutorialClose = document.getElementById('tutorialClose');
-  
+
   let isPlaying = false;
   let isExpanded = false;
   let isDragging = false;
   let offsetX = 0, offsetY = 0;
   let dragStartX = 0, dragStartY = 0;
   let dragThreshold = 5; // 拖动阈值，防止轻微移动也被认为是拖动
-  
+
   // 检查是否显示过教程提示
   const hasSeenTutorial = localStorage.getItem('hasSeenMusicTutorial');
   if (hasSeenTutorial) {
     tutorialTip.style.display = 'none';
   }
-  
+
   // 音乐播放器功能
   if (bgMusic) {
     // 音乐加载完成后更新时长
-    bgMusic.addEventListener('loadedmetadata', function() {
+    bgMusic.addEventListener('loadedmetadata', function () {
       updateDuration();
     });
-    
+
     // 更新播放进度
-    bgMusic.addEventListener('timeupdate', function() {
+    bgMusic.addEventListener('timeupdate', function () {
       updateProgress();
     });
-    
+
     // 音乐播放结束后重置
-    bgMusic.addEventListener('ended', function() {
+    bgMusic.addEventListener('ended', function () {
       isPlaying = false;
       updatePlayButton();
       musicDisc.classList.remove('playing');
     });
-    
+
     // 播放器展开/收起 - 使用mousedown事件而不是click
-    floatingMusicPlayer.addEventListener('mousedown', function(e) {
+    floatingMusicPlayer.addEventListener('mousedown', function (e) {
       // 如果已经在拖动，则不触发展开/收起
       if (isDragging) return;
-      
+
       // 如果是点击播放/暂停或关闭按钮，不触发展开/收起
       if (e.target.closest('.player-play-btn') || e.target.closest('.player-close')) {
         return;
       }
-      
+
       // 记录点击位置，用于判断是否为拖动
       dragStartX = e.clientX;
       dragStartY = e.clientY;
     });
-    
+
     // 鼠标按下事件（用于拖动检测）
-    floatingMusicPlayer.addEventListener('mousedown', function(e) {
+    floatingMusicPlayer.addEventListener('mousedown', function (e) {
       if (isExpanded) return; // 展开时不拖动
-      
+
       isDragging = true;
       const rect = floatingMusicPlayer.getBoundingClientRect();
       offsetX = e.clientX - rect.left;
       offsetY = e.clientY - rect.top;
       floatingMusicPlayer.style.cursor = 'grabbing';
     });
-    
-    document.addEventListener('mousemove', function(e) {
+
+    document.addEventListener('mousemove', function (e) {
       if (!isDragging || isExpanded) return;
-      
+
       const x = e.clientX - offsetX;
       const y = e.clientY - offsetY;
       const maxX = window.innerWidth - floatingMusicPlayer.offsetWidth;
       const maxY = window.innerHeight - floatingMusicPlayer.offsetHeight;
-      
+
       // 限制在窗口范围内
       const finalX = Math.max(0, Math.min(x, maxX));
       const finalY = Math.max(0, Math.min(y, maxY));
-      
+
       floatingMusicPlayer.style.right = (window.innerWidth - finalX - floatingMusicPlayer.offsetWidth) + 'px';
       floatingMusicPlayer.style.bottom = (window.innerHeight - finalY - floatingMusicPlayer.offsetHeight) + 'px';
     });
-    
-    document.addEventListener('mouseup', function(e) {
+
+    document.addEventListener('mouseup', function (e) {
       // 检查是否发生了显著拖动
       const deltaX = Math.abs(e.clientX - dragStartX);
       const deltaY = Math.abs(e.clientY - dragStartY);
       const isSignificantDrag = deltaX > dragThreshold || deltaY > dragThreshold;
-      
+
       if (isDragging) {
         isDragging = false;
         floatingMusicPlayer.style.cursor = 'pointer';
       }
-      
+
       // 如果发生了显著拖动，则不触发展开/收起
       if (isSignificantDrag) return;
-      
+
       // 只有在非拖动状态下才处理展开/收起逻辑
       if (!isExpanded && !isDragging) {
         // 检查点击的目标是否是按钮，如果是则不展开
@@ -365,31 +365,31 @@ document.addEventListener('DOMContentLoaded', function() {
         collapsePlayer();
       }
     });
-    
+
     // 展开播放器中的播放按钮
-    playerPlayBtn.addEventListener('click', function(e) {
+    playerPlayBtn.addEventListener('click', function (e) {
       e.stopPropagation();
       togglePlay();
     });
-    
+
     // 关闭展开的播放器
-    playerCloseBtn.addEventListener('click', function(e) {
+    playerCloseBtn.addEventListener('click', function (e) {
       e.stopPropagation();
       collapsePlayer();
     });
-    
+
     // 进度条拖动
-    progressBar.addEventListener('input', function() {
+    progressBar.addEventListener('input', function () {
       const time = bgMusic.duration * (progressBar.value / 100);
       bgMusic.currentTime = time;
     });
-    
+
     // 教程提示关闭
-    tutorialClose.addEventListener('click', function() {
+    tutorialClose.addEventListener('click', function () {
       tutorialTip.classList.add('hidden');
       localStorage.setItem('hasSeenMusicTutorial', 'true');
     });
-    
+
     // 播放/暂停切换
     function togglePlay() {
       if (isPlaying) {
@@ -401,7 +401,7 @@ document.addEventListener('DOMContentLoaded', function() {
       updatePlayButton();
       updateDiscAnimation();
     }
-    
+
     // 更新播放按钮图标
     function updatePlayButton() {
       if (isPlaying) {
@@ -412,7 +412,7 @@ document.addEventListener('DOMContentLoaded', function() {
         playerPlayIcon.className = 'fas fa-play';
       }
     }
-    
+
     // 更新圆盘旋转动画
     function updateDiscAnimation() {
       if (isPlaying) {
@@ -421,7 +421,7 @@ document.addEventListener('DOMContentLoaded', function() {
         musicDisc.classList.remove('playing');
       }
     }
-    
+
     // 展开播放器
     function expandPlayer() {
       isExpanded = true;
@@ -429,13 +429,13 @@ document.addEventListener('DOMContentLoaded', function() {
       // 隐藏教程提示
       tutorialTip.style.display = 'none';
     }
-    
+
     // 收起播放器
     function collapsePlayer() {
       isExpanded = false;
       expandedPlayer.classList.remove('expanded');
     }
-    
+
     // 更新播放进度
     function updateProgress() {
       if (bgMusic.duration) {
@@ -444,12 +444,12 @@ document.addEventListener('DOMContentLoaded', function() {
         currentTimeEl.textContent = formatTime(bgMusic.currentTime);
       }
     }
-    
+
     // 更新音乐总时长
     function updateDuration() {
       durationEl.textContent = formatTime(bgMusic.duration);
     }
-    
+
     // 格式化时间显示
     function formatTime(seconds) {
       if (isNaN(seconds)) return '00:00';
